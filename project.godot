@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Project Titkin"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+PlatformGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/PlatformGlobals.gd"
+ResourceGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/ResourceGlobals.gd"
+ModularGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/ModularGlobals.gd"
+GameGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/GameGlobals.gd"
+WorldGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/WorldGlobals.gd"
+TileGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/TileGlobals.gd"
+PawnGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/PawnGlobals.gd"
+PlayerGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/PlayerGlobals.gd"
+UIGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/UIGlobals.gd"
+AudioGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/AudioGlobals.gd"
+SaveGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/SaveGlobals.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotCommons-Core/plugin.cfg")
+
+[godot_commons-core]
+
+ui/main_menu_level_path="res://Scenes/Levels/MainMenuLevel.tscn"
+ui/pause_menu_ui_path="res://Scenes/UI/Menu/PauseMenuUI.tscn"
+ui/confirm_ui_path="res://Scenes/UI/Menu/ConfirmUI.tscn"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

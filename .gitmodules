@@ -1,0 +1,4 @@
+[submodule "addons/GodotCommons-Core"]
+	path = addons/GodotCommons-Core
+	url = git@github.com:ScientificWays/GodotCommons-Core.git
+	branch = main
