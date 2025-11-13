@@ -14,6 +14,15 @@ config/name="Project Titkin"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+manager/sound/bus="Sound"
+manager/sound/pool_1D_size=16
+manager/sound/pool_2D_size=16
+manager/sound/pool_3D_size=16
+manager/sound/max_polyphony=32
+manager/music/bus="Music"
+
 [autoload]
 
 PlatformGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/PlatformGlobals.gd"
@@ -27,10 +36,15 @@ PlayerGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/PlayerGlobals.g
 UIGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/UIGlobals.gd"
 AudioGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/AudioGlobals.gd"
 SaveGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/SaveGlobals.gd"
+OptimizationGlobals="*res://addons/GodotCommons-Core/Scripts/Autoloads/OptimizationGlobals.gd"
+SoundManager="*res://addons/resonate/sound_manager/sound_manager.gd"
+MusicManager="*res://addons/resonate/music_manager/music_manager.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+Bridge="*res://addons/playgama_bridge/bridge.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotCommons-Core/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotCommons-Core/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/playgama_bridge/plugin.cfg", "res://addons/resonate/plugin.cfg")
 
 [godot_commons-core]
 
