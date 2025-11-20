@@ -11,7 +11,7 @@ class_name Pawn2D_Weapon
 var fire_rate_time_left: float = 0.0
 
 func _ready() -> void:
-	fire_rate_time_left = weapon_data.base_fire_rate
+	_update_from_weapon_data()
 
 func _process(in_delta: float) -> void:
 	
@@ -22,6 +22,14 @@ func _process(in_delta: float) -> void:
 	else:
 		fire_projectile()
 		fire_rate_time_left += weapon_data.base_fire_rate
+
+func _update_from_weapon_data() -> void:
+	
+	if weapon_data:
+		fire_rate_time_left = weapon_data.base_fire_rate
+		set_process(weapon_data.base_fire_rate > 0.0)
+	else:
+		set_process(false)
 
 func fire_projectile() -> void:
 	
