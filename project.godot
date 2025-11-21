@@ -64,6 +64,7 @@ ui/main_menu_level_path="res://Scenes/Levels/MainMenuLevel.tscn"
 ui/pause_menu_ui_path="res://Scenes/UI/Menu/PauseMenuUI.tscn"
 ui/confirm_ui_path="res://Scenes/UI/Menu/ConfirmUI.tscn"
 metrics/yandex_metrics=-1
+telemetry/yandex_metrics=-1
 
 [input]
 

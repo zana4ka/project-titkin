@@ -19,7 +19,7 @@ func InitNewLocalPlayer() -> PlayerController:
 
 func end_play():
 	
-	var local_player := PlayerGlobals.PlayerArray[0]
+	var local_player := PlayerGlobals.player_array[0]
 	var campaign_data := WorldGlobals._campaign_data
 	
 	var inventory_data := {}
