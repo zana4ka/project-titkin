@@ -8,33 +8,79 @@ class_name Pawn2D_Weapon
 @export_category("Item")
 @export var weapon_data: ItemData_Weapon
 
-var fire_rate_time_left: float = 0.0
+var is_holding_fire_input: bool = false
+var hold_projectiles_fired_counter: int = 0
+const hold_projectile_num_meta: StringName = &"Pawn2D_Weapon_hold_projectile_num"
+
+var fire_cooldown_time_left: float = 0.0:
+	set(in_time_left):
+		fire_cooldown_time_left = in_time_left
+		set_process(fire_cooldown_time_left > 0.0)
 
 func _ready() -> void:
+	owner_pawn.controller_tap_input.connect(_on_controller_tap_input)
 	_update_from_weapon_data()
 
 func _process(in_delta: float) -> void:
 	
-	fire_rate_time_left -= in_delta
+	fire_cooldown_time_left -= in_delta
 	
-	if fire_rate_time_left > 0.0:
+	if fire_cooldown_time_left > in_delta:
 		pass
 	else:
-		fire_projectile()
-		fire_rate_time_left += weapon_data.base_fire_rate
+		handle_fire_cooldown_finished()
 
 func _update_from_weapon_data() -> void:
 	
 	if weapon_data:
-		fire_rate_time_left = weapon_data.base_fire_rate
-		set_process(weapon_data.base_fire_rate > 0.0)
+		assert(weapon_data.base_fire_rate > 0.0)
+		fire_cooldown_time_left = weapon_data.base_fire_rate
 	else:
 		set_process(false)
 
-func fire_projectile() -> void:
+func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: Vector2, in_released: bool) -> void:
+	
+	match weapon_data.fire_input_mode:
+		
+		ItemData_Weapon.FireInputMode.Auto:
+			pass
+		ItemData_Weapon.FireInputMode.Hold:
+			
+			is_holding_fire_input = not in_released
+			
+			if is_holding_fire_input:
+				try_fire_projectile()
+			else:
+				hold_projectiles_fired_counter = 0
+			
+		ItemData_Weapon.FireInputMode.Single:
+			try_fire_projectile()
+
+func try_fire_projectile() -> Projectile2D:
+	
+	if fire_cooldown_time_left > 0.0:
+		return null
 	
 	var projectile_rotation := global_rotation
 	if owner_sprite._Direction == AnimationData2D.Direction.Left:
 		projectile_rotation = (PI - projectile_rotation)
 	
 	var _projectile := Projectile2D.spawn(Transform2D(projectile_rotation, global_position), weapon_data.projectile_data, 0, owner_pawn)
+	
+	if weapon_data.is_hold_fire_input_mode():
+		hold_projectiles_fired_counter += 1
+		_projectile.set_meta(hold_projectile_num_meta, hold_projectiles_fired_counter)
+	
+	fire_cooldown_time_left += weapon_data.base_fire_rate
+	return _projectile
+
+func handle_fire_cooldown_finished() -> void:
+	
+	match weapon_data.fire_input_mode:
+		ItemData_Weapon.FireInputMode.Auto:
+			try_fire_projectile()
+		ItemData_Weapon.FireInputMode.Hold:
+			if is_holding_fire_input:
+				try_fire_projectile()
+		ItemData_Weapon.FireInputMode.Single:
+			pass
