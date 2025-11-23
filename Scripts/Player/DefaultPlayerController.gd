@@ -2,8 +2,8 @@
 extends PlayerController
 
 @export_category("Pawn")
-@export var rg_pawn_scene_path: String = "res://Scenes/Pawns/DefaultRGPawn001.tscn"
-@export var bu_pawn_scene_path: String = "res://Scenes/Pawns/DefaultBUPawn001.tscn"
+@export var rg_pawn_scene_path: String = "res://Scenes/Pawns/RG/Player/PlayerRGPawn001.tscn"
+@export var bu_pawn_scene_path: String = "res://Scenes/Pawns/BU/Player/PlayerBUPawn001.tscn"
 
 func get_new_pawn_scene_path() -> String:
 	if WorldGlobals._level is RGLevelBase2D:

@@ -62,6 +62,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/GodotCommons-Core/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/playgama_bridge/plugin.cfg", "res://addons/resonate/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
 
+[global_group]
+
+navigation_polygon_source_geometry_group=""
+
 [godot_commons-core]
 
 ui/main_menu_level_path="res://Scenes/Levels/MainMenuLevel.tscn"
@@ -194,6 +198,11 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_13="ExplosionReceiver"
 2d_physics/layer_14="Unbreakable"
 2d_physics/layer_15="ShakeReceiver"
+
+[limbo_ai]
+
+behavior_tree/behavior_tree_default_dir="res://Assets/AI/Trees"
+behavior_tree/user_task_dirs=PackedStringArray("res://addons/GodotCommons-Core/Scripts/AI/Tasks/")
 
 [physics]
 

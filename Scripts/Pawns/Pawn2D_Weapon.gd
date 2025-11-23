@@ -58,6 +58,9 @@ func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: V
 
 func try_fire_projectile() -> Projectile2D:
 	
+	if not is_instance_valid(owner_pawn):
+		return null
+	
 	if fire_cooldown_time_left > 0.0:
 		return null
 	
