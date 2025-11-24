@@ -8,7 +8,19 @@ class_name Pawn2D_Weapon
 @export_category("Item")
 @export var weapon_data: ItemData_Weapon
 
-var is_holding_fire_input: bool = false
+@export_category("Input")
+@export var is_holding_fire_input: bool = false:
+	set(in_is_holding):
+		
+		if in_is_holding != is_holding_fire_input:
+			
+			is_holding_fire_input = in_is_holding
+			
+			if is_holding_fire_input:
+				try_fire_projectile()
+			else:
+				hold_projectiles_fired_counter = 0
+
 var hold_projectiles_fired_counter: int = 0
 const hold_projectile_num_meta: StringName = &"Pawn2D_Weapon_hold_projectile_num"
 
@@ -45,14 +57,7 @@ func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: V
 		ItemData_Weapon.FireInputMode.Auto:
 			pass
 		ItemData_Weapon.FireInputMode.Hold:
-			
 			is_holding_fire_input = not in_released
-			
-			if is_holding_fire_input:
-				try_fire_projectile()
-			else:
-				hold_projectiles_fired_counter = 0
-			
 		ItemData_Weapon.FireInputMode.Single:
 			try_fire_projectile()
 
