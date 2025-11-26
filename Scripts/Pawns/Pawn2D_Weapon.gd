@@ -1,4 +1,3 @@
-@abstract
 extends AnimatedSprite2D
 class_name Pawn2D_Weapon
 
@@ -18,6 +17,9 @@ class_name Pawn2D_Weapon
 			is_holding_use_input = in_is_holding
 			_on_is_holding_use_input_changed()
 
+@export_category("Animations")
+@export var animation_player: AnimationPlayer
+
 var hold_weapon_uses_counter: int = 0
 
 var use_cooldown_time_left: float = 0.0:
@@ -34,6 +36,15 @@ func _ready() -> void:
 	
 	owner_pawn.controller_tap_input.connect(_on_controller_tap_input)
 	_update_from_weapon_data()
+
+func _process(in_delta: float) -> void:
+	
+	use_cooldown_time_left -= in_delta
+	
+	if use_cooldown_time_left > in_delta:
+		pass
+	else:
+		handle_use_cooldown_finished()
 
 func _update_from_weapon_data() -> void:
 	
@@ -53,14 +64,24 @@ func try_use_weapon() -> bool:
 	if use_cooldown_time_left > 0.0:
 		return false
 	
-	handle_use_weapon()
+	weapon_data.handle_use(self)
 	use_cooldown_time_left += weapon_data.base_cooldown
 	return true
 
-@abstract
-func handle_use_weapon() -> void
+func handle_use_cooldown_finished() -> void:
+	
+	match weapon_data.use_input_mode:
+		ItemData_Weapon.UseInputMode.Auto:
+			try_use_weapon()
+		ItemData_Weapon.UseInputMode.Hold:
+			if is_holding_use_input: try_use_weapon()
+		ItemData_Weapon.UseInputMode.Single:
+			pass
 
 func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: Vector2, in_released: bool) -> void:
+	
+	if not weapon_data:
+		return
 	
 	match weapon_data.use_input_mode:
 		

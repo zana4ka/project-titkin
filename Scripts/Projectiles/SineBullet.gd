@@ -14,7 +14,7 @@ func _ready() -> void:
 	else:
 		assert(pattern_apply_force)
 		
-		var this_bullet_num := get_meta(Pawn2D_Firearm.hold_projectile_num_meta, 0) as int
+		var this_bullet_num := get_meta(ItemData_Firearm.hold_projectile_num_meta, 0) as int
 		if this_bullet_num >= pattern_from_hold_num:
 			pass
 		else:
