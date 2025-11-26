@@ -16,7 +16,7 @@ run/main_scene="uid://omqo3p6o6xeb"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 run/max_fps=120
 config/icon="res://icon.svg"
-run/main_scene.editor="uid://omqo3p6o6xeb"
+run/main_scene.editor="uid://cufjpcp1qionx"
 
 [audio]
 
