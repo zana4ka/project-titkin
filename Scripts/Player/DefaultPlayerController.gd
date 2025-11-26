@@ -27,7 +27,8 @@ func handle_jump_input() -> void:
 	if controlled_pawn:
 		controlled_pawn.handle_controller_jump_input()
 
-func handle_number_input(in_number: int) -> void:
+func handle_number_input(in_number: int, in_pressed: bool) -> void:
 	
-	var weapons_container := ModularGlobals.try_get_from(self, ItemContainer_Weapons) as ItemContainer_Weapons
-	weapons_container.try_select_weapon(in_number - 1)
+	if in_pressed:
+		var weapons_container := ModularGlobals.try_get_from(self, ItemContainer_Weapons) as ItemContainer_Weapons
+		weapons_container.try_select_weapon(in_number - 1)
