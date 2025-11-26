@@ -1,6 +1,9 @@
 extends ItemData
 class_name ItemData_Weapon
 
+@export_category("Sprite")
+@export var weapon_sprite_frames: SpriteFrames
+
 enum FireInputMode
 {
 	Auto = 0,

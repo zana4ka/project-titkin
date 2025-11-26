@@ -1,0 +1,39 @@
+extends ItemContainer
+class_name ItemContainer_Weapons
+
+var selected_slot_index: int:
+	set(in_index):
+		selected_slot_index = in_index
+		selected_slot_index_changed.emit(selected_slot_index)
+signal selected_slot_index_changed(in_index: int)
+
+func _ready() -> void:
+	
+	super()
+	
+	try_add_item(load("res://Assets/Items/Weapons/Pistols/BalloonDeagle001.tres"))
+	try_add_item(load("res://Assets/Items/Weapons/Pistols/BonyRevolver001.tres"))
+	try_add_item(load("res://Assets/Items/Weapons/Pistols/LaserGun001.tres"))
+
+func get_items_array_as_weapons() -> Array[ItemData_Weapon]:
+	var out_weapons: Array[ItemData_Weapon] = []
+	for sample_data: ItemData_Weapon in _items_num_dictionary.keys():
+		out_weapons.append(sample_data)
+	return out_weapons
+
+func get_selected_weapon_data() -> ItemData_Weapon:
+	
+	var weapons := get_items_array_as_weapons()
+	if GameGlobals_Class.ArrayIsValidIndex(weapons, selected_slot_index):
+		return weapons[selected_slot_index]
+	else:
+		return null
+
+func try_select_weapon(in_index: int) -> bool:
+	
+	var slots_num := get_slots_num_max()
+	if slots_num == 0:
+		return false
+	
+	selected_slot_index = wrapi(in_index, 0, slots_num)
+	return true

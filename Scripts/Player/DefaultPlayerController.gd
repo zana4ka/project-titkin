@@ -20,9 +20,14 @@ func _unhandled_input(in_event: InputEvent) -> void:
 	if get_viewport().is_input_handled():
 		pass
 	elif in_event.is_action_pressed(&"Jump"):
-		HandleJumpInput()
+		handle_jump_input()
 		get_viewport().set_input_as_handled()
 
-func HandleJumpInput() -> void:
+func handle_jump_input() -> void:
 	if controlled_pawn:
 		controlled_pawn.handle_controller_jump_input()
+
+func handle_number_input(in_number: int) -> void:
+	
+	var weapons_container := ModularGlobals.try_get_from(self, ItemContainer_Weapons) as ItemContainer_Weapons
+	weapons_container.try_select_weapon(in_number - 1)
