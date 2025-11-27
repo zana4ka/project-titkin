@@ -58,7 +58,7 @@ func _update_from_weapon_data() -> void:
 
 func try_use_weapon() -> bool:
 	
-	if not is_instance_valid(owner_pawn):
+	if not is_instance_valid(weapon_data) and not is_instance_valid(owner_pawn):
 		return false
 	
 	if use_cooldown_time_left > 0.0:
@@ -69,6 +69,9 @@ func try_use_weapon() -> bool:
 	return true
 
 func handle_use_cooldown_finished() -> void:
+	
+	if not weapon_data:
+		return
 	
 	match weapon_data.use_input_mode:
 		ItemData_Weapon.UseInputMode.Auto:
