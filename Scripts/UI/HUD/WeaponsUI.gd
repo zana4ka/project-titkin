@@ -34,6 +34,9 @@ func _ready() -> void:
 		var weapons_container := ModularGlobals.try_get_from(owner_hud_ui.owner_player_controller, ItemContainer_Weapons) as ItemContainer_Weapons
 		weapons_container.items_changed.connect(_on_weapons_container_items_changed)
 		weapons_container.selected_slot_index_changed.connect(_on_weapons_container_selected_slot_changed)
+		
+		if WorldGlobals._level is BULevelBase2D:
+			queue_free()
 	
 	_update_full()
 
