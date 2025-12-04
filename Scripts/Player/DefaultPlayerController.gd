@@ -22,6 +22,9 @@ func _unhandled_input(in_event: InputEvent) -> void:
 	elif in_event.is_action_pressed(&"Jump"):
 		handle_jump_input()
 		get_viewport().set_input_as_handled()
+	elif in_event.is_action(&"LockMovement"):
+		controlled_pawn.is_movement_locked = in_event.is_pressed() or in_event.is_echo()
+		get_viewport().set_input_as_handled()
 
 func handle_jump_input() -> void:
 	if controlled_pawn:

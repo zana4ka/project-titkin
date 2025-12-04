@@ -11,8 +11,11 @@ func handle_use(in_weapon: Pawn2D_Weapon) -> void:
 	var projectile_position := in_weapon.global_position
 	var projectile_rotation := in_weapon.global_rotation
 	
-	if in_weapon.owner_sprite._Direction == AnimationData2D.Direction.Left:
-		projectile_rotation = (PI - projectile_rotation)
+	var projectile_direction = in_weapon.owner_pawn.last_movement_input
+	if projectile_direction.is_zero_approx():
+		projectile_direction = in_weapon.owner_sprite.get_current_forward_direction()
+	
+	projectile_rotation = projectile_direction.angle()
 	
 	var _projectile := Projectile2D.spawn(Transform2D(projectile_rotation, projectile_position), projectile_data, 0, in_weapon.owner_pawn)
 	
