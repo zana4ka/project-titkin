@@ -27,3 +27,6 @@ func is_hold_use_input_mode() -> bool:
 
 @abstract
 func handle_use(in_weapon: Pawn2D_Weapon) -> void
+
+@abstract
+func handle_special_ability(in_weapon: Pawn2D_Weapon) -> void

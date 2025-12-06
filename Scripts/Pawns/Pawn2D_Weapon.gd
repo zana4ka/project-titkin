@@ -1,6 +1,9 @@
 extends AnimatedSprite2D
 class_name Pawn2D_Weapon
 
+static func try_get_from(in_node: Node) -> Pawn2D_Weapon:
+	return ModularGlobals.try_get_from(in_node, Pawn2D_Weapon)
+
 @export_category("Owner")
 @export var owner_pawn: Pawn2D
 @export var owner_sprite: Pawn2D_Sprite
@@ -36,6 +39,18 @@ func _ready() -> void:
 	
 	owner_pawn.controller_tap_input.connect(_on_controller_tap_input)
 	_update_from_weapon_data()
+	
+	owner_pawn.tree_exited.connect(_on_owner_pawn_tree_exited)
+
+func _enter_tree():
+	if not Engine.is_editor_hint(): ModularGlobals.init_modular_node(self, owner_pawn)
+
+func _exit_tree():
+	if not Engine.is_editor_hint(): ModularGlobals.deinit_modular_node(self, owner_pawn)
+
+func _on_owner_pawn_tree_exited() -> void:
+	if owner_pawn.is_queued_for_deletion():
+		queue_free()
 
 func _process(in_delta: float) -> void:
 	
@@ -65,6 +80,15 @@ func try_use_weapon() -> bool:
 		return false
 	
 	weapon_data.handle_use(self)
+	use_cooldown_time_left += weapon_data.base_cooldown
+	return true
+
+func try_use_special_ability() -> bool:
+	
+	if not is_instance_valid(weapon_data) and not is_instance_valid(owner_pawn):
+		return false
+	
+	weapon_data.handle_special_ability(self)
 	use_cooldown_time_left += weapon_data.base_cooldown
 	return true
 

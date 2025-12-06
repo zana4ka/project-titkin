@@ -75,3 +75,6 @@ func _handle_un_crouch() -> void:
 	
 	assert(owner_collision.shape.resource_local_to_scene)
 	(owner_collision.shape as CapsuleShape2D).height = 26.0
+
+func handle_lock_movement_input(in_is_pressed: bool) -> void:
+	is_movement_locked = in_is_pressed

@@ -26,9 +26,9 @@ func _ready() -> void:
 	
 	is_in_air = false
 
-func apply_jump_input() -> void:
+func apply_jump_input(in_value: float) -> void:
 	
-	if not is_in_air:
+	if (in_value > 0.0) and (not is_in_air):
 		
 		var prev_jump_time_left := 0.0
 		if jump_animation_player.current_animation == jump_animation_name:
