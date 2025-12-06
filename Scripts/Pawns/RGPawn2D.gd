@@ -10,6 +10,7 @@ var is_movement_locked: bool = false:
 	set(in_is_movement_locked):
 		is_movement_locked = in_is_movement_locked
 
+@export var can_crouch: bool = false
 var is_crouching: bool = false:
 	set(in_is_crouching):
 		
@@ -43,8 +44,8 @@ func handle_controller_movement_input(in_input: Vector2) -> void:
 		else:
 			character_movement.apply_movement_input(last_movement_input)
 		
-		handle_up_input(last_movement_input.y < 0.0)
-		handle_down_input(last_movement_input.y > 0.0)
+		handle_up_input(last_movement_input.y < -0.5)
+		handle_down_input(last_movement_input.y > 0.5)
 
 func handle_up_input(in_pressed: bool) -> void:
 	
@@ -54,11 +55,12 @@ func handle_up_input(in_pressed: bool) -> void:
 		owner_sprite.current_look_direction = AnimationData2D.LookDirection.Forward
 
 func handle_down_input(in_pressed: bool) -> void:
-	is_crouching = in_pressed
+	if can_crouch:
+		is_crouching = in_pressed
 
 func _handle_crouch() -> void:
 	
-	owner_sprite.scale.y = 0.025
+	owner_sprite.play_override_animation(&"crouch")
 	
 	assert(owner_collision.shape.resource_local_to_scene)
 	(owner_collision.shape as CapsuleShape2D).height = 13.0
@@ -69,7 +71,7 @@ func _handle_un_crouch() -> void:
 	
 	position.y -= 6.5
 	
-	owner_sprite.scale.y = 0.05
+	owner_sprite.cancel_override_animation(&"crouch")
 	
 	assert(owner_collision.shape.resource_local_to_scene)
 	(owner_collision.shape as CapsuleShape2D).height = 26.0
