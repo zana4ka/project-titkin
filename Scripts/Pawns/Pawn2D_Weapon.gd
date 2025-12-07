@@ -25,6 +25,7 @@ static func try_get_from(in_node: Node) -> Pawn2D_Weapon:
 
 var hold_weapon_uses_counter: int = 0
 
+var current_use_mode: int = 0
 var use_cooldown_time_left: float = 0.0:
 	set(in_time_left):
 		use_cooldown_time_left = in_time_left
@@ -37,7 +38,7 @@ func _ready() -> void:
 	owner_pawn.controller_changed.connect(_on_controller_changed)
 	_on_controller_changed()
 	
-	owner_pawn.controller_tap_input.connect(_on_controller_tap_input)
+	#owner_pawn.controller_tap_input.connect(_on_controller_tap_input)
 	_update_from_weapon_data()
 	
 	owner_pawn.tree_exited.connect(_on_owner_pawn_tree_exited)
@@ -71,7 +72,7 @@ func _update_from_weapon_data() -> void:
 		set_process(false)
 		sprite_frames = null
 
-func try_use_weapon() -> bool:
+func try_use_weapon(in_mode: int = current_use_mode) -> bool:
 	
 	if not is_instance_valid(weapon_data) and not is_instance_valid(owner_pawn):
 		return false
@@ -79,8 +80,8 @@ func try_use_weapon() -> bool:
 	if use_cooldown_time_left > 0.0:
 		return false
 	
-	weapon_data.handle_use(self)
-	use_cooldown_time_left += weapon_data.base_cooldown
+	current_use_mode = in_mode
+	use_cooldown_time_left += weapon_data.handle_use(self, current_use_mode)
 	return true
 
 func try_use_special_ability() -> bool:
@@ -105,7 +106,7 @@ func handle_use_cooldown_finished() -> void:
 		ItemData_Weapon.UseInputMode.Single:
 			pass
 
-func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: Vector2, in_released: bool) -> void:
+func receive_use_input(in_event: InputEvent) -> void:
 	
 	if not weapon_data:
 		return
@@ -115,7 +116,7 @@ func _on_controller_tap_input(in_screen_position: Vector2, in_global_position: V
 		ItemData_Weapon.UseInputMode.Auto:
 			pass
 		ItemData_Weapon.UseInputMode.Hold:
-			is_holding_use_input = not in_released
+			is_holding_use_input = in_event.is_pressed() or in_event.is_echo()
 		ItemData_Weapon.UseInputMode.Single:
 			try_use_weapon()
 

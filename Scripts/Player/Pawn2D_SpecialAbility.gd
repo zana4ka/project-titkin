@@ -1,11 +1,11 @@
 extends Node
-class_name Player_SpecialAbility
+class_name Pawn2D_SpecialAbility
 
-static func try_get_from(in_node: Node) -> Player_SpecialAbility:
-	return ModularGlobals.try_get_from(in_node, Player_SpecialAbility)
+static func try_get_from(in_node: Node) -> Pawn2D_SpecialAbility:
+	return ModularGlobals.try_get_from(in_node, Pawn2D_SpecialAbility)
 
 @export_category("Owner")
-@export var owner_player_controller: PlayerController
+@export var owner_pawn: Pawn2D
 
 @export_category("Charge")
 @export var charge_per_kill: float = 0.25
@@ -21,7 +21,7 @@ signal activation_failed()
 
 func _ready() -> void:
 	
-	assert(owner_player_controller)
+	assert(owner_pawn)
 	
 	PawnGlobals.pawn_died.connect(_on_pawn_died)
 
@@ -37,13 +37,13 @@ func _on_pawn_died(in_pawn: Pawn2D, in_immediately: bool) -> void:
 	if not pawn_damage_receiver:
 		return
 	
-	if pawn_damage_receiver.LastDamageInstigator == owner_player_controller.controlled_pawn:
+	if pawn_damage_receiver.LastDamageInstigator == owner_pawn:
 		current_charge += charge_per_kill
 
 func can_activate() -> bool:
 	if current_charge < 1.0:
 		return false
-	return is_instance_valid(Pawn2D_Weapon.try_get_from(owner_player_controller.controlled_pawn))
+	return is_instance_valid(Pawn2D_Weapon.try_get_from(owner_pawn))
 
 func try_activate() -> void:
 	
@@ -64,6 +64,6 @@ func commit_ability() -> void:
 	apply_cost()
 	apply_cooldown()
 	
-	var pawn_weapon := Pawn2D_Weapon.try_get_from(owner_player_controller.controlled_pawn)
+	var pawn_weapon := Pawn2D_Weapon.try_get_from(owner_pawn)
 	assert(pawn_weapon)
 	pawn_weapon.try_use_special_ability()

@@ -20,21 +20,23 @@ func _spawn_projectile(in_weapon: Pawn2D_Weapon) -> Projectile2D:
 	var out_projectile := Projectile2D.spawn(Transform2D(projectile_rotation, projectile_position), projectile_data, 0, in_weapon.owner_pawn)
 	return out_projectile
 
-func handle_use(in_weapon: Pawn2D_Weapon) -> void:
+func handle_use(in_weapon: Pawn2D_Weapon, in_mode: int) -> float:
 	
 	var shoot_projectile := _spawn_projectile(in_weapon)
 	
 	if is_hold_use_input_mode():
 		in_weapon.hold_weapon_uses_counter += 1
 		shoot_projectile.set_meta(hold_projectile_num_meta, in_weapon.hold_weapon_uses_counter)
+	return base_cooldown
 
-func handle_special_ability(in_weapon: Pawn2D_Weapon) -> void:
+func handle_special_ability(in_weapon: Pawn2D_Weapon) -> float:
 	
 	var shoot_projectile := _spawn_projectile(in_weapon)
 	shoot_projectile._power *= 3.0
 	
 	assert(not shoot_projectile.is_node_ready())
 	shoot_projectile.ready.connect(_on_special_ability_projectile_ready.bind(shoot_projectile))
+	return base_cooldown_special
 
 func _on_special_ability_projectile_ready(in_projectile: Projectile2D) -> void:
 	in_projectile.set_lifetime(in_projectile.data.max_lifetime * 3.0)

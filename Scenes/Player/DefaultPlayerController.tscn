@@ -1,3 +1,123 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:256d2a596ef5ab518665ccebf5357f295484aef658676faccdfffe2d8af8f6ac
-size 5060
+[gd_scene load_steps=12 format=3 uid="uid://bk3lrhy6lq1nu"]
+
+[ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Scripts/Player/DefaultPlayerController.gd" id="1_2tq6m"]
+[ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_nppl2"]
+[ext_resource type="Script" uid="uid://bwgx26k38p3it" path="res://addons/GodotCommons-Core/Scripts/Shake/ShakeReceiver2D.gd" id="3_68m8v"]
+[ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/DefaultHUDUI.tscn" id="5_xjd5n"]
+[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="7_yog3r"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Common/AttributeSet.gd" id="8_bay8v"]
+[ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="9_373yl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpqqo"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_xrrbc"]
+resource_name = "Lag"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position_smoothing_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:position_smoothing_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 5, 1),
+"update": 0,
+"values": [8.0, 16.0, 48.0]
+}
+
+[sub_resource type="Animation" id="Animation_socjb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position_smoothing_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:position_smoothing_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsv2s"]
+_data = {
+&"Lag": SubResource("Animation_xrrbc"),
+&"RESET": SubResource("Animation_socjb")
+}
+
+[node name="PlayerController" type="Node" node_paths=PackedStringArray("_camera")]
+script = ExtResource("1_2tq6m")
+_camera = NodePath("Camera")
+metadata/_custom_type_script = "uid://c78eebpx0eqjb"
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("owner_player_controller", "CameraAnimationPlayer")]
+ignore_rotation = false
+limit_enabled = false
+position_smoothing_speed = 10.0
+script = ExtResource("2_nppl2")
+owner_player_controller = NodePath("..")
+CameraAnimationPlayer = NodePath("CameraAP")
+metadata/_custom_type_script = "uid://cd64314q4ptam"
+
+[node name="ShakeReceiver" type="Area2D" parent="Camera" node_paths=PackedStringArray("_camera")]
+collision_layer = 16384
+collision_mask = 0
+input_pickable = false
+monitoring = false
+script = ExtResource("3_68m8v")
+_camera = NodePath("..")
+metadata/_custom_type_script = "uid://bwgx26k38p3it"
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/ShakeReceiver"]
+shape = SubResource("CircleShape2D_mpqqo")
+debug_color = Color(0.870588, 0.301961, 0, 0.419608)
+
+[node name="HUD" parent="Camera" node_paths=PackedStringArray("owner_player_controller") instance=ExtResource("5_xjd5n")]
+owner_player_controller = NodePath("../..")
+
+[node name="CameraAP" type="AnimationPlayer" parent="Camera"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_gsv2s")
+}
+
+[node name="DebugUtils" type="Node" parent="." node_paths=PackedStringArray("owner_player_controller")]
+script = ExtResource("9_373yl")
+owner_player_controller = NodePath("..")
+metadata/_custom_type_script = "uid://8uh5hq3gb8j3"
+
+[node name="AttributeSet" type="Node" parent="."]
+script = ExtResource("8_bay8v")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="Weapons" type="Node" parent="."]
+script = ExtResource("7_yog3r")
+_slots_num_max = 3
+metadata/_custom_type_script = "uid://ixow33718sdq"

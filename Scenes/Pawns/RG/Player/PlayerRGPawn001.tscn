@@ -1,3 +1,105 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:937028b8f308d8ac5ce30eedd8487a158655f3d3f1925ab18e68f683a4ec1479
-size 4816
+[gd_scene load_steps=17 format=3 uid="uid://sn3lp0rqv4nw"]
+
+[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RGPawn2D.gd" id="1_ddkac"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="2_ic7if"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_lu5px"]
+[ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/Player/DefaultRGPawn001a_Frames.tres" id="3_lu5px"]
+[ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="4_mhkle"]
+[ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_kd6vt"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Common/AttributeSet.gd" id="6_mhkle"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="6_owvon"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_6tsgq"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="7_owvon"]
+[ext_resource type="Resource" uid="uid://bfww4xcvkvhuc" path="res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres" id="8_8gir5"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_6tsgq"]
+[ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialAbility.gd" id="13_vdw51"]
+
+[sub_resource type="Resource" id="Resource_mhkle"]
+script = ExtResource("2_lu5px")
+name = "Run'n'Gun Pawn"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+resource_local_to_scene = true
+radius = 6.0
+height = 26.0
+
+[sub_resource type="Resource" id="Resource_7hmxo"]
+script = ExtResource("6_kd6vt")
+use_look_vertical_directions = true
+metadata/_custom_type_script = "uid://cdx2ypfdvk0lf"
+
+[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+collision_layer = 4097
+collision_mask = 136
+script = ExtResource("1_ddkac")
+sprite = NodePath("Sprite")
+collision = NodePath("Collision")
+weapon = NodePath("Sprite/Weapon")
+can_crouch = true
+unique_name = &"RGPawn"
+display_data = SubResource("Resource_mhkle")
+attribute_set = NodePath("AttributeSet")
+max_health = 6.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
+pawn_input_actions = Array[StringName]([&"primary_attack", &"special_attack", &"jump", &"lock_movement"])
+pawn_input_callables = Array[StringName]([&"handle_primary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_lock_movement_input"])
+character_movement = NodePath("CharacterMovement")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+shape = SubResource("CapsuleShape2D_j84it")
+script = ExtResource("2_ic7if")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+z_index = 2
+z_as_relative = false
+scale = Vector2(0.05, 0.05)
+sprite_frames = ExtResource("3_lu5px")
+animation = &"idle_look_up"
+script = ExtResource("4_mhkle")
+owner_pawn = NodePath("..")
+animation_data = SubResource("Resource_7hmxo")
+metadata/_custom_type_script = "uid://b544r1fp46py5"
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
+z_index = 2
+script = ExtResource("7_6tsgq")
+owner_pawn = NodePath("../..")
+owner_sprite = NodePath("..")
+weapon_data = ExtResource("8_8gir5")
+should_update_from_weapons_container = true
+metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("9_6tsgq")
+}
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("6_owvon")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="AttributeSet" type="Node" parent="."]
+script = ExtResource("6_mhkle")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
+script = ExtResource("7_owvon")
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_sprite = NodePath("../Sprite")
+owner_attribute_set = NodePath("../AttributeSet")
+move_speed = 64.0
+input_velocity_mul = Vector2(1, 0)
+metadata/_custom_type_script = "uid://bhtvb465l63d1"
+
+[node name="SpecialAbility" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
+script = ExtResource("13_vdw51")
+owner_pawn = NodePath("..")
+metadata/_custom_type_script = "uid://7qnso3ivyyyw"
