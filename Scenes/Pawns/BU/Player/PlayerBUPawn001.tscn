@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_2ssvu"]
 [ext_resource type="Resource" uid="uid://drtuq25hfnlab" path="res://Assets/Items/Melee/PlayerFists001.tres" id="8_2ssvu"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="9_vlvj4"]
-[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Common/AttributeSet.gd" id="10_308p8"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="10_308p8"]
 [ext_resource type="Script" uid="uid://3oigplo533rl" path="res://Scripts/Pawns/Pawn2D_BUMovement.gd" id="11_6l08y"]
 [ext_resource type="Script" uid="uid://bgh1rtperm4f0" path="res://Scripts/Pawns/Pawn2D_Combos.gd" id="11_q7r3q"]
 [ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="12_4ljk4"]

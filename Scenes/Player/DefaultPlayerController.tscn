@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bwgx26k38p3it" path="res://addons/GodotCommons-Core/Scripts/Shake/ShakeReceiver2D.gd" id="3_68m8v"]
 [ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/DefaultHUDUI.tscn" id="5_xjd5n"]
 [ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="7_yog3r"]
-[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Common/AttributeSet.gd" id="8_bay8v"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="8_bay8v"]
 [ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="9_373yl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mpqqo"]

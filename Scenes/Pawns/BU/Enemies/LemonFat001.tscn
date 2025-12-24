@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_wgi8q"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_ep486"]
 [ext_resource type="Script" uid="uid://dip6wdyj6fnn0" path="res://Scripts/Pawns/Pawn2D_PingPong.gd" id="12_3tc0t"]
-[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Common/AttributeSet.gd" id="12_300bl"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="12_300bl"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="13_jns0w"]
 [ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_omutq"]
 [ext_resource type="BehaviorTree" uid="uid://b7r4sk0e8j4po" path="res://Assets/AI/Trees/BU/LemonFat1_BehaviorTree.tres" id="15_47jnq"]
