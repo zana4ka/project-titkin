@@ -1,3 +1,56 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fc9db6f1bbc432fd641099f97d9144f302b80c0a75da51a8af3121db62ba2395
-size 2578
+[gd_scene load_steps=7 format=3 uid="uid://bkbvq07hma0dc"]
+
+[ext_resource type="Script" uid="uid://u5edhj3p2kl2" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D.gd" id="1_76cr5"]
+[ext_resource type="Script" uid="uid://creu52bxinsn4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Collision.gd" id="2_1gcmp"]
+[ext_resource type="SpriteFrames" uid="uid://bvhstkutbr22q" path="res://Assets/Projectiles/Rocket001a_Frames.tres" id="3_vfroq"]
+[ext_resource type="Script" uid="uid://0elqphnlbgtx" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Sprite.gd" id="4_noioj"]
+[ext_resource type="Script" uid="uid://bhpkhuqr8vfux" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_ApplyForce.gd" id="5_gd7ih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7l7rt"]
+radius = 4.0
+
+[node name="LaserBullet" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4100
+collision_mask = 8
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_76cr5")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://u5edhj3p2kl2"
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("_owner")]
+shape = SubResource("CircleShape2D_7l7rt")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+script = ExtResource("2_1gcmp")
+_owner = NodePath("..")
+metadata/_custom_type_script = "uid://creu52bxinsn4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+modulate = Color(1, 0.19999999, 1, 1)
+z_index = 3
+z_as_relative = false
+scale = Vector2(0.4, 0.4)
+sprite_frames = ExtResource("3_vfroq")
+script = ExtResource("4_noioj")
+owner_projectile = NodePath("..")
+metadata/_custom_type_script = "uid://0elqphnlbgtx"
+
+[node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("5_gd7ih")
+owner_projectile = NodePath("..")
+ApplyConstantAsVelocity = true
+metadata/_custom_type_script = "uid://bhpkhuqr8vfux"
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="DamageArea" node_paths=PackedStringArray("_owner", "owner_damage_area")]
+shape = SubResource("CircleShape2D_7l7rt")
+debug_color = Color(0.9898308, 0.09930939, 1.92523e-07, 0.41960785)
+script = ExtResource("2_1gcmp")
+_owner = NodePath("../..")
+owner_damage_area = NodePath("..")
+size_mul_power_factor = null
+metadata/_custom_type_script = "uid://creu52bxinsn4"

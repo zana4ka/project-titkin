@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:28b63a7c3a6064e5c4e3b0595dc1f7b0ec25923960b62fbecbba87fb9570f725
-size 585
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c7v51pros5urm"]
+
+[ext_resource type="Texture2D" uid="uid://c61rtvsbjbcvb" path="res://Assets/Pawns/Enemies/DollyPups001a.png" id="1_inq2k"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

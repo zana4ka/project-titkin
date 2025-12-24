@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ae1f8c47ac6998d3ac1d695c93642f6d6e1dcdbb7ed8835864472f94948a5462
-size 588
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ccew3wlh6w563"]
+
+[ext_resource type="Texture2D" uid="uid://ccor4w0lpwjya" path="res://Assets/Pawns/Enemies/PropellerCat001a.png" id="1_g4ddr"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g4ddr")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g4ddr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g4ddr")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

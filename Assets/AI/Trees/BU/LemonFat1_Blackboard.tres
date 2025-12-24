@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ba1a1c43557bdf45fcd53c68deb62058db2fe9656f77f4fdb10f4a66925a44b9
-size 211
+[gd_resource type="BlackboardPlan" format=3 uid="uid://dlbvubx3xh3pj"]
+
+[resource]
+var/chase_target/name = &"chase_target"
+var/chase_target/type = 24
+var/chase_target/hint = 34
+var/chase_target/hint_string = ""

@@ -1,3 +1,182 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e37cfefefe104dae90d4395d4897a3b64036e95bc67f449157c2981b8cecbfa9
-size 5511
+[gd_scene load_steps=10 format=3 uid="uid://cvli8xxu2alfp"]
+
+[ext_resource type="Script" uid="uid://b3u5h4c7o6id4" path="res://addons/GodotCommons-Core/Scripts/UI/HUD/HUDUI.gd" id="1_mdj67"]
+[ext_resource type="PackedScene" uid="uid://l8pu6nqmebmu" path="res://Scenes/UI/HUD/PlayerImageUI.tscn" id="2_oyguc"]
+[ext_resource type="PackedScene" uid="uid://co7xo2ovlmkj7" path="res://Scenes/UI/HUD/HealthUI.tscn" id="3_ffin7"]
+[ext_resource type="PackedScene" uid="uid://b4bgu2ilg52jp" path="res://Scenes/UI/HUD/WeaponsUI.tscn" id="4_a8h8w"]
+[ext_resource type="PackedScene" uid="uid://15fmefk3y0be" path="res://Scenes/UI/HUD/SpecialAbilityUI.tscn" id="5_oyguc"]
+
+[sub_resource type="Animation" id="Animation_iaury"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hxdo7"]
+resource_name = "fade_in"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0w75i"]
+resource_name = "fade_out"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0w75i"]
+_data = {
+&"RESET": SubResource("Animation_iaury"),
+&"fade_in": SubResource("Animation_hxdo7"),
+&"fade_out": SubResource("Animation_0w75i")
+}
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("fade_color_rect", "fade_animation_player", "mobile_input_block_controls")]
+process_mode = 1
+layer = 2
+script = ExtResource("1_mdj67")
+fade_color_rect = NodePath("FadeColorRect")
+fade_animation_player = NodePath("FadeColorRect/AnimationPlayer")
+mobile_input_block_controls = [NodePath("InputBlockLeft"), NodePath("InputBlockRight")]
+metadata/_custom_type_script = "uid://b3u5h4c7o6id4"
+
+[node name="MC" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="GridContainer" type="GridContainer" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 2
+
+[node name="PlayerImageUI" parent="MC/GridContainer" instance=ExtResource("2_oyguc")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HealthUI" parent="MC/GridContainer" node_paths=PackedStringArray("owner_hud_ui") instance=ExtResource("3_ffin7")]
+layout_mode = 2
+size_flags_vertical = 0
+owner_hud_ui = NodePath("../../..")
+
+[node name="Control" type="Control" parent="MC/GridContainer"]
+layout_mode = 2
+
+[node name="WeaponsUI" parent="MC/GridContainer/Control" node_paths=PackedStringArray("owner_hud_ui") instance=ExtResource("4_a8h8w")]
+layout_mode = 1
+owner_hud_ui = NodePath("../../../..")
+preview_selected_slot = 0
+
+[node name="SpecialAbilityUI" parent="MC" node_paths=PackedStringArray("owner_hud_ui") instance=ExtResource("5_oyguc")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+owner_hud_ui = NodePath("../..")
+
+[node name="FadeColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_0w75i")
+}
+playback_default_blend_time = 0.2
+
+[node name="InputBlockLeft" type="Control" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -96.0
+grow_vertical = 2
+
+[node name="InputBlockRight" type="Control" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 96.0
+grow_horizontal = 0
+grow_vertical = 2

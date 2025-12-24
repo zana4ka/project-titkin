@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0ec33db2a20f66951cab0904171054897c01c5da1b043194f5c542cc66e07e3f
-size 339
+[gd_scene load_steps=2 format=3 uid="uid://l8pu6nqmebmu"]
+
+[ext_resource type="Texture2D" uid="uid://8nvl6mqgyp0s" path="res://Assets/Pawns/Player/DefaultRGPawn001a_Idle.png" id="1_tv473"]
+
+[node name="PlayerImage" type="TextureRect"]
+custom_minimum_size = Vector2(96, 96)
+texture = ExtResource("1_tv473")
+expand_mode = 1
+stretch_mode = 5

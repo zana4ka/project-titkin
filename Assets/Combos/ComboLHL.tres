@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5dfbe020dc44e4f24079e42ac1d352e5695f54ca2c26d8ee11b44fb6ac999e7f
-size 308
+[gd_resource type="Resource" script_class="ComboData" load_steps=2 format=3 uid="uid://bqwpvyeanw34m"]
+
+[ext_resource type="Script" uid="uid://6spk013qlwid" path="res://Scripts/Combos/ComboData.gd" id="1_575xt"]
+
+[resource]
+script = ExtResource("1_575xt")
+metadata/_custom_type_script = "uid://6spk013qlwid"

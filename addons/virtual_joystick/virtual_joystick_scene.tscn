@@ -1,3 +1,148 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3fddc7f629bdc59cae0fcc0e2c2638e8d5f0ea8ea9b9e4d5f7c874d2ac1e1320
-size 4609
+[gd_scene load_steps=11 format=3 uid="uid://dmr0fcamx7t56"]
+
+[ext_resource type="Script" uid="uid://dr7dde3vbtj0y" path="res://addons/virtual_joystick/virtual_joystick.gd" id="1_8x4dy"]
+[ext_resource type="Texture2D" uid="uid://cmd4wgqk4xvuw" path="res://addons/virtual_joystick/textures/joystick_base_outline.png" id="2_a01rq"]
+[ext_resource type="Texture2D" uid="uid://5wc6nglsc3ud" path="res://addons/virtual_joystick/textures/joystick_tip_arrows.png" id="3_6dwk2"]
+[ext_resource type="Script" uid="uid://ba8536m7hnclb" path="res://addons/GodotCommons-Core/Scripts/UI/FX/PositionLerpControl.gd" id="3_xq8jp"]
+[ext_resource type="PackedScene" uid="uid://d3o4fa5w0r7ao" path="res://addons/GodotCommons-Core/Scenes/UI/FX/VHSLabel.tscn" id="4_3yfuy"]
+[ext_resource type="Shader" uid="uid://de1yy6j4qmloa" path="res://addons/GodotCommons-Core/Assets/UI/FX/VHSFX_Shader.gdshader" id="5_xq8jp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq86g"]
+resource_local_to_scene = true
+shader = ExtResource("5_xq8jp")
+shader_parameter/time_speed = 1.0
+shader_parameter/split_amount = 2.0
+shader_parameter/flicker_intensity = 0.2
+shader_parameter/noise_strength = 0.05
+
+[sub_resource type="Animation" id="Animation_oe6nq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Tip:pending_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c614t"]
+resource_name = "UsageHint"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Tip:pending_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 50), Vector2(100, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgki8"]
+_data = {
+&"RESET": SubResource("Animation_oe6nq"),
+&"UsageHint": SubResource("Animation_c614t")
+}
+
+[node name="VirtualJoystick" type="MarginContainer" node_paths=PackedStringArray("joystick_area", "animation_player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+script = ExtResource("1_8x4dy")
+joystick_area = NodePath("Area")
+animation_player = NodePath("AnimationPlayer")
+joystick_mode = 1
+visibility_mode = 2
+
+[node name="Area" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Base" type="TextureRect" parent="Area"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0003
+offset_top = -200.00008
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(100, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+texture = ExtResource("2_a01rq")
+stretch_mode = 3
+script = ExtResource("3_xq8jp")
+PendingPositionLerpSpeed = 24.0
+pending_position = Vector2(751.9997, 247.99992)
+
+[node name="Tip" type="TextureRect" parent="Area/Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 6.1035156e-05
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+texture = ExtResource("3_6dwk2")
+stretch_mode = 5
+script = ExtResource("3_xq8jp")
+PendingPositionLerpSpeed = 16.0
+ForceNormalPositionInEditor = false
+
+[node name="RollLabel" parent="Area/Base" instance=ExtResource("4_3yfuy")]
+material = SubResource("ShaderMaterial_bq86g")
+custom_minimum_size = Vector2(363, 42)
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -181.5
+offset_top = 0.0
+offset_right = 181.5
+offset_bottom = 42.0
+grow_vertical = 1
+pivot_offset = Vector2(181.5, 21)
+label_text = "ROLL_AFTER_EXPLOSION"
+use_forced_anchors_preset = true
+forced_anchors_preset = 5
+scale_speed = 2.0
+scale_offset = 0.01
+rotation_speed = 1.0
+rotation_offset = 0.01
+position_offset = Vector2(0, -48)
+lerp_visible_speed = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area")
+libraries = {
+&"": SubResource("AnimationLibrary_bgki8")
+}

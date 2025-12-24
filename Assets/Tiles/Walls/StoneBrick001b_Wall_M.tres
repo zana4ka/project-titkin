@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1e1e4b3156f254bf83f715825fa9078a212e2f4f22eb1c06fdf61a620c69ad8e
-size 451
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://btbl8p3rxdjok"]
+
+[ext_resource type="Shader" uid="uid://cim6vt6o6lmce" path="res://addons/GodotCommons-Core/Assets/Tiles/LevelTileShader_Wall.gdshader" id="1_tfmiw"]
+[ext_resource type="Texture2D" uid="uid://eb431n64q2x3" path="res://Assets/Tiles/Walls/StoneBrick001b_Wall.png" id="2_osyu1"]
+
+[resource]
+shader = ExtResource("1_tfmiw")
+shader_parameter/Tile = ExtResource("2_osyu1")

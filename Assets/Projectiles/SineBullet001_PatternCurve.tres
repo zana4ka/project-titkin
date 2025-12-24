@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:af7d3fab8ce022655aa4ea0f5e8e332fc27e9e7336334b84393a44648504ff87
-size 224
+[gd_resource type="Curve2D" format=3 uid="uid://btt4syujaibfb"]
+
+[resource]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5

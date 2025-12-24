@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:25f1343aa1f51872993e1e4c8a5d7df74e1a39b4ab774d9886b7b075bda7318b
-size 585
+[gd_resource type="Resource" script_class="ProjectileData2D" load_steps=3 format=3 uid="uid://d35cqyxpbafc5"]
+
+[ext_resource type="Script" uid="uid://cm37cigw7hsaf" path="res://addons/GodotCommons-Core/Scripts/Projectiles/ProjectileData2D.gd" id="1_dc4o7"]
+[ext_resource type="PackedScene" uid="uid://bkbvq07hma0dc" path="res://Scenes/Projectiles/LaserBullet001.tscn" id="1_h1iib"]
+
+[resource]
+script = ExtResource("1_dc4o7")
+scene = ExtResource("1_h1iib")
+should_damage_on_hit = true
+should_remove_on_hit = true
+max_lifetime = 3.0
+metadata/_custom_type_script = "uid://cm37cigw7hsaf"

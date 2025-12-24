@@ -1,3 +1,53 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0814220bfd0f9118459c464c7304afbd5232391e8aca0eaa36aceb13c2d836dc
-size 1820
+[gd_scene load_steps=6 format=3 uid="uid://g1d5b2kptdg1"]
+
+[ext_resource type="Texture2D" uid="uid://cobt3guitjlpy" path="res://Assets/UI/Menu/MainMenuBackground001a.png" id="1_g25ga"]
+[ext_resource type="Texture2D" uid="uid://c5v111gbshyo5" path="res://Assets/UI/Menu/MainMenu_NewGame001a.png" id="2_2xrhx"]
+[ext_resource type="Texture2D" uid="uid://csr52jjnlcypx" path="res://Assets/UI/Menu/MainMenu_NewGame001b.png" id="3_teh0h"]
+[ext_resource type="Texture2D" uid="uid://lbhpllkn8lje" path="res://Assets/UI/Menu/MainMenu_Settings001a.png" id="4_w123n"]
+[ext_resource type="Texture2D" uid="uid://c3c8pifwj7il8" path="res://Assets/UI/Menu/MainMenu_Settings001b.png" id="5_gnnqh"]
+
+[node name="MainMenuUI" type="CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g25ga")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NewGame" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.64400005
+anchor_top = 0.22200002
+anchor_right = 0.64400005
+anchor_bottom = 0.22200002
+offset_left = -96.32007
+offset_top = -95.84001
+offset_right = 103.67993
+offset_bottom = 104.15999
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_2xrhx")
+texture_hover = ExtResource("3_teh0h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Settings" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.64400005
+anchor_top = 0.22200002
+anchor_right = 0.64400005
+anchor_bottom = 0.22200002
+offset_left = 179.67993
+offset_top = -159.84001
+offset_right = 479.67993
+offset_bottom = 140.15999
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_w123n")
+texture_hover = ExtResource("5_gnnqh")
+ignore_texture_size = true
+stretch_mode = 5

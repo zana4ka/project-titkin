@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c834aa252dc26f7dfecb87173e572a352f5cbacc8074a1626a76135c372d210a
-size 1107
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=6 format=3 uid="uid://bytp7ibu5iswf"]
+
+[ext_resource type="Texture2D" uid="uid://c6lxq2y7mpb18" path="res://addons/better-terrain/icons/EditType.svg" id="1_3v3gj"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Scripts/Items/ItemData_Firearm.gd" id="1_dsdyo"]
+[ext_resource type="Resource" uid="uid://d35cqyxpbafc5" path="res://Assets/Projectiles/LaserBullet001.tres" id="1_q07sc"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_ldydd"]
+
+[sub_resource type="Resource" id="Resource_wko7g"]
+script = ExtResource("2_ldydd")
+name = "Laser Gun"
+image = ExtResource("1_3v3gj")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("1_dsdyo")
+projectile_data = ExtResource("1_q07sc")
+use_input_mode = 2
+base_cooldown = 0.4
+display_data = SubResource("Resource_wko7g")
+quality = null
+use_controller_container = null
+max_stack = null
+shop_cost = null
+metadata/_custom_type_script = "uid://do5e13gjl2835"

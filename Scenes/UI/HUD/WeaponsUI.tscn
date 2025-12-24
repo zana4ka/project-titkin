@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9ea0b61592e73ffc1f17fcb026b043e522b0b368b24c60b83fa98a6f136d1adb
-size 639
+[gd_scene load_steps=2 format=3 uid="uid://b4bgu2ilg52jp"]
+
+[ext_resource type="Script" uid="uid://cnhfqpgf8t01x" path="res://Scripts/UI/HUD/WeaponsUI.gd" id="1_fegke"]
+
+[node name="WeaponsUI" type="MarginContainer" node_paths=PackedStringArray("slots_container", "slots_animation_player")]
+offset_right = 104.0
+offset_bottom = 68.0
+script = ExtResource("1_fegke")
+slots_container = NodePath("Slots")
+slots_animation_player = NodePath("SlotsAnimationPlayer")
+preview_selected_slot = null
+
+[node name="Slots" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
+
+[node name="SlotsAnimationPlayer" type="AnimationPlayer" parent="."]
