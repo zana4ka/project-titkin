@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://l8pu6nqmebmu"]
 
-[ext_resource type="Texture2D" uid="uid://8nvl6mqgyp0s" path="res://Assets/Pawns/Player/DefaultRGPawn001a_Idle.png" id="1_tv473"]
+[ext_resource type="Texture2D" uid="uid://8nvl6mqgyp0s" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Idle.png" id="1_tv473"]
 
 [node name="PlayerImage" type="TextureRect"]
 custom_minimum_size = Vector2(96, 96)

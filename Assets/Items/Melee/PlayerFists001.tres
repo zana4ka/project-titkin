@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData_Melee" load_steps=8 format=3 uid="uid://drtuq25hfnlab"]
 
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="1_fg7yx"]
-[ext_resource type="Texture2D" uid="uid://c7drvci3h1vt6" path="res://Assets/Pawns/Player/DefaultRGPawn001a_Punch.png" id="1_ngpys"]
+[ext_resource type="Texture2D" uid="uid://c7drvci3h1vt6" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Punch.png" id="1_ngpys"]
 [ext_resource type="Script" uid="uid://cqfbxgeqa5nef" path="res://Scripts/Items/ItemData_Melee.gd" id="1_s1rsp"]
 [ext_resource type="Script" uid="uid://bbqn2e4c3ug8x" path="res://Scripts/Items/ItemData_MeleeSwingData.gd" id="3_ccff4"]
 

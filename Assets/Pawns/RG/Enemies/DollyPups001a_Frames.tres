@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c7v51pros5urm"]
 
-[ext_resource type="Texture2D" uid="uid://c61rtvsbjbcvb" path="res://Assets/Pawns/Enemies/DollyPups001a.png" id="1_inq2k"]
+[ext_resource type="Texture2D" uid="uid://c61rtvsbjbcvb" path="res://Assets/Pawns/RG/Enemies/DollyPups001a.png" id="1_inq2k"]
 
 [resource]
 animations = [{

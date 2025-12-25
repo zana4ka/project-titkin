@@ -1,11 +1,11 @@
 [gd_resource type="BehaviorTree" load_steps=32 format=3 uid="uid://brx1ty355muyi"]
 
 [ext_resource type="BlackboardPlan" uid="uid://c3xobdsgl3qpt" path="res://Assets/AI/Trees/DefaultEnemyRG_Blackboard.tres" id="1_2qbb5"]
-[ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/BTUpdatePerceptionTarget.gd" id="2_10iyn"]
-[ext_resource type="Script" uid="uid://dqfqf3cqw7x6j" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/BTGetRandomNavPosInRadius.gd" id="2_aj8o1"]
-[ext_resource type="Script" uid="uid://c5kaiowci64q8" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/BTMoveTo.gd" id="3_wpsi5"]
-[ext_resource type="Script" uid="uid://t400nss3s13k" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/BTCheckDistance.gd" id="4_wpsi5"]
-[ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/BTLookAt.gd" id="5_haojn"]
+[ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_UpdatePerceptionTarget.gd" id="2_10iyn"]
+[ext_resource type="Script" uid="uid://dqfqf3cqw7x6j" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_GetRandomNavPosInRadius.gd" id="2_aj8o1"]
+[ext_resource type="Script" uid="uid://c5kaiowci64q8" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_MoveTo.gd" id="3_wpsi5"]
+[ext_resource type="Script" uid="uid://t400nss3s13k" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckDistance.gd" id="4_wpsi5"]
+[ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_LookAt.gd" id="5_haojn"]
 
 [sub_resource type="BBVariant" id="BBVariant_6ap5h"]
 resource_name = "<null>"

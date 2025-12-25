@@ -1,0 +1,37 @@
+[gd_resource type="BlackboardPlan" format=3 uid="uid://cq20sx23le6gp"]
+
+[resource]
+var/chase_target/name = &"chase_target"
+var/chase_target/type = 24
+var/chase_target/hint = 34
+var/chase_target/hint_string = ""
+var/chase_x_distance/name = &"chase_x_distance"
+var/chase_x_distance/type = 3
+var/chase_x_distance/value = 128.0
+var/chase_x_distance/hint = 0
+var/chase_x_distance/hint_string = ""
+var/chase_y_distance/name = &"chase_y_distance"
+var/chase_y_distance/type = 3
+var/chase_y_distance/value = 16.0
+var/chase_y_distance/hint = 0
+var/chase_y_distance/hint_string = ""
+var/patrol_position/name = &"patrol_position"
+var/patrol_position/type = 5
+var/patrol_position/value = Vector2(0, 0)
+var/patrol_position/hint = 0
+var/patrol_position/hint_string = ""
+var/patrol_radius/name = &"patrol_radius"
+var/patrol_radius/type = 3
+var/patrol_radius/value = 128.0
+var/patrol_radius/hint = 0
+var/patrol_radius/hint_string = ""
+var/patrol_center/name = &"patrol_center"
+var/patrol_center/type = 5
+var/patrol_center/value = Vector2(0, 0)
+var/patrol_center/hint = 0
+var/patrol_center/hint_string = ""
+var/chase_area_radius/name = &"chase_area_radius"
+var/chase_area_radius/type = 3
+var/chase_area_radius/value = 128.0
+var/chase_area_radius/hint = 0
+var/chase_area_radius/hint_string = ""

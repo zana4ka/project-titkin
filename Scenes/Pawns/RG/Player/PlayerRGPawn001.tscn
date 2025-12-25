@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://sn3lp0rqv4nw"]
 
-[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RGPawn2D.gd" id="1_ddkac"]
+[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RG/RGPawn2D.gd" id="1_ddkac"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="2_ic7if"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_lu5px"]
-[ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/Player/DefaultRGPawn001a_Frames.tres" id="3_lu5px"]
+[ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Frames.tres" id="3_lu5px"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="4_mhkle"]
 [ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_kd6vt"]
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="6_mhkle"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="13_jqi5d"]
 [ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialAbility.gd" id="13_vdw51"]
 [ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_e0c3u"]
-[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Assets/Abilities/RG/RGJumpAbility.gd" id="16_xcapk"]
+[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Scripts/Gameplay/Abilities/RG/RGJumpAbility.gd" id="16_xcapk"]
 
 [sub_resource type="Resource" id="Resource_mhkle"]
 script = ExtResource("2_lu5px")

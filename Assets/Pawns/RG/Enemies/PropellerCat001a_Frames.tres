@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ccew3wlh6w563"]
 
-[ext_resource type="Texture2D" uid="uid://ccor4w0lpwjya" path="res://Assets/Pawns/Enemies/PropellerCat001a.png" id="1_g4ddr"]
+[ext_resource type="Texture2D" uid="uid://ccor4w0lpwjya" path="res://Assets/Pawns/RG/Enemies/PropellerCat001a.png" id="1_g4ddr"]
 
 [resource]
 animations = [{

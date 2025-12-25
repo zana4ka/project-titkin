@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://b8tnwgigue0tq"]
 
-[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RGPawn2D.gd" id="1_6uq48"]
+[ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_ic5on"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_lsjrv"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_sxem0"]
-[ext_resource type="SpriteFrames" uid="uid://c7v51pros5urm" path="res://Assets/Pawns/Enemies/DollyPups001a_Frames.tres" id="4_6uq48"]
+[ext_resource type="SpriteFrames" uid="uid://c7v51pros5urm" path="res://Assets/Pawns/RG/Enemies/DollyPups001a_Frames.tres" id="4_6uq48"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_vs7gb"]
 [ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_3btok"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_g0ctv"]
@@ -14,10 +14,10 @@
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="12_fwp6l"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="13_bs50i"]
 [ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_8trs2"]
-[ext_resource type="BehaviorTree" uid="uid://brx1ty355muyi" path="res://Assets/AI/Trees/DefaultEnemyRG_BehaviorTree.tres" id="15_ga7xb"]
 [ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="16_ic5on"]
 [ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="17_vs7gb"]
-[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Assets/Abilities/RG/RGJumpAbility.gd" id="18_3btok"]
+[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Scripts/Gameplay/Abilities/RG/RGJumpAbility.gd" id="18_3btok"]
+[ext_resource type="BehaviorTree" uid="uid://r2quingv87bf" path="res://Assets/AI/Trees/RG/DollyPupsRG_BehaviorTree.tres" id="18_ic5on"]
 
 [sub_resource type="Resource" id="Resource_mhkle"]
 script = ExtResource("2_lsjrv")
@@ -70,20 +70,21 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
-radius = 256.0
+radius = 128.0
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_34gwh"]
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ic5on"]
 
-[node name="DollyPups" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
+[node name="DollyPups" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
-script = ExtResource("1_6uq48")
+script = ExtResource("1_ic5on")
 sprite = NodePath("Sprite")
 collision = NodePath("Collision")
 weapon = NodePath("Sprite/Weapon")
 unique_name = &"NeuroPups"
 display_data = SubResource("Resource_mhkle")
-attribute_set = NodePath("")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AttributeSet")
 max_health = 5.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -131,6 +132,7 @@ collision_layer = 0
 monitorable = false
 script = ExtResource("10_ovc2e")
 sight_collision = NodePath("Collision")
+on_sight_shape_size_mul = 1.0
 metadata/_custom_type_script = "uid://dwk4xt5j46aja"
 
 [node name="Collision" type="CollisionShape2D" parent="Perception"]
@@ -143,12 +145,11 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite")]
 script = ExtResource("13_bs50i")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_sprite = NodePath("../Sprite")
-owner_attribute_set = NodePath("")
 input_velocity_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
@@ -181,5 +182,5 @@ jump_on_vertical_path = true
 metadata/_custom_type_script = "uid://8b6d3s52mbag"
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = ExtResource("15_ga7xb")
-blackboard_plan = SubResource("BlackboardPlan_34gwh")
+behavior_tree = ExtResource("18_ic5on")
+blackboard_plan = SubResource("BlackboardPlan_ic5on")
