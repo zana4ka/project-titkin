@@ -28,9 +28,9 @@ resource_local_to_scene = true
 size = Vector2(32, 64)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o4kxs"]
-vertices = PackedVector2Array(-1482, 54, -4086, 54, -4086, 42, -1482, 42)
+vertices = PackedVector2Array(-1482, 70, -4086, 70, -4086, 58, -1482, 58)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 32, -1472, 32, -1472, 64, -4096, 64)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 48, -1472, 48, -1472, 80, -4096, 80)])
 source_geometry_mode = 1
 
 [node name="RGLevel" type="Node2D" node_paths=PackedStringArray("default_player_spawn", "level_navigation_region")]
