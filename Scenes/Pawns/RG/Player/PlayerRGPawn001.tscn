@@ -43,7 +43,7 @@ unique_name = &"RGPawn"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
 attribute_set = NodePath("AttributeSet")
-max_health = 6.0
+max_health = 12.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 pawn_input_actions = Array[StringName]([&"primary_attack", &"special_attack", &"jump", &"lock_movement"])
@@ -69,6 +69,7 @@ metadata/_custom_type_script = "uid://b544r1fp46py5"
 
 [node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
 z_index = 2
+offset = Vector2(128, 0)
 script = ExtResource("7_6tsgq")
 owner_pawn = NodePath("../..")
 owner_sprite = NodePath("..")

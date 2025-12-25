@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PawnDashVariantData2D" load_steps=2 format=3 uid="uid://cgumiddqukrb6"]
+
+[ext_resource type="Script" uid="uid://bmb47bc3uvrgl" path="res://addons/GodotCommons-Core/Scripts/Pawns/PawnDashVariantData2D.gd" id="1_ouij5"]
+
+[resource]
+script = ExtResource("1_ouij5")
+duration = 5.0
+impulse = 400.0
+launch_velocity_damp = 1.0
+instant_contact_damage = true
+animation_name = &"dash"
+metadata/_custom_type_script = "uid://bmb47bc3uvrgl"

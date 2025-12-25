@@ -1,0 +1,7 @@
+[gd_resource type="BlackboardPlan" format=3 uid="uid://6uck4e580865"]
+
+[resource]
+var/chase_target/name = &"chase_target"
+var/chase_target/type = 24
+var/chase_target/hint = 34
+var/chase_target/hint_string = ""

@@ -1,0 +1,180 @@
+[gd_scene load_steps=26 format=3 uid="uid://7esqpvkrtoar"]
+
+[ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_t0j7g"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_2twkm"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xrqs5"]
+[ext_resource type="SpriteFrames" uid="uid://kiuj0nx1kv2f" path="res://Assets/Pawns/RG/Enemies/FatSentry001a_Frames.tres" id="4_t0j7g"]
+[ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_f8dmp"]
+[ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_s54ha"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_vs138"]
+[ext_resource type="Resource" uid="uid://e0wd8imm8yxq" path="res://Assets/Items/Firearms/Pistols/EnemyGun002.tres" id="8_g2hvb"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_gqjwm"]
+[ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_e8m2s"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_f1iig"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="12_xjfnq"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="13_4mncx"]
+[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="14_hlbd2"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_kj6ry"]
+[ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="17_gmv3g"]
+[ext_resource type="BehaviorTree" uid="uid://of6s2oiv161g" path="res://Assets/AI/Trees/RG/FatSentryRG_BehaviorTree.tres" id="18_t0j7g"]
+
+[sub_resource type="Resource" id="Resource_mhkle"]
+script = ExtResource("2_2twkm")
+name = "Neuro Pups"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="Resource" id="Resource_g2hvb"]
+script = ExtResource("6_s54ha")
+metadata/_custom_type_script = "uid://cdx2ypfdvk0lf"
+
+[sub_resource type="Animation" id="Animation_usbmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:is_holding_use_input")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ptdqy"]
+resource_name = "shoot"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:is_holding_use_input")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hvb"]
+_data = {
+&"RESET": SubResource("Animation_usbmg"),
+&"shoot": SubResource("Animation_ptdqy")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
+radius = 128.0
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ic5on"]
+
+[node name="FatSentry" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
+collision_layer = 4098
+collision_mask = 136
+script = ExtResource("1_t0j7g")
+sprite = NodePath("Sprite")
+collision = NodePath("Collision")
+weapon = NodePath("Sprite/Weapon")
+unique_name = &"NeuroPups"
+display_data = SubResource("Resource_mhkle")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AttributeSet")
+max_health = 10.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
+bt_player = NodePath("BTPlayer")
+character_movement = NodePath("CharacterMovement")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j84it")
+script = ExtResource("3_xrqs5")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+z_index = 2
+z_as_relative = false
+scale = Vector2(0.25, 0.125)
+sprite_frames = ExtResource("4_t0j7g")
+animation = &"move"
+script = ExtResource("5_f8dmp")
+owner_pawn = NodePath("..")
+animation_data = SubResource("Resource_g2hvb")
+metadata/_custom_type_script = "uid://b544r1fp46py5"
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
+script = ExtResource("7_vs138")
+owner_pawn = NodePath("../..")
+owner_sprite = NodePath("..")
+weapon_data = ExtResource("8_g2hvb")
+metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Weapon"]
+libraries = {
+&"": SubResource("AnimationLibrary_g2hvb")
+}
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("9_gqjwm")
+}
+
+[node name="Perception" type="Area2D" parent="." node_paths=PackedStringArray("sight_collision")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("10_e8m2s")
+sight_collision = NodePath("Collision")
+on_sight_shape_size_mul = 1.0
+metadata/_custom_type_script = "uid://dwk4xt5j46aja"
+
+[node name="Collision" type="CollisionShape2D" parent="Perception"]
+shape = SubResource("CircleShape2D_34gwh")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("11_f1iig")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite")]
+script = ExtResource("12_xjfnq")
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_sprite = NodePath("../Sprite")
+move_speed = 0.0
+input_velocity_mul = Vector2(1, 0)
+metadata/_custom_type_script = "uid://bhtvb465l63d1"
+
+[node name="AttributeSet" type="Node" parent="."]
+script = ExtResource("13_4mncx")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
+script = ExtResource("14_hlbd2")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+metadata/_custom_type_script = "uid://balxeodldstwh"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_kj6ry")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="Navigation" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("owner_pawn", "owner_movement")]
+script = ExtResource("17_gmv3g")
+owner_pawn = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+jump_on_vertical_path = true
+metadata/_custom_type_script = "uid://8b6d3s52mbag"
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("18_t0j7g")
+blackboard_plan = SubResource("BlackboardPlan_ic5on")

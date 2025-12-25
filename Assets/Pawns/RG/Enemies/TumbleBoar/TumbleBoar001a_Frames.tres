@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bon38mdffgrp7"]
+
+[ext_resource type="Texture2D" uid="uid://cmqsqk541864p" path="res://icon.svg" id="1_2c46h"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2c46h")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2c46h")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2c46h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2c46h")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

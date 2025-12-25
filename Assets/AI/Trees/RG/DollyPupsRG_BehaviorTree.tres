@@ -1,6 +1,6 @@
 [gd_resource type="BehaviorTree" load_steps=35 format=3 uid="uid://r2quingv87bf"]
 
-[ext_resource type="BlackboardPlan" uid="uid://cq20sx23le6gp" path="res://Assets/AI/Trees/RG/DollyPups001_Blackboard.tres" id="1_ppw6i"]
+[ext_resource type="BlackboardPlan" uid="uid://cq20sx23le6gp" path="res://Assets/AI/Trees/RG/DollyPups001_Blackboard.tres" id="1_ti47n"]
 [ext_resource type="Script" uid="uid://dqfqf3cqw7x6j" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_GetRandomNavPosInRadius.gd" id="2_ppw6i"]
 [ext_resource type="Script" uid="uid://c5kaiowci64q8" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_MoveTo.gd" id="3_ti47n"]
 [ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_LookAt.gd" id="4_0r70y"]
@@ -146,5 +146,5 @@ script = ExtResource("6_shrxv")
 update_cooldown_time = 0.25
 
 [resource]
-blackboard_plan = ExtResource("1_ppw6i")
+blackboard_plan = ExtResource("1_ti47n")
 root_task = SubResource("BTDecorator_wpsi5")

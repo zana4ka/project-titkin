@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_didrp"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_uq6dl"]
 [ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="8_47jnq"]
-[ext_resource type="Resource" uid="uid://d1mvq3jl3xw3t" path="res://Assets/Items/Firearms/Pistols/EnemyGun002.tres" id="8_uq6dl"]
+[ext_resource type="Resource" uid="uid://d1mvq3jl3xw3t" path="res://Assets/Items/Firearms/Pistols/EnemyGun001_Auto.tres" id="8_uq6dl"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_3m4r6"]
 [ext_resource type="Texture2D" uid="uid://b0es228gfcykd" path="res://addons/better-terrain/icons/Warning.svg" id="9_5a583"]
 [ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_wgi8q"]

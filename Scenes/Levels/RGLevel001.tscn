@@ -1,15 +1,13 @@
-[gd_scene load_steps=19 format=4 uid="uid://omqo3p6o6xeb"]
+[gd_scene load_steps=17 format=3 uid="uid://omqo3p6o6xeb"]
 
 [ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Scripts/Levels/RGLevelBase2D.gd" id="1_iebrh"]
 [ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Game/DefaultCampaign.tres" id="2_k5hyx"]
 [ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Game/DefaultGameMode.tres" id="3_qyqm6"]
-[ext_resource type="Script" uid="uid://cnpq33rttt14r" path="res://addons/GodotCommons-Core/Scripts/Tiles/LevelTileMapLayer.gd" id="4_qyqm6"]
-[ext_resource type="Script" uid="uid://csxcu53w5isdb" path="res://addons/GodotCommons-Core/Scripts/Tiles/TileSets/LevelTileSet_TerrainData.gd" id="5_ow0gs"]
-[ext_resource type="Resource" uid="uid://b1snpi7dm8m8e" path="res://Assets/Tiles/Walls/StoneBrick001a_Wall.tres" id="6_iebrh"]
-[ext_resource type="Resource" uid="uid://btdjjr7mb7v2q" path="res://Assets/Tiles/Walls/StoneBrick001b_Wall.tres" id="7_nvgd8"]
 [ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="8_iebrh"]
 [ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="9_8ii4u"]
+[ext_resource type="PackedScene" uid="uid://7esqpvkrtoar" path="res://Scenes/Pawns/RG/Enemies/FatSentry001.tscn" id="10_8ii4u"]
 [ext_resource type="Script" uid="uid://cunyk2dvnndvj" path="res://addons/GodotCommons-Core/Scripts/Levels/ChangeLevel.gd" id="10_jb1df"]
+[ext_resource type="PackedScene" uid="uid://cd5nufc5i7s8x" path="res://Scenes/Pawns/RG/Enemies/TumbleBoar001.tscn" id="11_5drtt"]
 [ext_resource type="PackedScene" uid="uid://b8tnwgigue0tq" path="res://Scenes/Pawns/RG/Enemies/DollyPups001.tscn" id="11_jb1df"]
 [ext_resource type="Script" uid="uid://c6grk0368syxv" path="res://addons/GodotCommons-Core/Scripts/Levels/LevelNavigationRegion2D.gd" id="12_5drtt"]
 [ext_resource type="Texture2D" uid="uid://48vkfwdmgip6" path="res://Assets/Levels/RG/RGLevelBackground001_Full.png" id="13_o4kxs"]
@@ -28,9 +26,9 @@ resource_local_to_scene = true
 size = Vector2(32, 64)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o4kxs"]
-vertices = PackedVector2Array(-1482, 70, -4086, 70, -4086, 58, -1482, 58)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 48, -1472, 48, -1472, 80, -4096, 80)])
+vertices = PackedVector2Array(-3711.5, -3.5, -3711.5, -34.5, -3697.9766, -38, -3697.8125, 58, -3830.0781, -38, -3822.5, -34.5, -3830.8828, 58, -3822.5, -3.5, -1482, 58, -1482, 70, -4086, 70, -4086, 58)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(3, 8, 9, 10), PackedInt32Array(10, 11, 6), PackedInt32Array(3, 10, 6), PackedInt32Array(0, 3, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 48, -3840.7983, 47.999992, -3840, -48, -3688, -48, -3687.8252, 47.999985, -1472, 48, -1472, 80, -4096, 80)])
 source_geometry_mode = 1
 
 [node name="RGLevel" type="Node2D" node_paths=PackedStringArray("default_player_spawn", "level_navigation_region")]
@@ -138,68 +136,6 @@ collision_mask = 0
 [node name="Collision" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_o4kxs")
 
-[node name="LevelTileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("wall_layer") groups=["navigation_polygon_source_geometry_group"]]
-position = Vector2(0, 1000)
-tile_map_data = PackedByteArray("AAD+/wIAAAACAAMAAAD//wIAAAACAAMAAAAAAAIAAAACAAAAAAABAAIAAAACAAMAAAACAAIAAAACAAMAAAADAAIAAAACAAMAAAAEAAIAAAACAAAAAAD9/wIAAAACAAMAAAD8/wIAAAACAAAAAAD8/wMAAQAAAAEAAAD8/wQAAQAAAAEAAAD8/wUAAQAAAAEAAAAEAAMAAQAAAAEAAAAEAAQAAQABAAEAAAAEAAUAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAUAAQAAAAEAAAD7/wIAAAABAAMAAAAFAAIAAAADAAMAAAAIAAQAAAACAAMAAAAJAAQAAAACAAAAAAAKAAQAAAACAAMAAAALAAQAAAACAAMAAAAMAAQAAAACAAAAAAANAAQAAAACAAMAAAAOAAQAAAACAAMAAAAPAAQAAAACAAAAAAAQAAQAAAADAAMAAAAJAAUAAQAAAAEAAAAJAAYAAQAAAAEAAAAMAAUAAQAAAAEAAAAMAAYAAQAAAAEAAAAPAAUAAQAAAAEAAAAPAAYAAQAAAAEAAAAMAPz/AAACAAAAAAAMAP3/AQAAAAEAAAAMAP7/AQAAAAEAAAAMAP//AQAAAAEAAAAMAAAAAQAAAAIAAAALAPz/AAACAAMAAAAKAPz/AAACAAMAAAAJAPz/AAACAAMAAAAIAPz/AAACAAMAAAAHAPz/AAACAAMAAAAGAPz/AAACAAMAAAAFAPz/AAACAAMAAAAEAPz/AAABAAMAAAANAPz/AAACAAMAAAAOAPz/AAACAAMAAAAPAPz/AAACAAMAAAAQAPz/AAACAAMAAAARAPz/AAACAAMAAAASAPz/AAACAAMAAAATAPz/AAADAAMAAAAHAAQAAAACAAMAAAAGAAQAAAACAAMAAAAFAAQAAAACAAMAAAAEAAYAAQAAAAEAAAAEAAcAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAcAAQAAAAEAAAD8/wYAAQAAAAEAAAD8/wcAAQAAAAEAAAAJAAcAAQAAAAEAAAAMAAcAAQAAAAEAAAAPAAcAAQAAAAEAAAD0/wgAAAABAAMAAAD1/wgAAAACAAMAAAD2/wgAAAACAAMAAAD3/wgAAAACAAMAAAD4/wgAAAACAAMAAAD5/wgAAAACAAMAAAD6/wgAAAACAAMAAAD7/wgAAAACAAMAAAD8/wgAAAACAAIAAAD9/wgAAAACAAMAAAD+/wgAAAACAAMAAAD//wgAAAACAAMAAAAAAAgAAAACAAIAAAABAAgAAAACAAMAAAACAAgAAAACAAMAAAADAAgAAAACAAMAAAAEAAgAAAACAAIAAAAFAAgAAAACAAMAAAAGAAgAAAACAAMAAAAHAAgAAAACAAMAAAAIAAgAAAACAAMAAAAJAAgAAAACAAIAAAAKAAgAAAACAAMAAAALAAgAAAACAAMAAAAMAAgAAAACAAIAAAANAAgAAAACAAMAAAAOAAgAAAACAAMAAAAPAAgAAAACAAIAAAAQAAgAAAACAAMAAAARAAgAAAACAAMAAAASAAgAAAACAAMAAAATAAgAAAACAAMAAAAUAAgAAAACAAMAAAAVAAgAAAACAAMAAAAWAAgAAAACAAMAAAAXAAgAAAADAAMAAAD0//j/AAABAAMAAAD1//j/AAACAAMAAAD2//j/AAACAAMAAAD3//j/AAACAAMAAAD4//j/AAACAAMAAAD5//j/AAACAAMAAAD6//j/AAACAAMAAAD7//j/AAACAAMAAAD8//j/AAACAAMAAAD9//j/AAACAAMAAAD+//j/AAACAAMAAAD///j/AAACAAMAAAAAAPj/AAACAAMAAAABAPj/AAACAAMAAAACAPj/AAACAAMAAAADAPj/AAACAAMAAAAEAPj/AAACAAMAAAAFAPj/AAACAAMAAAAGAPj/AAACAAMAAAAHAPj/AAACAAMAAAAIAPj/AAACAAMAAAAJAPj/AAACAAMAAAAKAPj/AAACAAMAAAALAPj/AAACAAMAAAAMAPj/AAACAAMAAAANAPj/AAACAAMAAAAOAPj/AAACAAMAAAAPAPj/AAACAAMAAAAQAPj/AAACAAMAAAARAPj/AAACAAMAAAASAPj/AAACAAMAAAATAPj/AAACAAMAAAAUAPj/AAACAAMAAAAVAPj/AAACAAMAAAAWAPj/AAACAAMAAAAXAPj/AAADAAMAAAA=")
-script = ExtResource("4_qyqm6")
-terrain_data_array = Array[ExtResource("5_ow0gs")]([ExtResource("6_iebrh"), ExtResource("7_nvgd8")])
-wall_layer = NodePath(".")
-metadata/_custom_type_script = "uid://cnpq33rttt14r"
-
-[node name="DollyPups" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3840, -960)
-
-[node name="DollyPups8" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3525, -975)
-
-[node name="DollyPups9" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3484, -990)
-
-[node name="DollyPups10" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3445, -1020)
-
-[node name="DollyPups11" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3409, -1052)
-
-[node name="DollyPups12" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3311, -1049)
-
-[node name="DollyPups13" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3243, -1055)
-
-[node name="DollyPups2" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-1719, -955)
-
-[node name="DollyPups3" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2997, -1054)
-
-[node name="DollyPups15" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2956, -1062)
-
-[node name="DollyPups16" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2883, -1052)
-
-[node name="DollyPups17" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2898, -955)
-
-[node name="DollyPups18" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2648, -1043)
-
-[node name="DollyPups19" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2420, -1057)
-
-[node name="DollyPups4" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-3760, -1048)
-
-[node name="DollyPups5" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-1706, -1058)
-
-[node name="DollyPups6" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-1817, -953)
-
-[node name="DollyPups7" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(-2101, -956)
-
 [node name="PlayerSpawn" parent="." instance=ExtResource("8_iebrh")]
 position = Vector2(-4030, 38)
 label_text = "Player
@@ -220,5 +156,73 @@ metadata/_custom_type_script = "uid://cunyk2dvnndvj"
 navigation_polygon = SubResource("NavigationPolygon_o4kxs")
 script = ExtResource("12_5drtt")
 metadata/_custom_type_script = "uid://c6grk0368syxv"
+
+[node name="Pawns" type="Node2D" parent="."]
+
+[node name="DollyPups" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3832, 22)
+
+[node name="DollyPups8" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3517, 7)
+
+[node name="DollyPups9" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3476, -8)
+
+[node name="DollyPups10" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3437, -38)
+
+[node name="DollyPups11" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3401, -70)
+
+[node name="DollyPups12" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3303, -67)
+
+[node name="DollyPups13" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3235, -73)
+
+[node name="DollyPups2" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-1711, 27)
+
+[node name="DollyPups3" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2989, -72)
+
+[node name="DollyPups15" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2948, -80)
+
+[node name="DollyPups16" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2875, -70)
+
+[node name="DollyPups17" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2890, 27)
+
+[node name="DollyPups18" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2640, -61)
+
+[node name="DollyPups19" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2412, -75)
+
+[node name="DollyPups4" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-3744, -48)
+
+[node name="DollyPups5" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-1698, -76)
+
+[node name="DollyPups6" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-1809, 29)
+
+[node name="DollyPups7" parent="Pawns" instance=ExtResource("11_jb1df")]
+position = Vector2(-2093, 26)
+
+[node name="FatSentry" parent="Pawns" instance=ExtResource("10_8ii4u")]
+position = Vector2(-2752, 32)
+
+[node name="FatSentry2" parent="Pawns" instance=ExtResource("10_8ii4u")]
+position = Vector2(-1560, 32)
+
+[node name="TumbleBoar" parent="Pawns" instance=ExtResource("11_5drtt")]
+position = Vector2(-3080, 48)
+
+[node name="TumbleBoar2" parent="Pawns" instance=ExtResource("11_5drtt")]
+position = Vector2(-1600, 56)
 
 [connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]

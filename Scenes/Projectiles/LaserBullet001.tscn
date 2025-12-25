@@ -38,6 +38,8 @@ metadata/_custom_type_script = "uid://0elqphnlbgtx"
 [node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
 script = ExtResource("5_gd7ih")
 owner_projectile = NodePath("..")
+InitialImpulseMul = 0.5
+ConstantMagnitudeMul = 2.0
 ApplyConstantAsVelocity = true
 metadata/_custom_type_script = "uid://bhpkhuqr8vfux"
 
@@ -52,5 +54,4 @@ debug_color = Color(0.9898308, 0.09930939, 1.92523e-07, 0.41960785)
 script = ExtResource("2_1gcmp")
 _owner = NodePath("../..")
 owner_damage_area = NodePath("..")
-size_mul_power_factor = null
 metadata/_custom_type_script = "uid://creu52bxinsn4"
