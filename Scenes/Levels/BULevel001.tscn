@@ -66,6 +66,6 @@ collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="ArenaBounds"]
 build_mode = 1
-polygon = PackedVector2Array(-64, -24, 256, -24, 256, 64, -64, 64)
+polygon = PackedVector2Array(-64, -24, 240, -24, 240, 64, -64, 64)
 
 [connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]

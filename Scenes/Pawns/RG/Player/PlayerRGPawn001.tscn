@@ -12,9 +12,9 @@
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="7_owvon"]
 [ext_resource type="Resource" uid="uid://bfww4xcvkvhuc" path="res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres" id="8_8gir5"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_6tsgq"]
+[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="13_jqi5d"]
 [ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialAbility.gd" id="13_vdw51"]
-[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="14_jqi5d"]
-[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagContainer.gd" id="15_e0c3u"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_e0c3u"]
 [ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Assets/Abilities/RG/RGJumpAbility.gd" id="16_xcapk"]
 
 [sub_resource type="Resource" id="Resource_mhkle"]
@@ -24,8 +24,7 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
 resource_local_to_scene = true
-radius = 6.0
-height = 26.0
+height = 38.0
 
 [sub_resource type="Resource" id="Resource_7hmxo"]
 script = ExtResource("6_kd6vt")
@@ -43,7 +42,7 @@ can_crouch = true
 unique_name = &"RGPawn"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+attribute_set = NodePath("AttributeSet")
 max_health = 6.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -60,7 +59,7 @@ metadata/_custom_type_script = "uid://cry48n5lfcsip"
 [node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
 z_index = 2
 z_as_relative = false
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.07312925, 0.072580636)
 sprite_frames = ExtResource("3_lu5px")
 animation = &"idle_look_up"
 script = ExtResource("4_mhkle")
@@ -86,7 +85,7 @@ libraries = {
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("6_owvon")
 owner_body_2d = NodePath("..")
-owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+owner_attribute_set = NodePath("../AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
@@ -94,8 +93,10 @@ script = ExtResource("7_owvon")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_sprite = NodePath("../Sprite")
-owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
-move_speed = 64.0
+owner_attribute_set = NodePath("../AttributeSet")
+launch_velocity_reset_threshold = 40.0
+move_speed = 150.0
+jump_impulse_magnitude = 400.0
 input_velocity_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
@@ -104,17 +105,17 @@ script = ExtResource("13_vdw51")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://7qnso3ivyyyw"
 
-[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tag_container")]
-script = ExtResource("14_jqi5d")
-owner_pawn = NodePath("..")
-tag_container = NodePath("TagContainer")
-metadata/_custom_type_script = "uid://balxeodldstwh"
-
-[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+[node name="AttributeSet" type="Node" parent="."]
 script = ExtResource("6_mhkle")
 metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
-[node name="TagContainer" type="Node" parent="AbilitySystemComponent"]
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
+script = ExtResource("13_jqi5d")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+metadata/_custom_type_script = "uid://balxeodldstwh"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_e0c3u")
 metadata/_custom_type_script = "uid://d4bq5plnifoud"
 

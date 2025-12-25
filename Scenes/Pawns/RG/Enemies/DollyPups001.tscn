@@ -14,10 +14,10 @@
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="12_fwp6l"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="13_bs50i"]
 [ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_8trs2"]
-[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="14_lsjrv"]
 [ext_resource type="BehaviorTree" uid="uid://brx1ty355muyi" path="res://Assets/AI/Trees/DefaultEnemyRG_BehaviorTree.tres" id="15_ga7xb"]
-[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagContainer.gd" id="15_sxem0"]
-[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Assets/Abilities/RG/RGJumpAbility.gd" id="16_ic5on"]
+[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="16_ic5on"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="17_vs7gb"]
+[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Assets/Abilities/RG/RGJumpAbility.gd" id="18_3btok"]
 
 [sub_resource type="Resource" id="Resource_mhkle"]
 script = ExtResource("2_lsjrv")
@@ -25,8 +25,8 @@ name = "Neuro Pups"
 metadata/_custom_type_script = "uid://c5g053ket645m"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
-radius = 4.0
-height = 20.0
+radius = 5.0
+height = 32.0
 
 [sub_resource type="Resource" id="Resource_7hmxo"]
 script = ExtResource("6_3btok")
@@ -74,7 +74,7 @@ radius = 256.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_34gwh"]
 
-[node name="DollyPups" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
+[node name="DollyPups" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
 script = ExtResource("1_6uq48")
@@ -83,8 +83,7 @@ collision = NodePath("Collision")
 weapon = NodePath("Sprite/Weapon")
 unique_name = &"NeuroPups"
 display_data = SubResource("Resource_mhkle")
-asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AttributeSet")
+attribute_set = NodePath("")
 max_health = 5.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -100,7 +99,8 @@ metadata/_custom_type_script = "uid://cry48n5lfcsip"
 [node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
 z_index = 2
 z_as_relative = false
-scale = Vector2(0.025, 0.025)
+position = Vector2(0.49999917, -0.50000095)
+scale = Vector2(0.041992184, 0.04984894)
 sprite_frames = ExtResource("4_6uq48")
 animation = &"idle"
 script = ExtResource("5_vs7gb")
@@ -143,31 +143,31 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("12_fwp6l")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
-
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
 script = ExtResource("13_bs50i")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_sprite = NodePath("../Sprite")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("")
 input_velocity_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
-[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tag_container")]
-script = ExtResource("14_lsjrv")
+[node name="AttributeSet" type="Node" parent="."]
+script = ExtResource("12_fwp6l")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
+script = ExtResource("16_ic5on")
 owner_pawn = NodePath("..")
-tag_container = NodePath("TagContainer")
+tags_container = NodePath("TagsContainer")
 metadata/_custom_type_script = "uid://balxeodldstwh"
 
-[node name="TagContainer" type="Node" parent="AbilitySystemComponent"]
-script = ExtResource("15_sxem0")
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("17_vs7gb")
 metadata/_custom_type_script = "uid://d4bq5plnifoud"
 
 [node name="Jump" type="Node" parent="AbilitySystemComponent"]
-script = ExtResource("16_ic5on")
+script = ExtResource("18_3btok")
 ability_tags = Array[StringName]([&"jump_ability"])
 owner_granted_tags = Array[StringName]([&"state_jumping"])
 metadata/_custom_type_script = "uid://baf2rkscj0a85"

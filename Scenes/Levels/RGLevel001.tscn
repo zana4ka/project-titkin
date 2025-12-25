@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://omqo3p6o6xeb"]
+[gd_scene load_steps=19 format=4 uid="uid://omqo3p6o6xeb"]
 
 [ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Scripts/Levels/RGLevelBase2D.gd" id="1_iebrh"]
 [ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Game/DefaultCampaign.tres" id="2_k5hyx"]
@@ -14,21 +14,23 @@
 [ext_resource type="Script" uid="uid://c6grk0368syxv" path="res://addons/GodotCommons-Core/Scripts/Levels/LevelNavigationRegion2D.gd" id="12_5drtt"]
 [ext_resource type="Texture2D" uid="uid://48vkfwdmgip6" path="res://Assets/Levels/RG/RGLevelBackground001_Full.png" id="13_o4kxs"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o4kxs"]
-distance = -72.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heq00"]
+size = Vector2(91, 11)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_o4kxs"]
-a = Vector2(91, 40)
-b = Vector2(-6, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4kxs"]
+size = Vector2(92, 8)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o4kxs"]
+distance = -76.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5drtt"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o4kxs"]
-vertices = PackedVector2Array(502, 118, -438, 118, -438, -118, 502, -118)
+vertices = PackedVector2Array(-1482, 118, -4086, 118, -4086, -118, -1482, -118)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-448, -128, 512, -128, 512, 128, -448, 128)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, -128, -1472, -128, -1472, 128, -4096, 128)])
 source_geometry_mode = 1
 
 [node name="RGLevel" type="Node2D" node_paths=PackedStringArray("default_player_spawn", "level_navigation_region")]
@@ -45,15 +47,96 @@ z_as_relative = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_o4kxs")
 
+[node name="Platforms" type="StaticBody2D" parent="."]
+position = Vector2(-3767, -19)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collision2" type="CollisionShape2D" parent="Platforms"]
+shape = SubResource("RectangleShape2D_heq00")
+
+[node name="Collision3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(214, 15.25)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(484, 1)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision5" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(783, 9)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision6" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(882, 0)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision7" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1145, 4)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision8" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1362, 5)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision9" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1511, 10)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision10" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1962, 20)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision11" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2063, -3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision12" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2306, 16)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision13" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2436, -3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision14" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2542, 31)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision15" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2663, 8)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision16" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2753, -2)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision17" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3050, 3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision18" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3188, 18)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision19" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3348, -2)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision20" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3584, 6)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision21" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3454, 30)
+shape = SubResource("RectangleShape2D_o4kxs")
+
 [node name="Floor" type="StaticBody2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_o4kxs")
-
-[node name="Collision2" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("SegmentShape2D_o4kxs")
 
 [node name="LevelTileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("wall_layer") groups=["navigation_polygon_source_geometry_group"]]
 position = Vector2(0, 1000)
@@ -63,34 +146,104 @@ terrain_data_array = Array[ExtResource("5_ow0gs")]([ExtResource("6_iebrh"), ExtR
 wall_layer = NodePath(".")
 metadata/_custom_type_script = "uid://cnpq33rttt14r"
 
-[node name="DollyPups" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(80, -976)
+[node name="DollyPups" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3839, -958)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups2" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(152, -944)
+[node name="DollyPups8" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3525, -975)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups3" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(192, -944)
+[node name="DollyPups9" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3484, -990)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups4" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(8, -944)
+[node name="DollyPups10" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3445, -1020)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups5" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(336, -952)
+[node name="DollyPups11" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3409, -1052)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups6" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(280, -952)
+[node name="DollyPups12" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3311, -1049)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
-[node name="DollyPups7" parent="LevelTileMapLayer" instance=ExtResource("11_jb1df")]
-position = Vector2(416, -952)
+[node name="DollyPups13" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3243, -1055)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups2" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-1719, -955)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups3" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2997, -1054)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups15" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2956, -1062)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups16" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2883, -1052)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups17" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2898, -955)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups18" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2648, -1043)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups19" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2420, -1057)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups4" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-3775, -1054)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups5" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-1706, -1058)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups6" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-1817, -953)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+
+[node name="DollyPups7" parent="LevelTileMapLayer" node_paths=PackedStringArray("asc", "attribute_set") instance=ExtResource("11_jb1df")]
+position = Vector2(-2101, -956)
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("8_iebrh")]
-position = Vector2(-112, 48)
+position = Vector2(-4030, 38)
 label_text = "Player
 Spawn"
 
 [node name="CommonTrigger" parent="." instance=ExtResource("9_8ii4u")]
-position = Vector2(448, 48)
+position = Vector2(-1517, -12)
+scale = Vector2(1.295, 3.415)
 collision_shape = SubResource("RectangleShape2D_5drtt")
 is_enabled = true
 
@@ -100,7 +253,6 @@ level_scene_path = "res://Scenes/Levels/BULevel001.tscn"
 metadata/_custom_type_script = "uid://cunyk2dvnndvj"
 
 [node name="NavigationRegion" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_o4kxs")
 script = ExtResource("12_5drtt")
 metadata/_custom_type_script = "uid://c6grk0368syxv"
