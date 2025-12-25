@@ -121,6 +121,7 @@ metadata/_custom_type_script = "uid://d4bq5plnifoud"
 
 [node name="Jump" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("16_xcapk")
+jump_animation_name = &"jump"
 ability_tags = Array[StringName]([&"jump_ability"])
 owner_granted_tags = Array[StringName]([&"state_jumping"])
 metadata/_custom_type_script = "uid://baf2rkscj0a85"
