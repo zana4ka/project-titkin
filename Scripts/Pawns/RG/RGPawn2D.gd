@@ -3,24 +3,8 @@ extends Pawn2D
 class_name RGPawn2D
 
 @export_category("Components")
-@export var sprite: Pawn2D_Sprite
 @export var collision: Pawn2D_Collision
 @export var weapon: Pawn2D_Weapon
-
-var is_movement_locked: bool = false:
-	set(in_is_movement_locked):
-		is_movement_locked = in_is_movement_locked
-
-@export var can_crouch: bool = false
-var is_crouching: bool = false:
-	set(in_is_crouching):
-		
-		if in_is_crouching != is_crouching:
-			
-			is_crouching = in_is_crouching
-			
-			if is_crouching: _handle_crouch()
-			else: _handle_un_crouch()
 
 func _ready() -> void:
 	
@@ -30,7 +14,6 @@ func _ready() -> void:
 		pass
 	else:
 		assert(character_movement)
-		assert(sprite)
 		assert(collision)
 		assert(weapon)
 
@@ -38,45 +21,28 @@ func handle_controller_movement_input(in_input: Vector2) -> void:
 	
 	last_movement_input = in_input
 	
-	if is_movement_locked:
+	if asc.tags_container.has_tag(CommonTags.block_input_movement):
 		character_movement.apply_movement_input(Vector2.ZERO)
 	else:
-		if is_crouching:
-			character_movement.apply_movement_input(Vector2.ZERO)
-		else:
-			character_movement.apply_movement_input(last_movement_input)
-		
-		handle_up_input(last_movement_input.y < -0.5)
-		handle_down_input(last_movement_input.y > 0.5)
+		character_movement.apply_movement_input(last_movement_input)
 
-func handle_up_input(in_pressed: bool) -> void:
+func handle_move_up_input(in_event: InputEvent) -> void:
 	
-	if in_pressed:
-		sprite.current_look_direction = AnimationData2D.LookDirection.Up
+	if in_event.is_pressed():
+		asc.try_activate_abilities_by_tag(TitkinTags.look_up_ability)
 	else:
-		sprite.current_look_direction = AnimationData2D.LookDirection.Forward
+		asc.try_end_abilities_by_tag(TitkinTags.look_up_ability)
 
-func handle_down_input(in_pressed: bool) -> void:
-	if can_crouch:
-		is_crouching = in_pressed
-
-func _handle_crouch() -> void:
+func handle_move_down_input(in_event: InputEvent) -> void:
 	
-	sprite.play_override_animation(&"crouch")
-	
-	assert(collision.shape.resource_local_to_scene)
-	(collision.shape as CapsuleShape2D).height = 13.0
-	
-	position.y += 6.5
-
-func _handle_un_crouch() -> void:
-	
-	position.y -= 6.5
-	
-	sprite.cancel_override_animation(&"crouch")
-	
-	assert(collision.shape.resource_local_to_scene)
-	(collision.shape as CapsuleShape2D).height = 26.0
+	if in_event.is_pressed():
+		if asc.try_activate_abilities_by_tag(CommonTags.crouch_ability):
+			pass
+		else:
+			asc.try_activate_abilities_by_tag(TitkinTags.look_down_ability)
+	else:
+		asc.try_end_abilities_by_tag(CommonTags.crouch_ability)
+		asc.try_end_abilities_by_tag(TitkinTags.look_down_ability)
 
 func handle_primary_attack_input(in_event: InputEvent) -> void:
 	if in_event.is_pressed():
@@ -92,4 +58,8 @@ func handle_special_attack_input(in_event: InputEvent) -> void:
 		special_ability.try_activate()
 
 func handle_lock_movement_input(in_event: InputEvent) -> void:
-	is_movement_locked = in_event.is_pressed() or in_event.is_echo()
+	
+	if in_event.is_pressed():
+		asc.try_activate_abilities_by_tag(TitkinTags.lock_movement_ability)
+	elif in_event.is_released():
+		asc.try_end_abilities_by_tag(TitkinTags.lock_movement_ability)

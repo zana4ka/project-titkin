@@ -2,42 +2,31 @@
 extends GameplayAbility
 class_name RGJumpAbility
 
-@export_category("Animations")
-@export var jump_animation_name: StringName = &""
+@export_category("Jump")
+@export var jump_impulse_magnitude: float = 400.0
 
 func _ready() -> void:
 	ability_tags = [ CommonTags.jump_ability ]
 	owner_granted_tags = [ CommonTags.state_jumping ]
+	owner_must_not_have_tags = [ CommonTags.state_crouching ]
 
 func can_activate() -> bool:
-	return super() and owner_asc.owner_pawn.character_movement.can_jump()
+	return super() and get_owner_body().is_on_floor()
 
 func commit_ability() -> void:
 	
-	#owner_asc.owner_pawn.input_action_handled.connect(_on_owner_input_action_handled)
-	owner_asc.owner_pawn.character_movement.landed.connect(_on_owner_landed)
+	var owner_pawn := get_owner_pawn()
+	var owner_body := get_owner_body()
 	
-	owner_asc.owner_pawn.character_movement.try_jump()
-	
-	if not jump_animation_name.is_empty():
-		var owner_sprite := Pawn2D_Sprite.try_get_from(owner_asc.owner_pawn)
-		owner_sprite.play_override_animation(jump_animation_name)
-
-#func _on_owner_input_action_handled(in_action_event: InputEvent) -> void:
-#	if in_action_event.is_action_released(CommonActions.jump):
-#		end_ability()
+	owner_pawn.character_movement.landed.connect(_on_owner_landed)
+	owner_pawn.character_movement.launch(jump_impulse_magnitude * owner_body.up_direction)
 
 func _on_owner_landed() -> void:
 	end_ability()
 
 func on_ability_ended(in_was_cancelled: bool) -> void:
 	
-	if not jump_animation_name.is_empty():
-		var owner_sprite := Pawn2D_Sprite.try_get_from(owner_asc.owner_pawn)
-		owner_sprite.cancel_override_animation(jump_animation_name)
+	var owner_pawn := get_owner_pawn()
 	
-	#if owner_asc.owner_pawn.input_action_handled.is_connected(_on_owner_input_action_handled):
-	#	owner_asc.owner_pawn.input_action_handled.disconnect(_on_owner_input_action_handled)
-	
-	if owner_asc.owner_pawn.character_movement.landed.is_connected(_on_owner_landed):
-		owner_asc.owner_pawn.character_movement.landed.disconnect(_on_owner_landed)
+	if owner_pawn.character_movement.landed.is_connected(_on_owner_landed):
+		owner_pawn.character_movement.landed.disconnect(_on_owner_landed)
