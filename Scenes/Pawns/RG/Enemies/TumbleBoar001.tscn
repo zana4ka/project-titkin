@@ -1,11 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cd5nufc5i7s8x"]
+[gd_scene load_steps=28 format=3 uid="uid://cd5nufc5i7s8x"]
 
 [ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_0ijga"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_i1te5"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xkfqq"]
 [ext_resource type="SpriteFrames" uid="uid://bon38mdffgrp7" path="res://Assets/Pawns/RG/Enemies/TumbleBoar/TumbleBoar001a_Frames.tres" id="4_0ijga"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_ovlux"]
-[ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_0f1g8"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_3hlqc"]
 [ext_resource type="Resource" uid="uid://nq4ow1jdx7nq" path="res://Assets/Items/Firearms/Pistols/EnemyGun001.tres" id="8_hhxd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_ktxr5"]
@@ -29,10 +28,6 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
 radius = 12.0
 height = 32.0
-
-[sub_resource type="Resource" id="Resource_7hmxo"]
-script = ExtResource("6_0f1g8")
-metadata/_custom_type_script = "uid://cdx2ypfdvk0lf"
 
 [sub_resource type="Animation" id="Animation_usbmg"]
 length = 0.001
@@ -80,11 +75,10 @@ radius = 256.0
 radius = 9.0
 height = 34.0
 
-[node name="TumbleBoar" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
+[node name="TumbleBoar" type="CharacterBody2D" node_paths=PackedStringArray("collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
 script = ExtResource("1_0ijga")
-sprite = NodePath("Sprite")
 collision = NodePath("Collision")
 weapon = NodePath("Sprite/Weapon")
 unique_name = &"NeuroPups"
@@ -94,7 +88,6 @@ attribute_set = NodePath("AttributeSet")
 max_health = 5.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
-bt_player = NodePath("BTPlayer")
 character_movement = NodePath("CharacterMovement")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
@@ -113,7 +106,6 @@ sprite_frames = ExtResource("4_0ijga")
 animation = &"dash"
 script = ExtResource("5_ovlux")
 owner_pawn = NodePath("..")
-animation_data = SubResource("Resource_7hmxo")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 
 [node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
@@ -152,13 +144,12 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("12_2qe74")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_sprite = NodePath("../Sprite")
 owner_attribute_set = NodePath("../AttributeSet")
-input_velocity_mul = Vector2(1, 0)
+input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="AttributeSet" type="Node" parent="."]
@@ -179,6 +170,7 @@ metadata/_custom_type_script = "uid://d4bq5plnifoud"
 script = ExtResource("16_252yq")
 ability_tags = Array[StringName]([&"jump_ability"])
 owner_granted_tags = Array[StringName]([&"state_jumping"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
 metadata/_custom_type_script = "uid://baf2rkscj0a85"
 
 [node name="Navigation" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("owner_pawn", "owner_movement")]

@@ -1,7 +1,7 @@
 [gd_resource type="BehaviorTree" load_steps=17 format=3 uid="uid://dgf11gfcoo8mj"]
 
 [ext_resource type="BlackboardPlan" uid="uid://6uck4e580865" path="res://Assets/AI/Trees/RG/TumbleBoar001_Blackboard.tres" id="1_l6wqw"]
-[ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_LookAt.gd" id="2_avuls"]
+[ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_AimAt.gd" id="2_avuls"]
 [ext_resource type="Resource" uid="uid://cgumiddqukrb6" path="res://Assets/Pawns/RG/Enemies/TumbleBoar/TumbleBoar001a_DashA.tres" id="3_m5rsl"]
 [ext_resource type="Script" uid="uid://dpdyspl48sus1" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckVar.gd" id="3_mrh5s"]
 [ext_resource type="Script" uid="uid://dtqe8wcsgjxdf" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_TryDash.gd" id="4_3yyfm"]

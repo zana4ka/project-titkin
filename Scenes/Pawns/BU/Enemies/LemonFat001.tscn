@@ -1,11 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://djdduwbts041m"]
+[gd_scene load_steps=28 format=3 uid="uid://djdduwbts041m"]
 
 [ext_resource type="Script" uid="uid://bxuy6b8kjeo68" path="res://Scripts/Pawns/BU/BUPawn2D.gd" id="1_5a583"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_gvggq"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_io3i3"]
 [ext_resource type="SpriteFrames" uid="uid://c7v51pros5urm" path="res://Assets/Pawns/BU/Enemies/LemonFat001a_Frames.tres" id="4_uq6dl"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_krohv"]
-[ext_resource type="Script" uid="uid://cdx2ypfdvk0lf" path="res://addons/GodotCommons-Core/Scripts/Common/AnimationData2D.gd" id="6_didrp"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_uq6dl"]
 [ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="8_47jnq"]
 [ext_resource type="Resource" uid="uid://d1mvq3jl3xw3t" path="res://Assets/Items/Firearms/Pistols/EnemyGun001_Auto.tres" id="8_uq6dl"]
@@ -17,7 +16,7 @@
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="12_300bl"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="13_jns0w"]
 [ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_omutq"]
-[ext_resource type="BehaviorTree" uid="uid://b7r4sk0e8j4po" path="res://Assets/AI/Trees/BU/LemonFat1_BehaviorTree.tres" id="15_47jnq"]
+[ext_resource type="BehaviorTree" uid="uid://b7r4sk0e8j4po" path="res://Assets/AI/Trees/BU/LemonFat001_BehaviorTree.tres" id="15_47jnq"]
 
 [sub_resource type="Resource" id="Resource_mhkle"]
 script = ExtResource("2_gvggq")
@@ -27,10 +26,6 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
 radius = 8.0
 height = 32.0
-
-[sub_resource type="Resource" id="Resource_7hmxo"]
-script = ExtResource("6_didrp")
-metadata/_custom_type_script = "uid://cdx2ypfdvk0lf"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47jnq"]
 radius = 9.0
@@ -207,7 +202,7 @@ _data = {
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_47jnq"]
 
-[node name="LemotFat" type="CharacterBody2D" node_paths=PackedStringArray("attribute_set", "damage_receiver", "damage_animation_player", "bt_player", "character_movement")]
+[node name="LemotFat" type="CharacterBody2D" node_paths=PackedStringArray("attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
 motion_mode = 1
@@ -218,7 +213,6 @@ attribute_set = NodePath("AttributeSet")
 max_health = 25.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
-bt_player = NodePath("BTPlayer")
 character_movement = NodePath("CharacterMovement")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
@@ -228,7 +222,7 @@ script = ExtResource("3_io3i3")
 OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn", "direction_flip_targets")]
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
 z_index = 2
 z_as_relative = false
 position = Vector2(0, -16)
@@ -238,8 +232,6 @@ animation = &"idle"
 offset = Vector2(0, 96)
 script = ExtResource("5_krohv")
 owner_pawn = NodePath("..")
-direction_flip_targets = [NodePath("../ContactDamageArea")]
-animation_data = SubResource("Resource_7hmxo")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 
 [node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
@@ -300,15 +292,14 @@ metadata/_custom_type_script = "uid://dfo40qnjk0be"
 script = ExtResource("12_300bl")
 metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_sprite", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("13_jns0w")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_sprite = NodePath("../Sprite")
 owner_attribute_set = NodePath("../AttributeSet")
 apply_gravity = false
 should_bounce = true
-input_velocity_mul = Vector2(1, 0)
+input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="PingPong" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_character_movement")]
