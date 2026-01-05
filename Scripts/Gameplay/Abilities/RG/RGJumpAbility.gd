@@ -10,8 +10,8 @@ func _ready() -> void:
 	owner_granted_tags = [ CommonTags.state_jumping ]
 	owner_must_not_have_tags = [ CommonTags.state_crouching ]
 
-func can_activate() -> bool:
-	return super() and get_owner_body().is_on_floor()
+func can_activate(in_payload: Variant) -> bool:
+	return super(in_payload) and get_owner_body().is_on_floor()
 
 func commit_ability() -> void:
 	

@@ -1,8 +1,8 @@
 extends Node
-class_name Pawn2D_SpecialAbility
+class_name Pawn2D_SpecialCharge
 
-static func try_get_from(in_node: Node) -> Pawn2D_SpecialAbility:
-	return ModularGlobals.try_get_from(in_node, Pawn2D_SpecialAbility)
+static func try_get_from(in_node: Node) -> Pawn2D_SpecialCharge:
+	return ModularGlobals.try_get_from(in_node, Pawn2D_SpecialCharge)
 
 @export_category("Owner")
 @export var owner_pawn: Pawn2D
@@ -40,30 +40,5 @@ func _on_pawn_died(in_pawn: Pawn2D, in_immediately: bool) -> void:
 	if pawn_damage_receiver.LastDamageInstigator == owner_pawn:
 		current_charge += charge_per_kill
 
-func can_activate() -> bool:
-	if current_charge < 1.0:
-		return false
-	return is_instance_valid(Pawn2D_Weapon.try_get_from(owner_pawn))
-
-func try_activate() -> void:
-	
-	if can_activate() or true:
-		activated.emit()
-		commit_ability()
-	else:
-		activation_failed.emit()
-
-func apply_cost() -> void:
+func subtract_charge() -> void:
 	current_charge -= 1.0
-
-func apply_cooldown() -> void:
-	pass
-
-func commit_ability() -> void:
-	
-	apply_cost()
-	apply_cooldown()
-	
-	var pawn_weapon := Pawn2D_Weapon.try_get_from(owner_pawn)
-	assert(pawn_weapon)
-	pawn_weapon.try_use_special_ability()

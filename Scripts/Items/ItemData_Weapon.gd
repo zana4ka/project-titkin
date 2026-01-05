@@ -2,6 +2,10 @@
 extends ItemData
 class_name ItemData_Weapon
 
+const primary_attack_mode: int = 0
+const secondary_attack_mode: int = 1
+const special_attack_mode: int = 2
+
 @export_category("Sprite")
 @export var weapon_sprite_frames: SpriteFrames
 
@@ -11,6 +15,9 @@ enum UseInputMode
 	Single = 1,
 	Hold = 2,
 }
+
+@export_category("Equip")
+@export var equipped_use_ability: GDScript
 
 @export_category("Use")
 @export var use_input_mode: UseInputMode = UseInputMode.Auto
@@ -25,9 +32,3 @@ func is_single_use_input_mode() -> bool:
 
 func is_hold_use_input_mode() -> bool:
 	return use_input_mode == UseInputMode.Hold
-
-@abstract
-func handle_use(in_weapon: Pawn2D_Weapon, in_mode: int) -> float
-
-@abstract
-func handle_special_ability(in_weapon: Pawn2D_Weapon) -> float

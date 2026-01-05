@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://omqo3p6o6xeb"]
 
 [ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Scripts/Levels/RGLevelBase2D.gd" id="1_iebrh"]
-[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Game/DefaultCampaign.tres" id="2_k5hyx"]
-[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Game/DefaultGameMode.tres" id="3_qyqm6"]
+[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Framework/DefaultCampaign.tres" id="2_k5hyx"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/DefaultGameMode.tres" id="3_qyqm6"]
 [ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="8_iebrh"]
 [ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="9_8ii4u"]
 [ext_resource type="PackedScene" uid="uid://7esqpvkrtoar" path="res://Scenes/Pawns/RG/Enemies/FatSentry001.tscn" id="10_8ii4u"]

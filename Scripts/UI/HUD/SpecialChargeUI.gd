@@ -12,20 +12,20 @@ class_name SpecialAbilityUI
 @export var activated_animation_name: StringName = &"activated"
 @export var activation_failed_animation_name: StringName = &"activation_failed"
 
-var target_special_ability: Pawn2D_SpecialAbility:
-	set(in_special_ability):
+var target_special_charge: Pawn2D_SpecialCharge:
+	set(in_special_charge):
 		
-		if target_special_ability:
-			target_special_ability.activated.disconnect(_on_activated)
-			target_special_ability.activation_failed.disconnect(_on_activation_failed)
-			target_special_ability.current_charge_changed.disconnect(_on_current_charge_changed)
+		if target_special_charge:
+			target_special_charge.activated.disconnect(_on_activated)
+			target_special_charge.activation_failed.disconnect(_on_activation_failed)
+			target_special_charge.current_charge_changed.disconnect(_on_current_charge_changed)
 		
-		target_special_ability = in_special_ability
+		target_special_charge = in_special_charge
 		
-		if target_special_ability:
-			target_special_ability.activated.connect(_on_activated)
-			target_special_ability.activation_failed.connect(_on_activation_failed)
-			target_special_ability.current_charge_changed.connect(_on_current_charge_changed)
+		if target_special_charge:
+			target_special_charge.activated.connect(_on_activated)
+			target_special_charge.activation_failed.connect(_on_activation_failed)
+			target_special_charge.current_charge_changed.connect(_on_current_charge_changed)
 			_on_current_charge_changed()
 			visible = true
 		else:
@@ -43,13 +43,13 @@ func _ready() -> void:
 
 func _process(in_delta: float) -> void:
 	
-	if is_equal_approx(charge_bar.value, target_special_ability.current_charge):
+	if is_equal_approx(charge_bar.value, target_special_charge.current_charge):
 		set_process(false)
 	else:
-		charge_bar.value = move_toward(charge_bar.value, target_special_ability.current_charge, 1.6 * in_delta)
+		charge_bar.value = move_toward(charge_bar.value, target_special_charge.current_charge, 1.6 * in_delta)
 
 func _on_owner_controlled_pawn_changed() -> void:
-	target_special_ability = Pawn2D_SpecialAbility.try_get_from(owner_hud_ui.owner_player_controller.controlled_pawn)
+	target_special_charge = Pawn2D_SpecialCharge.try_get_from(owner_hud_ui.owner_player_controller.controlled_pawn)
 
 func _on_current_charge_changed() -> void:
 	set_process(true)

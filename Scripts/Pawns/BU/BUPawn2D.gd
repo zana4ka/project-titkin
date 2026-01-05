@@ -40,7 +40,7 @@ func handle_secondary_attack_input(in_event: InputEvent) -> void:
 
 func handle_special_attack_input(in_event: InputEvent) -> void:
 	if in_event.is_pressed():
-		weapon.try_use_special_ability()
+		weapon.try_use_special_charge()
 
 func handle_block_input(in_event: InputEvent) -> void:
 	is_blocking = in_event.is_pressed() or in_event.is_echo()

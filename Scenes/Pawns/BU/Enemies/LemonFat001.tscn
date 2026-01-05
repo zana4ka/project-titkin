@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_io3i3"]
 [ext_resource type="SpriteFrames" uid="uid://c7v51pros5urm" path="res://Assets/Pawns/BU/Enemies/LemonFat001a_Frames.tres" id="4_uq6dl"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_krohv"]
-[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_uq6dl"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_uq6dl"]
 [ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="8_47jnq"]
 [ext_resource type="Resource" uid="uid://d1mvq3jl3xw3t" path="res://Assets/Items/Firearms/Pistols/EnemyGun001_Auto.tres" id="8_uq6dl"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_3m4r6"]

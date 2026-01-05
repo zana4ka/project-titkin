@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CampaignData" load_steps=3 format=3 uid="uid://cwv3udsjh7euq"]
 
-[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Game/DefaultGameMode.tres" id="1_1u85p"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/DefaultGameMode.tres" id="1_1u85p"]
 [ext_resource type="Script" uid="uid://btqpgfw8u73qk" path="res://addons/GodotCommons-Core/Scripts/Framework/CampaignData.gd" id="1_kuyxx"]
 
 [resource]

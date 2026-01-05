@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://15fmefk3y0be"]
 
-[ext_resource type="Script" uid="uid://c3gv8j0j7deto" path="res://Scripts/UI/HUD/SpecialAbilityUI.gd" id="1_ktpbc"]
+[ext_resource type="Script" uid="uid://c3gv8j0j7deto" path="res://Scripts/UI/HUD/SpecialChargeUI.gd" id="1_ktpbc"]
 [ext_resource type="Texture2D" uid="uid://thcidvt57p8e" path="res://Assets/UI/HUD/ProgressBar001a.png" id="2_j4yi2"]
 
 [sub_resource type="Animation" id="Animation_j4yi2"]

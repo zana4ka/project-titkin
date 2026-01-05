@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_sxem0"]
 [ext_resource type="SpriteFrames" uid="uid://c5ojj38dg3wvp" path="res://Assets/Pawns/RG/Enemies/DollyPups001a_Frames.tres" id="4_6uq48"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_vs7gb"]
-[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_g0ctv"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_g0ctv"]
 [ext_resource type="Resource" uid="uid://nq4ow1jdx7nq" path="res://Assets/Items/Firearms/Pistols/EnemyGun001.tres" id="8_k1sad"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_1hls0"]
 [ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_ovc2e"]

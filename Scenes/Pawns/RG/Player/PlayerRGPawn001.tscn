@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://sn3lp0rqv4nw"]
+[gd_scene load_steps=20 format=3 uid="uid://sn3lp0rqv4nw"]
 
 [ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RG/RGPawn2D.gd" id="1_ddkac"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="2_ic7if"]
@@ -7,13 +7,12 @@
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_3g6w4"]
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="6_mhkle"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="6_owvon"]
-[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_Weapon.gd" id="7_6tsgq"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_6tsgq"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="7_owvon"]
 [ext_resource type="PackedScene" uid="uid://do17aimitageq" path="res://Scenes/Pawns/RG/Player/PlayerRGPawn001_ASM.tscn" id="8_5o2sd"]
-[ext_resource type="Resource" uid="uid://bfww4xcvkvhuc" path="res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres" id="8_8gir5"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_6tsgq"]
-[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="13_jqi5d"]
-[ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialAbility.gd" id="13_vdw51"]
+[ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialCharge.gd" id="13_vdw51"]
+[ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Scripts/Gameplay/TitkinASC.gd" id="14_xcapk"]
 [ext_resource type="Script" uid="uid://lu83ha6bay5f" path="res://Scripts/Gameplay/Abilities/RG/RGCrouchAbility.gd" id="15_5o2sd"]
 [ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_e0c3u"]
 [ext_resource type="Script" uid="uid://d3u2nglhsf6i7" path="res://Scripts/Gameplay/Abilities/RG/RGLockMovementAbility.gd" id="16_jqi5d"]
@@ -28,12 +27,10 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 resource_local_to_scene = true
 height = 38.0
 
-[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4097
 collision_mask = 136
 script = ExtResource("1_ddkac")
-collision = NodePath("Collision")
-weapon = NodePath("Sprite/Weapon")
 unique_name = &"Run\'n\'Gun Player"
 display_data = SubResource("Resource_e0c3u")
 asc = NodePath("AbilitySystemComponent")
@@ -67,8 +64,6 @@ z_index = 2
 offset = Vector2(128, 0)
 script = ExtResource("7_6tsgq")
 owner_pawn = NodePath("../..")
-weapon_data = ExtResource("8_8gir5")
-should_update_from_weapons_container = true
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -98,7 +93,7 @@ move_speed = 150.0
 input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
-[node name="SpecialAbility" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
+[node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
 script = ExtResource("13_vdw51")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://7qnso3ivyyyw"
@@ -108,10 +103,10 @@ script = ExtResource("6_mhkle")
 metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
-script = ExtResource("13_jqi5d")
+script = ExtResource("14_xcapk")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
-metadata/_custom_type_script = "uid://balxeodldstwh"
+metadata/_custom_type_script = "uid://dan6o08asxujj"
 
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_e0c3u")
