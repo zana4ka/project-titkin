@@ -1,3 +1,4 @@
+@abstract
 @tool
 extends Pawn2D
 class_name TitkinPawn2D

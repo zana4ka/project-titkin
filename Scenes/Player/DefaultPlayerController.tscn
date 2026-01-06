@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bk3lrhy6lq1nu"]
+[gd_scene load_steps=15 format=3 uid="uid://bk3lrhy6lq1nu"]
 
 [ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Scripts/Player/DefaultPlayerController.gd" id="1_2tq6m"]
 [ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_nppl2"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/DefaultHUDUI.tscn" id="5_xjd5n"]
 [ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="7_yog3r"]
 [ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="8_5e7js"]
-[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="8_bay8v"]
 [ext_resource type="Resource" uid="uid://bytp7ibu5iswf" path="res://Assets/Items/Firearms/Pistols/LaserGun001.tres" id="9_8hrds"]
 [ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="9_373yl"]
 [ext_resource type="Resource" uid="uid://cjkudcwbeips0" path="res://Assets/Items/Firearms/Pistols/BalloonDeagle001.tres" id="10_txum7"]
@@ -116,10 +115,6 @@ libraries = {
 script = ExtResource("9_373yl")
 owner_player_controller = NodePath("..")
 metadata/_custom_type_script = "uid://8uh5hq3gb8j3"
-
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("8_bay8v")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="Weapons" type="Node" parent="."]
 script = ExtResource("7_yog3r")

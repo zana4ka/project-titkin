@@ -1,6 +1,9 @@
 extends AnimatedSprite2D
 class_name Pawn2D_WeaponSprite
 
+static func try_get_from(in_node: Node) -> Pawn2D_WeaponSprite:
+	return ModularGlobals.try_get_from(in_node, Pawn2D_WeaponSprite)
+
 @export_category("Owner")
 @export var owner_pawn: Pawn2D
 @export var owner_asc: TitkinASC
@@ -20,15 +23,23 @@ func _ready() -> void:
 	
 	owner_pawn.tree_exited.connect(_on_owner_pawn_tree_exited)
 
+func _enter_tree():
+	ModularGlobals.init_modular_node(self, Pawn2D_WeaponSprite)
+	ModularGlobals.init_modular_node(self, Pawn2D_WeaponSprite, owner_pawn)
+
+func _exit_tree():
+	ModularGlobals.deinit_modular_node(self, Pawn2D_WeaponSprite)
+	ModularGlobals.deinit_modular_node(self, Pawn2D_WeaponSprite, owner_pawn)
+
+func _process(in_delta: float) -> void:
+	pass
+
 func _on_selected_slot_index_changed() -> void:
 	_update_from_weapon_data()
 
 func _on_owner_pawn_tree_exited() -> void:
 	if owner_pawn.is_queued_for_deletion():
 		queue_free()
-
-func _process(in_delta: float) -> void:
-	pass
 
 func _update_from_weapon_data() -> void:
 	

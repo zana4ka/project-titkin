@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://w5td2xd5v8x5"]
+[gd_scene load_steps=26 format=3 uid="uid://w5td2xd5v8x5"]
 
 [ext_resource type="Script" uid="uid://bxuy6b8kjeo68" path="res://Scripts/Pawns/BU/BUPawn2D.gd" id="1_6l08y"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_3vxdc"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_f5wql"]
 [ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Frames.tres" id="4_ody6t"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_jeflr"]
@@ -22,6 +23,11 @@
 [ext_resource type="AnimationLibrary" uid="uid://c77f88fi7ove3" path="res://Assets/Gameplay/Abilities/BU/BUJumpAbilityAnimations.tres" id="17_fbt86"]
 [ext_resource type="Script" uid="uid://b54jph2vkff3l" path="res://Scripts/Gameplay/Abilities/BU/BUBlockAbility.gd" id="17_lpb88"]
 
+[sub_resource type="Resource" id="Resource_6eu87"]
+script = ExtResource("2_3vxdc")
+name = "Beat 'em Up Player"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
 radius = 6.0
 height = 20.0
@@ -35,8 +41,10 @@ collision_layer = 4097
 collision_mask = 139
 motion_mode = 1
 script = ExtResource("1_6l08y")
+unique_name = &"BUPlayer"
+display_data = SubResource("Resource_6eu87")
 asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AttributeSet")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 8.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -107,17 +115,20 @@ debug_color = Color(1, 1, 0, 0.078431375)
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("9_vlvj4")
 owner_body_2d = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "weapon_sprite", "owner_pawn", "tags_container", "animation_player")]
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "owner_pawn", "tags_container", "animation_player")]
 script = ExtResource("9_0j2j2")
 weapons_container = NodePath("WeaponContainer")
-weapon_sprite = NodePath("../Sprite/Weapon")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
 animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("10_308p8")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("10_4fmgw")
@@ -156,10 +167,6 @@ owner_granted_tags = Array[StringName]([&"state_blocking", &"block_input_movemen
 owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
 metadata/_custom_type_script = "uid://b54jph2vkff3l"
 
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("10_308p8")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
-
 [node name="Combos" type="Node" parent="."]
 script = ExtResource("11_q7r3q")
 metadata/_custom_type_script = "uid://bgh1rtperm4f0"
@@ -168,10 +175,9 @@ metadata/_custom_type_script = "uid://bgh1rtperm4f0"
 script = ExtResource("11_6l08y")
 jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
 jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
-is_in_air = true
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 apply_gravity = false
 move_speed = 64.0
 input_vector_mul = Vector2(1, 0.8)

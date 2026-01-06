@@ -31,10 +31,10 @@ height = 38.0
 collision_layer = 4097
 collision_mask = 136
 script = ExtResource("1_ddkac")
-unique_name = &"Run\'n\'Gun Player"
+unique_name = &"RGPlayer"
 display_data = SubResource("Resource_e0c3u")
 asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AttributeSet")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 12.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -82,17 +82,18 @@ owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("6_owvon")
 owner_body_2d = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("7_owvon")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 launch_velocity_reset_threshold = 40.0
 move_speed = 150.0
 input_vector_mul = Vector2(1, 0)
+input_threshold = null
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
@@ -100,17 +101,16 @@ script = ExtResource("13_vdw51")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://7qnso3ivyyyw"
 
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("6_mhkle")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
-
-[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("animation_player", "weapon_sprite", "owner_pawn", "tags_container")]
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container", "animation_player")]
 script = ExtResource("14_xcapk")
-animation_player = NodePath("AnimationPlayer")
-weapon_sprite = NodePath("../Sprite/Weapon")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
+animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("6_mhkle")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_e0c3u")

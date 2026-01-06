@@ -22,7 +22,6 @@ func _on_owner_controller_changed() -> void:
 ##
 @export_category("Items")
 @export var weapons_container: ItemContainer_Weapons
-@export var weapon_sprite: Pawn2D_WeaponSprite
 
 signal weapons_container_changed()
 signal weapons_container_selected_slot_index_changed()

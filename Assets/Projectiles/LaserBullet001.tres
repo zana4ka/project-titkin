@@ -8,5 +8,5 @@ script = ExtResource("1_dc4o7")
 scene = ExtResource("1_h1iib")
 should_damage_on_hit = true
 should_remove_on_hit = true
-max_lifetime = 3.0
+max_lifetime = 1.5
 metadata/_custom_type_script = "uid://cm37cigw7hsaf"

@@ -13,7 +13,7 @@ func get_weapon_data() -> ItemData_Weapon:
 	return (owner_asc as TitkinASC).weapons_container.get_selected_weapon_data()
 
 func get_weapon_sprite() -> Pawn2D_WeaponSprite:
-	return (owner_asc as TitkinASC).weapon_sprite
+	return Pawn2D_WeaponSprite.try_get_from(owner_asc.owner_pawn)
 
 func apply_cost() -> void:
 	super()

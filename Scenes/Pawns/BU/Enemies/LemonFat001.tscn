@@ -211,7 +211,7 @@ script = ExtResource("1_5a583")
 unique_name = &"LemonFat"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AttributeSet")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 25.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -279,20 +279,17 @@ debug_color = Color(1, 0, 0, 0)
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("11_ep486")
 owner_body_2d = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
-
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("12_300bl")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("13_jns0w")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 apply_gravity = false
 should_bounce = true
+rotate_body_to_movement_speed_threshold = null
 input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
@@ -302,6 +299,10 @@ weapons_container = NodePath("WeaponContainer")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
 metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("12_300bl")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_kxhff")

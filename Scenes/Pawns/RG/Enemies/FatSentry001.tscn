@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://7esqpvkrtoar"]
 
-[ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_t0j7g"]
+[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RG/RGPawn2D.gd" id="1_gnrjl"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_2twkm"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xrqs5"]
 [ext_resource type="SpriteFrames" uid="uid://kiuj0nx1kv2f" path="res://Assets/Pawns/RG/Enemies/FatSentry001a_Frames.tres" id="4_t0j7g"]
@@ -17,7 +17,7 @@
 
 [sub_resource type="Resource" id="Resource_mhkle"]
 script = ExtResource("2_2twkm")
-name = "Neuro Pups"
+name = "Fat Sentry"
 metadata/_custom_type_script = "uid://c5g053ket645m"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
@@ -32,11 +32,11 @@ radius = 128.0
 [node name="FatSentry" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
-script = ExtResource("1_t0j7g")
-unique_name = &"NeuroPups"
+script = ExtResource("1_gnrjl")
+unique_name = &"FatSentry"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
-attribute_set = NodePath("AttributeSet")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 10.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
@@ -80,27 +80,27 @@ debug_color = Color(1, 0, 0, 0)
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("11_f1iig")
 owner_body_2d = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("12_xjfnq")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
-owner_attribute_set = NodePath("../AttributeSet")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 move_speed = 0.0
 input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
-
-[node name="AttributeSet" type="Node" parent="."]
-script = ExtResource("13_4mncx")
-metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
 script = ExtResource("14_hlbd2")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
 metadata/_custom_type_script = "uid://balxeodldstwh"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("13_4mncx")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_kj6ry")
