@@ -9,8 +9,8 @@ const lock_movement_ability: StringName = &"lock_movement_ability"
 const state_locked_movement: StringName = &"state_locked_movement"
 
 ##
-## Items
+## Block
 ##
-const weapon_use_ability: StringName = &"weapon_use_ability"
+const block_ability: StringName = &"block_ability"
 
-const state_using_weapon: StringName = &"state_using_weapon"
+const state_blocking: StringName = &"state_blocking"

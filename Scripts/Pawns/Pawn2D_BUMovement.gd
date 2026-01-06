@@ -43,3 +43,6 @@ func update_jump_offset_targets() -> void:
 	for sample_target: Node2D in jump_offset_targets:
 		sample_target.position = jump_offset_max * jump_height_fraction
 		sample_target.set_meta(jump_offset_target_height_fraction_meta, jump_height_fraction)
+
+func handle_jump_landed() -> void:
+	landed.emit()

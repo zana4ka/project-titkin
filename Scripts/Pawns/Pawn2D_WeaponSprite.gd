@@ -6,8 +6,8 @@ class_name Pawn2D_WeaponSprite
 @export var owner_asc: TitkinASC
 @export var owner_sprite: Pawn2D_Sprite
 
-@export_category("Animations")
-@export var animation_player: AnimationPlayer
+#@export_category("Animations")
+#@export var animation_player: AnimationPlayer
 
 func _ready() -> void:
 	
@@ -31,6 +31,9 @@ func _process(in_delta: float) -> void:
 	pass
 
 func _update_from_weapon_data() -> void:
+	
+	if not owner_asc.weapons_container:
+		return
 	
 	var weapon_data := owner_asc.weapons_container.get_selected_weapon_data()
 	

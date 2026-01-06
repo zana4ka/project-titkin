@@ -1,7 +1,8 @@
-[gd_resource type="BehaviorTree" load_steps=35 format=3 uid="uid://r2quingv87bf"]
+[gd_resource type="BehaviorTree" load_steps=37 format=3 uid="uid://r2quingv87bf"]
 
 [ext_resource type="BlackboardPlan" uid="uid://cq20sx23le6gp" path="res://Assets/AI/Trees/RG/DollyPups001_Blackboard.tres" id="1_ti47n"]
 [ext_resource type="Script" uid="uid://dqfqf3cqw7x6j" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_GetRandomNavPosInRadius.gd" id="2_ppw6i"]
+[ext_resource type="Script" uid="uid://bnr47j4kav35a" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_TryActivateAbilitiesByTag.gd" id="3_0r70y"]
 [ext_resource type="Script" uid="uid://c5kaiowci64q8" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_MoveTo.gd" id="3_ti47n"]
 [ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_AimAt.gd" id="4_0r70y"]
 [ext_resource type="Script" uid="uid://t400nss3s13k" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckDistance.gd" id="5_u1mcs"]
@@ -9,8 +10,8 @@
 [ext_resource type="Script" uid="uid://dpdyspl48sus1" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckVar.gd" id="6_ti47n"]
 
 [sub_resource type="BBVariant" id="BBVariant_ti47n"]
-saved_value = null
 resource_name = "<null>"
+saved_value = null
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_0r70y"]
 variable = &"chase_target"
@@ -21,17 +22,17 @@ value = SubResource("BBVariant_ti47n")
 custom_name = "Loot at ChaseTarget"
 script = ExtResource("4_0r70y")
 
-[sub_resource type="BBNode" id="BBNode_shrxv"]
-saved_value = NodePath("Sprite/Weapon/AnimationPlayer")
-resource_name = "Sprite/Weapon/AnimationPlayer"
+[sub_resource type="BTAction" id="BTAction_shrxv"]
+custom_name = "Try Use Weapon"
+script = ExtResource("3_0r70y")
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_x8k1p"]
-await_completion = 1.5
-animation_player = SubResource("BBNode_shrxv")
-animation_name = &"shoot"
+[sub_resource type="BTWait" id="BTWait_0r70y"]
+
+[sub_resource type="BTSequence" id="BTSequence_x8k1p"]
+children = [SubResource("BTAction_shrxv"), SubResource("BTWait_0r70y")]
 
 [sub_resource type="BTParallel" id="BTParallel_p4l08"]
-children = [SubResource("BTAction_u1mcs"), SubResource("BTPlayAnimation_x8k1p")]
+children = [SubResource("BTAction_u1mcs"), SubResource("BTSequence_x8k1p")]
 
 [sub_resource type="BTDecorator" id="BTDecorator_s5134"]
 custom_name = "Check vertical distance"
@@ -52,8 +53,8 @@ custom_name = "Shoot Sequence"
 children = [SubResource("BTCheckVar_0r70y"), SubResource("BTDecorator_iic4k")]
 
 [sub_resource type="BBVariant" id="BBVariant_0kvlv"]
-saved_value = null
 resource_name = "<null>"
+saved_value = null
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_bj2xs"]
 variable = &"chase_target"

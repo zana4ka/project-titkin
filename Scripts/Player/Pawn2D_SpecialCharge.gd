@@ -40,5 +40,8 @@ func _on_pawn_died(in_pawn: Pawn2D, in_immediately: bool) -> void:
 	if pawn_damage_receiver.LastDamageInstigator == owner_pawn:
 		current_charge += charge_per_kill
 
+func can_subtract_charge() -> bool:
+	return current_charge >= 1.0
+
 func subtract_charge() -> void:
 	current_charge -= 1.0

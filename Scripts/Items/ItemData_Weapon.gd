@@ -16,9 +16,6 @@ enum UseInputMode
 	Hold = 2,
 }
 
-@export_category("Equip")
-@export var equipped_use_ability: GDScript
-
 @export_category("Use")
 @export var use_input_mode: UseInputMode = UseInputMode.Auto
 @export var base_cooldown: float = 1.0
@@ -32,3 +29,6 @@ func is_single_use_input_mode() -> bool:
 
 func is_hold_use_input_mode() -> bool:
 	return use_input_mode == UseInputMode.Hold
+
+func get_use_ability_script() -> GDScript:
+	return null

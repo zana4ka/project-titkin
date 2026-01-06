@@ -8,18 +8,7 @@ var selected_slot_index: int:
 signal selected_slot_index_changed(in_index: int)
 
 func _ready() -> void:
-	
 	super()
-	
-	if WorldGlobals._level is RGLevelBase2D:
-		remove_all_items()
-		#try_add_item(load("res://Assets/Items/Firearms/Pistols/LaserGun001.tres"))
-		try_add_item(load("res://Assets/Items/Firearms/Pistols/BalloonDeagle001.tres"))
-		try_add_item(load("res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres"))
-		try_add_item(load("res://Assets/Items/Firearms/SMGs/Tompson001.tres"))
-	#elif WorldGlobals._level is BULevelBase2D:
-	#	remove_all_items()
-	#	try_add_item(load("res://Assets/Items/Melee/PlayerFists001.tres"))
 
 func get_items_array_as_weapons() -> Array[ItemData_Weapon]:
 	var out_weapons: Array[ItemData_Weapon] = []

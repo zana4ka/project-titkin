@@ -1,12 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cd5nufc5i7s8x"]
+[gd_scene load_steps=23 format=3 uid="uid://cd5nufc5i7s8x"]
 
 [ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_0ijga"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_i1te5"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xkfqq"]
 [ext_resource type="SpriteFrames" uid="uid://bon38mdffgrp7" path="res://Assets/Pawns/RG/Enemies/TumbleBoar/TumbleBoar001a_Frames.tres" id="4_0ijga"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_ovlux"]
-[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_3hlqc"]
-[ext_resource type="Resource" uid="uid://nq4ow1jdx7nq" path="res://Assets/Items/Firearms/Pistols/EnemyGun001.tres" id="8_hhxd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_ktxr5"]
 [ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_v0l68"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_gjbeo"]
@@ -29,43 +27,6 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 radius = 12.0
 height = 32.0
 
-[sub_resource type="Animation" id="Animation_usbmg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:is_holding_use_input")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ptdqy"]
-resource_name = "shoot"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:is_holding_use_input")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ijga"]
-_data = {
-&"RESET": SubResource("Animation_usbmg"),
-&"shoot": SubResource("Animation_ptdqy")
-}
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
 radius = 256.0
 
@@ -75,12 +36,10 @@ radius = 256.0
 radius = 9.0
 height = 34.0
 
-[node name="TumbleBoar" type="CharacterBody2D" node_paths=PackedStringArray("collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+[node name="TumbleBoar" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
 script = ExtResource("1_0ijga")
-collision = NodePath("Collision")
-weapon = NodePath("Sprite/Weapon")
 unique_name = &"NeuroPups"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
@@ -107,18 +66,6 @@ animation = &"dash"
 script = ExtResource("5_ovlux")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
-
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
-script = ExtResource("7_3hlqc")
-owner_pawn = NodePath("../..")
-owner_sprite = NodePath("..")
-weapon_data = ExtResource("8_hhxd0")
-metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Weapon"]
-libraries = {
-&"": SubResource("AnimationLibrary_0ijga")
-}
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../..")

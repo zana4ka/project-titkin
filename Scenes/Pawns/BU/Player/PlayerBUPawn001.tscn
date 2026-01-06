@@ -1,295 +1,45 @@
-[gd_scene load_steps=23 format=3 uid="uid://w5td2xd5v8x5"]
+[gd_scene load_steps=24 format=3 uid="uid://w5td2xd5v8x5"]
 
 [ext_resource type="Script" uid="uid://bxuy6b8kjeo68" path="res://Scripts/Pawns/BU/BUPawn2D.gd" id="1_6l08y"]
-[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_epywn"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_f5wql"]
 [ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Frames.tres" id="4_ody6t"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_jeflr"]
+[ext_resource type="AnimationLibrary" uid="uid://da2c537t4es6y" path="res://Assets/Items/Melee/PlayerFists001_Animations.tres" id="6_0j2j2"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="6_4fmgw"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_2ssvu"]
+[ext_resource type="PackedScene" uid="uid://b5j73lpvlpecg" path="res://Scenes/Pawns/RG/Player/PlayerBUPawn001_ASM.tscn" id="7_fbt86"]
 [ext_resource type="Resource" uid="uid://drtuq25hfnlab" path="res://Assets/Items/Melee/PlayerFists001.tres" id="8_2ssvu"]
+[ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Scripts/Gameplay/TitkinASC.gd" id="9_0j2j2"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="9_vlvj4"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="10_4fmgw"]
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="10_308p8"]
 [ext_resource type="Script" uid="uid://3oigplo533rl" path="res://Scripts/Pawns/Pawn2D_BUMovement.gd" id="11_6l08y"]
+[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="11_lfwcj"]
 [ext_resource type="Script" uid="uid://bgh1rtperm4f0" path="res://Scripts/Pawns/Pawn2D_Combos.gd" id="11_q7r3q"]
 [ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="12_4ljk4"]
-
-[sub_resource type="Resource" id="Resource_mhkle"]
-script = ExtResource("2_epywn")
-name = "Beat 'em Up Pawn"
-metadata/_custom_type_script = "uid://c5g053ket645m"
+[ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="12_lpb88"]
+[ext_resource type="Script" uid="uid://b7hwkbnbaafd" path="res://Scripts/Gameplay/Abilities/BU/BUJumpAbility.gd" id="16_lpb88"]
+[ext_resource type="AnimationLibrary" uid="uid://c77f88fi7ove3" path="res://Assets/Gameplay/Abilities/BU/BUJumpAbilityAnimations.tres" id="17_fbt86"]
+[ext_resource type="Script" uid="uid://b54jph2vkff3l" path="res://Scripts/Gameplay/Abilities/BU/BUBlockAbility.gd" id="17_lpb88"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
 radius = 6.0
 height = 20.0
 
-[sub_resource type="Animation" id="Animation_4ljk4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PunchDamageArea:is_enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PunchDamageArea/Collision:shape:radius")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [18.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../PunchDamageArea/Collision:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -4)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../PunchDamageArea:damage")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_2ssvu"]
-resource_name = "punch_heavy"
-length = 0.6
-step = 0.1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"punch", 1.0, false, true, false, 5],
-"method": &"play_override_animation"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PunchDamageArea:is_enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../PunchDamageArea/Collision:shape:radius")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.01, 24.0, 18.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../PunchDamageArea/Collision:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(6, -4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../PunchDamageArea:damage")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-
-[sub_resource type="Animation" id="Animation_q7r3q"]
-resource_name = "punch_light"
-length = 0.3
-step = 0.1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"punch", 2.0, false, true, false, 5],
-"method": &"play_override_animation"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PunchDamageArea:is_enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../PunchDamageArea/Collision:shape:radius")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.01, 18.0, 12.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../PunchDamageArea/Collision:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../PunchDamageArea:damage")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ljk4"]
-_data = {
-&"RESET": SubResource("Animation_4ljk4"),
-&"punch_heavy": SubResource("Animation_2ssvu"),
-&"punch_light": SubResource("Animation_q7r3q")
-}
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ssvu"]
 resource_local_to_scene = true
 radius = 18.0
 
-[sub_resource type="Animation" id="Animation_epywn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterMovement:jump_height_fraction")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterMovement:is_in_air")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-
-[sub_resource type="Animation" id="Animation_6l08y"]
-resource_name = "jump"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterMovement:jump_height_fraction")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.5, 0.7, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterMovement:is_in_air")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_epywn"]
-_data = {
-&"RESET": SubResource("Animation_epywn"),
-&"jump": SubResource("Animation_6l08y")
-}
-
-[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "attribute_set", "damage_receiver", "character_movement")]
+[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4097
 collision_mask = 139
 motion_mode = 1
 script = ExtResource("1_6l08y")
-weapon = NodePath("Sprite/Weapon")
-unique_name = &"BUPawn"
-display_data = SubResource("Resource_mhkle")
+asc = NodePath("AbilitySystemComponent")
 attribute_set = NodePath("AttributeSet")
-max_health = 18.0
+max_health = 8.0
 damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 pawn_input_actions = Array[StringName]([&"primary_attack", &"secondary_attack", &"special_attack", &"jump", &"block"])
 pawn_input_callables = Array[StringName]([&"handle_primary_attack_input", &"handle_secondary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_block_input"])
 character_movement = NodePath("CharacterMovement")
@@ -303,31 +53,36 @@ OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn", "flip_transform_targets")]
 z_index = 2
 z_as_relative = false
 scale = Vector2(0.05, 0.05)
 sprite_frames = ExtResource("4_ody6t")
-animation = &"idle"
+animation = &"punch"
 offset = Vector2(8, -128)
 script = ExtResource("5_jeflr")
 owner_pawn = NodePath("..")
+flip_transform_targets = [NodePath("../PunchDamageArea")]
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite", "animation_player")]
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc", "owner_sprite")]
 script = ExtResource("7_2ssvu")
 owner_pawn = NodePath("../..")
+owner_asc = NodePath("../../AbilitySystemComponent")
 owner_sprite = NodePath("..")
-weapon_data = ExtResource("8_2ssvu")
-animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Weapon"]
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_4ljk4")
+&"": ExtResource("6_4fmgw")
 }
+
+[node name="ASM" parent="Sprite" node_paths=PackedStringArray("owner_sprite", "owner_body", "owner_tags_container") instance=ExtResource("7_fbt86")]
+owner_sprite = NodePath("..")
+owner_body = NodePath("../..")
+owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
 
 [node name="PunchDamageArea" type="Area2D" parent="." node_paths=PackedStringArray("owner_body", "owner_movement")]
 position = Vector2(8, 0)
@@ -355,6 +110,52 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "weapon_sprite", "owner_pawn", "tags_container", "animation_player")]
+script = ExtResource("9_0j2j2")
+weapons_container = NodePath("WeaponContainer")
+weapon_sprite = NodePath("../Sprite/Weapon")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("10_4fmgw")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="WeaponContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("11_lfwcj")
+initial_items_num = Dictionary[ExtResource("12_lpb88"), int]({
+ExtResource("8_2ssvu"): 1
+})
+_slots_num_max = 1
+metadata/_custom_type_script = "uid://ixow33718sdq"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent"]
+libraries = {
+&"": ExtResource("6_0j2j2")
+}
+
+[node name="Jump" type="Node" parent="AbilitySystemComponent" node_paths=PackedStringArray("jump_animation_player")]
+script = ExtResource("16_lpb88")
+jump_animation_player = NodePath("AnimationPlayer")
+ability_tags = Array[StringName]([&"jump_ability"])
+owner_granted_tags = Array[StringName]([&"state_jumping"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
+metadata/_custom_type_script = "uid://b7hwkbnbaafd"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent/Jump"]
+libraries = {
+&"": ExtResource("17_fbt86")
+}
+
+[node name="Block" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("17_lpb88")
+ability_tags = Array[StringName]([&"block_ability"])
+owner_granted_tags = Array[StringName]([&"state_blocking", &"block_input_movement"])
+owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
+metadata/_custom_type_script = "uid://b54jph2vkff3l"
+
 [node name="AttributeSet" type="Node" parent="."]
 script = ExtResource("10_308p8")
 metadata/_custom_type_script = "uid://3rqvl40lgjk2"
@@ -365,8 +166,9 @@ metadata/_custom_type_script = "uid://bgh1rtperm4f0"
 
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("11_6l08y")
-jump_animation_player = NodePath("AnimationPlayer")
+jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
 jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
+is_in_air = true
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AttributeSet")
@@ -374,9 +176,3 @@ apply_gravity = false
 move_speed = 64.0
 input_vector_mul = Vector2(1, 0.8)
 metadata/_custom_type_script = "uid://3oigplo533rl"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterMovement"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_epywn")
-}

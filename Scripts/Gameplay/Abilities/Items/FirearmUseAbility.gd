@@ -1,14 +1,18 @@
-@abstract
 @tool
 extends WeaponUseAbilityBase
 class_name FirearmUseAbility
 
-func _ready() -> void:
-	ability_tags = [ TitkinTags.weapon_use_ability ]
-	owner_granted_tags = [ TitkinTags.state_using_weapon ]
+#func _ready() -> void:
+#	ability_tags = [ TitkinTags.weapon_use_ability ]
+#	owner_granted_tags = [ TitkinTags.state_using_weapon ]
 
 func can_activate(in_payload: Variant) -> bool:
-	var firearm_data := get_weapon_data() as ItemData_Firearm
+	
+	if in_payload == ItemData_Firearm.special_attack_mode:
+		var owner_special_charge = Pawn2D_SpecialCharge.try_get_from(get_owner_pawn())
+		if not owner_special_charge.can_subtract_charge():
+			return false
+	
 	return super(in_payload)
 
 func apply_cost() -> void:
@@ -25,7 +29,7 @@ func apply_cooldown() -> void:
 func commit_ability() -> void:
 	super()
 
-func handle_use() -> void:
+func _handle_use() -> void:
 	var shoot_projectile := _spawn_projectile()
 
 func _spawn_projectile() -> Projectile2D:
@@ -49,4 +53,5 @@ func _spawn_projectile() -> Projectile2D:
 	return out_projectile
 
 func _on_spawned_projectile_ready(in_projectile: Projectile2D) -> void:
-	in_projectile.set_lifetime(in_projectile.data.max_lifetime * 3.0)
+	if current_payload == ItemData_Firearm.special_attack_mode:
+		in_projectile.set_lifetime(in_projectile.data.max_lifetime * 3.0)

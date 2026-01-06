@@ -6,8 +6,8 @@ class_name WeaponUseAbilityBase
 var hold_weapon_uses_counter: int = 0
 
 func _ready() -> void:
-	ability_tags = [ TitkinTags.weapon_use_ability ]
-	owner_granted_tags = [ TitkinTags.state_using_weapon ]
+	ability_tags = [ CommonTags.weapon_use_ability ]
+	owner_granted_tags = [ CommonTags.state_using_weapon ]
 
 func get_weapon_data() -> ItemData_Weapon:
 	return (owner_asc as TitkinASC).weapons_container.get_selected_weapon_data()
@@ -30,7 +30,12 @@ func on_ability_ended(in_was_cancelled: bool) -> void:
 
 func _use_or_end_ability() -> void:
 	
-	if can_activate(current_payload):
+	if check_cost(current_payload) and check_tags(current_payload):
+		
+		cooldown_finished.connect(_handle_use_cooldown_finished, Object.CONNECT_ONE_SHOT)
+		
+		apply_cost()
+		apply_cooldown()
 		
 		_handle_use()
 		

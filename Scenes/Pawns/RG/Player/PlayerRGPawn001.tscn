@@ -38,8 +38,8 @@ attribute_set = NodePath("AttributeSet")
 max_health = 12.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
-pawn_input_actions = Array[StringName]([&"primary_attack", &"special_attack", &"jump", &"lock_movement", &"move_up", &"move_down"])
-pawn_input_callables = Array[StringName]([&"handle_primary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_lock_movement_input", &"handle_move_up_input", &"handle_move_down_input"])
+pawn_input_actions = Array[StringName]([&"move_up", &"move_down", &"primary_attack", &"special_attack", &"jump", &"lock_movement", &"crouch"])
+pawn_input_callables = Array[StringName]([&"handle_move_up_input", &"handle_move_down_input", &"handle_primary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_lock_movement_input", &"handle_crouch_input"])
 character_movement = NodePath("CharacterMovement")
 set_override_level_music_on_spawn = false
 
@@ -59,11 +59,13 @@ script = ExtResource("5_3g6w4")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn")]
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc", "owner_sprite")]
 z_index = 2
 offset = Vector2(128, 0)
 script = ExtResource("7_6tsgq")
 owner_pawn = NodePath("../..")
+owner_asc = NodePath("../../AbilitySystemComponent")
+owner_sprite = NodePath("..")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -102,8 +104,10 @@ metadata/_custom_type_script = "uid://7qnso3ivyyyw"
 script = ExtResource("6_mhkle")
 metadata/_custom_type_script = "uid://3rqvl40lgjk2"
 
-[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("animation_player", "weapon_sprite", "owner_pawn", "tags_container")]
 script = ExtResource("14_xcapk")
+animation_player = NodePath("AnimationPlayer")
+weapon_sprite = NodePath("../Sprite/Weapon")
 owner_pawn = NodePath("..")
 tags_container = NodePath("TagsContainer")
 metadata/_custom_type_script = "uid://dan6o08asxujj"
@@ -111,6 +115,8 @@ metadata/_custom_type_script = "uid://dan6o08asxujj"
 [node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("15_e0c3u")
 metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent"]
 
 [node name="Jump" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("16_xcapk")

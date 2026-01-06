@@ -1,12 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://7esqpvkrtoar"]
+[gd_scene load_steps=19 format=3 uid="uid://7esqpvkrtoar"]
 
 [ext_resource type="Script" uid="uid://bbet3xl7j7ryt" path="res://Scripts/Pawns/RG/DollyPups.gd" id="1_t0j7g"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_2twkm"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xrqs5"]
 [ext_resource type="SpriteFrames" uid="uid://kiuj0nx1kv2f" path="res://Assets/Pawns/RG/Enemies/FatSentry001a_Frames.tres" id="4_t0j7g"]
 [ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_f8dmp"]
-[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_vs138"]
-[ext_resource type="Resource" uid="uid://e0wd8imm8yxq" path="res://Assets/Items/Firearms/Pistols/EnemyGun002.tres" id="8_g2hvb"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_gqjwm"]
 [ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_e8m2s"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_f1iig"]
@@ -26,55 +24,15 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 radius = 8.0
 height = 32.0
 
-[sub_resource type="Animation" id="Animation_usbmg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:is_holding_use_input")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ptdqy"]
-resource_name = "shoot"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:is_holding_use_input")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hvb"]
-_data = {
-&"RESET": SubResource("Animation_usbmg"),
-&"shoot": SubResource("Animation_ptdqy")
-}
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
 radius = 128.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_ic5on"]
 
-[node name="FatSentry" type="CharacterBody2D" node_paths=PackedStringArray("collision", "weapon", "asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+[node name="FatSentry" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
 collision_layer = 4098
 collision_mask = 136
 script = ExtResource("1_t0j7g")
-collision = NodePath("Collision")
-weapon = NodePath("Sprite/Weapon")
 unique_name = &"NeuroPups"
 display_data = SubResource("Resource_mhkle")
 asc = NodePath("AbilitySystemComponent")
@@ -83,7 +41,6 @@ max_health = 10.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 character_movement = NodePath("CharacterMovement")
-sync_body_with_aim_rotation = null
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
 rotation = 1.5707964
@@ -101,18 +58,6 @@ animation = &"move"
 script = ExtResource("5_f8dmp")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
-
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_sprite")]
-script = ExtResource("7_vs138")
-owner_pawn = NodePath("../..")
-owner_sprite = NodePath("..")
-weapon_data = ExtResource("8_g2hvb")
-metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Weapon"]
-libraries = {
-&"": SubResource("AnimationLibrary_g2hvb")
-}
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../..")
