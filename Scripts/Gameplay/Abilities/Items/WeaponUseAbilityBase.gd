@@ -26,6 +26,10 @@ func commit_ability() -> void:
 	_use_or_end_ability()
 
 func on_ability_ended(in_was_cancelled: bool) -> void:
+	
+	if cooldown_finished.is_connected(_handle_use_cooldown_finished):
+		cooldown_finished.disconnect(_handle_use_cooldown_finished)
+	
 	hold_weapon_uses_counter = 0
 
 func _use_or_end_ability() -> void:
@@ -57,6 +61,9 @@ func _handle_use_cooldown_finished() -> void:
 		ItemData_Weapon.UseInputMode.Auto:
 			_use_or_end_ability()
 		ItemData_Weapon.UseInputMode.Hold:
-			if is_input_action_pressed(CommonInputActions.primary_attack): _use_or_end_ability()
+			if last_input_since_activaion == AbilityInput.Release:
+				end_ability()
+			else:
+				_use_or_end_ability()
 		ItemData_Weapon.UseInputMode.Single:
-			pass
+			end_ability()

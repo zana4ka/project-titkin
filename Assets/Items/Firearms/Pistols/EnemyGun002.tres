@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://c5g053ket645m"
 [resource]
 script = ExtResource("4_ho6v4")
 projectile_data = ExtResource("3_18a50")
-use_input_mode = 1
+use_input_mode = 2
 base_cooldown = 0.5
 display_data = SubResource("Resource_x6d0i")
 metadata/_custom_type_script = "uid://do5e13gjl2835"

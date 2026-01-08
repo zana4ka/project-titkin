@@ -101,7 +101,6 @@ owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 input_vector_mul = Vector2(1, 0)
-input_threshold = null
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "owner_pawn", "tags_container")]

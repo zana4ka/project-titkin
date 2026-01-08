@@ -224,7 +224,7 @@ script = ExtResource("3_io3i3")
 OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn", "flip_transform_targets")]
 z_index = 2
 z_as_relative = false
 position = Vector2(0, -16)
@@ -234,6 +234,7 @@ animation = &"idle"
 offset = Vector2(0, 96)
 script = ExtResource("5_krohv")
 owner_pawn = NodePath("..")
+flip_transform_targets = [NodePath("../ContactDamageArea")]
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -289,7 +290,6 @@ owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 apply_gravity = false
 should_bounce = true
-rotate_body_to_movement_speed_threshold = null
 input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
