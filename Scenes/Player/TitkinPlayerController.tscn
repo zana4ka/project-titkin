@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://bk3lrhy6lq1nu"]
 
-[ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Scripts/Player/DefaultPlayerController.gd" id="1_2tq6m"]
-[ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_nppl2"]
-[ext_resource type="Script" uid="uid://bwgx26k38p3it" path="res://addons/GodotCommons-Core/Scripts/Shake/ShakeReceiver2D.gd" id="3_68m8v"]
-[ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/DefaultHUDUI.tscn" id="5_xjd5n"]
-[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="7_yog3r"]
-[ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="8_5e7js"]
-[ext_resource type="Resource" uid="uid://bytp7ibu5iswf" path="res://Assets/Items/Firearms/Pistols/LaserGun001.tres" id="9_8hrds"]
-[ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="9_373yl"]
-[ext_resource type="Resource" uid="uid://cjkudcwbeips0" path="res://Assets/Items/Firearms/Pistols/BalloonDeagle001.tres" id="10_txum7"]
-[ext_resource type="Resource" uid="uid://bfww4xcvkvhuc" path="res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres" id="11_tfvbl"]
+[ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Scripts/Player/TitkinPlayerController.gd" id="1_h4k2k"]
+[ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_0c0jd"]
+[ext_resource type="Script" uid="uid://bwgx26k38p3it" path="res://addons/GodotCommons-Core/Scripts/Shake/ShakeReceiver2D.gd" id="3_oqm20"]
+[ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/TitkinHUDUI.tscn" id="4_l0tvj"]
+[ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="5_k1wij"]
+[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="6_htwug"]
+[ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="7_s2qgo"]
+[ext_resource type="Resource" uid="uid://bytp7ibu5iswf" path="res://Assets/Items/Firearms/Pistols/LaserGun001.tres" id="8_koknv"]
+[ext_resource type="Resource" uid="uid://cjkudcwbeips0" path="res://Assets/Items/Firearms/Pistols/BalloonDeagle001.tres" id="9_sh6cp"]
+[ext_resource type="Resource" uid="uid://bfww4xcvkvhuc" path="res://Assets/Items/Firearms/Pistols/BonyRevolver001.tres" id="10_kofrt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mpqqo"]
 radius = 4.0
@@ -75,17 +75,18 @@ _data = {
 &"RESET": SubResource("Animation_socjb")
 }
 
-[node name="PlayerController" type="Node" node_paths=PackedStringArray("_camera")]
-script = ExtResource("1_2tq6m")
+[node name="TitkinPlayerController" type="Node" node_paths=PackedStringArray("_camera")]
+script = ExtResource("1_h4k2k")
 _camera = NodePath("Camera")
-metadata/_custom_type_script = "uid://c78eebpx0eqjb"
+metadata/_custom_type_script = "uid://fu7ctr14w0d2"
 
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("owner_player_controller", "CameraAnimationPlayer")]
 ignore_rotation = false
 limit_enabled = false
 position_smoothing_speed = 10.0
-script = ExtResource("2_nppl2")
+script = ExtResource("2_0c0jd")
 owner_player_controller = NodePath("..")
+movement_zoom_velocity_threshold = 150.0
 CameraAnimationPlayer = NodePath("CameraAP")
 metadata/_custom_type_script = "uid://cd64314q4ptam"
 
@@ -94,7 +95,7 @@ collision_layer = 16384
 collision_mask = 0
 input_pickable = false
 monitoring = false
-script = ExtResource("3_68m8v")
+script = ExtResource("3_oqm20")
 _camera = NodePath("..")
 metadata/_custom_type_script = "uid://bwgx26k38p3it"
 
@@ -102,7 +103,7 @@ metadata/_custom_type_script = "uid://bwgx26k38p3it"
 shape = SubResource("CircleShape2D_mpqqo")
 debug_color = Color(0.870588, 0.301961, 0, 0.419608)
 
-[node name="HUD" parent="Camera" node_paths=PackedStringArray("owner_player_controller") instance=ExtResource("5_xjd5n")]
+[node name="HUD" parent="Camera" node_paths=PackedStringArray("owner_player_controller") instance=ExtResource("4_l0tvj")]
 owner_player_controller = NodePath("../..")
 
 [node name="CameraAP" type="AnimationPlayer" parent="Camera"]
@@ -112,16 +113,16 @@ libraries = {
 }
 
 [node name="DebugUtils" type="Node" parent="." node_paths=PackedStringArray("owner_player_controller")]
-script = ExtResource("9_373yl")
+script = ExtResource("5_k1wij")
 owner_player_controller = NodePath("..")
 metadata/_custom_type_script = "uid://8uh5hq3gb8j3"
 
 [node name="Weapons" type="Node" parent="."]
-script = ExtResource("7_yog3r")
-initial_items_num = Dictionary[ExtResource("8_5e7js"), int]({
-ExtResource("9_8hrds"): 1,
-ExtResource("10_txum7"): 1,
-ExtResource("11_tfvbl"): 1
+script = ExtResource("6_htwug")
+initial_items_num = Dictionary[ExtResource("7_s2qgo"), int]({
+ExtResource("8_koknv"): 1,
+ExtResource("9_sh6cp"): 1,
+ExtResource("10_kofrt"): 1
 })
 _slots_num_max = 3
 metadata/_custom_type_script = "uid://ixow33718sdq"

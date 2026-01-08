@@ -1,5 +1,5 @@
 extends GameState
-class_name DefaultGameState
+class_name TitkinGameState
 
 func _init(in_game_mode: GameModeData, in_game_seed: int, in_game_args: Dictionary) -> void:
 	super(in_game_mode, in_game_seed, in_game_args)

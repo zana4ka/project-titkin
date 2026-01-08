@@ -11,9 +11,11 @@ func _ready() -> void:
 	
 	super()
 	
-	aim_offset_timer = GameGlobals.spawn_regular_timer_for(self, handle_aim_offset, aim_offset_delay)
-	
-	aim_direction = Vector2.UP
+	if Engine.is_editor_hint():
+		pass
+	else:
+		aim_offset_timer = GameGlobals.spawn_regular_timer_for(self, handle_aim_offset, aim_offset_delay)
+		aim_direction = Vector2.UP
 
 func handle_aim_offset() -> void:
 	

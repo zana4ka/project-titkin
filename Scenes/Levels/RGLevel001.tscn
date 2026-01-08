@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://omqo3p6o6xeb"]
+[gd_scene load_steps=41 format=3 uid="uid://omqo3p6o6xeb"]
 
 [ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Scripts/Levels/RGLevelBase2D.gd" id="1_iebrh"]
-[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Framework/DefaultCampaign.tres" id="2_k5hyx"]
-[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/DefaultGameMode.tres" id="3_qyqm6"]
+[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Framework/TitkinCampaign.tres" id="2_k5hyx"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/TitkinGameMode.tres" id="3_qyqm6"]
 [ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="8_iebrh"]
+[ext_resource type="PackedScene" uid="uid://b75q7f0db1eob" path="res://addons/GodotCommons-Core/Scenes/Levels/SceneSpawner001.tscn" id="9_5drtt"]
 [ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="9_8ii4u"]
 [ext_resource type="PackedScene" uid="uid://7esqpvkrtoar" path="res://Scenes/Pawns/RG/Enemies/FatSentry001.tscn" id="10_8ii4u"]
 [ext_resource type="Script" uid="uid://cunyk2dvnndvj" path="res://addons/GodotCommons-Core/Scripts/Levels/ChangeLevel.gd" id="10_jb1df"]
@@ -11,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b8tnwgigue0tq" path="res://Scenes/Pawns/RG/Enemies/DollyPups001.tscn" id="11_jb1df"]
 [ext_resource type="Script" uid="uid://c6grk0368syxv" path="res://addons/GodotCommons-Core/Scripts/Levels/LevelNavigationRegion2D.gd" id="12_5drtt"]
 [ext_resource type="Texture2D" uid="uid://48vkfwdmgip6" path="res://Assets/Levels/RG/RGLevelBackground001_Full.png" id="13_o4kxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_davp4"]
+size = Vector2(2590, 225)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heq00"]
 size = Vector2(91, 11)
@@ -31,8 +35,97 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 48, -3840.7983, 47.999992, -3840, -48, -3688, -48, -3687.8252, 47.999985, -1472, 48, -1472, 80, -4096, 80)])
 source_geometry_mode = 1
 
-[node name="RGLevel" type="Node2D" node_paths=PackedStringArray("default_player_spawn", "level_navigation_region")]
+[sub_resource type="LabelSettings" id="LabelSettings_o4kxs"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_5drtt"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_heq00"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_davp4"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_74gjx"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgy8k"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_1uksi"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_hqgex"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_opxl5"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_p18yt"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_twswn"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_58j88"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ph81c"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_he30l"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_vhpuw"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_5m5wb"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tp5u"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf5ws"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_443o0"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_x81ai"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4t2x"]
+resource_local_to_scene = true
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_grauy"]
+resource_local_to_scene = true
+font_size = 8
+
+[node name="RGLevel" type="Node2D" node_paths=PackedStringArray("level_bounds_collision", "default_player_spawn", "level_navigation_region")]
 script = ExtResource("1_iebrh")
+level_bounds_collision = NodePath("LevelBounds/Collision")
 DefaultCampaign = ExtResource("2_k5hyx")
 DefaultGameMode = ExtResource("3_qyqm6")
 default_player_spawn = NodePath("PlayerSpawn")
@@ -44,6 +137,15 @@ z_index = -100
 z_as_relative = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_o4kxs")
+
+[node name="LevelBounds" type="StaticBody2D" parent="."]
+position = Vector2(-2800, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="LevelBounds"]
+shape = SubResource("RectangleShape2D_davp4")
+debug_color = Color(0.7, 0.68833333, 0, 0)
 
 [node name="Platforms" type="StaticBody2D" parent="." groups=["navigation_polygon_source_geometry_group"]]
 position = Vector2(-3767, -19)
@@ -159,70 +261,224 @@ metadata/_custom_type_script = "uid://c6grk0368syxv"
 
 [node name="Pawns" type="Node2D" parent="."]
 
-[node name="DollyPups" parent="Pawns" instance=ExtResource("11_jb1df")]
+[node name="DollyPups0_Spawn" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-3832, 22)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_o4kxs")
 
-[node name="DollyPups8" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3517, 7)
-
-[node name="DollyPups9" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3476, -8)
-
-[node name="DollyPups10" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3437, -38)
-
-[node name="DollyPups11" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3401, -70)
-
-[node name="DollyPups12" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3303, -67)
-
-[node name="DollyPups13" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-3235, -73)
-
-[node name="DollyPups2" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-1711, 27)
-
-[node name="DollyPups3" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2989, -72)
-
-[node name="DollyPups15" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2948, -80)
-
-[node name="DollyPups16" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2875, -70)
-
-[node name="DollyPups17" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2890, 27)
-
-[node name="DollyPups18" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2640, -61)
-
-[node name="DollyPups19" parent="Pawns" instance=ExtResource("11_jb1df")]
-position = Vector2(-2412, -75)
-
-[node name="DollyPups4" parent="Pawns" instance=ExtResource("11_jb1df")]
+[node name="DollyPups0_Spawn2" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-3744, -48)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_5drtt")
 
-[node name="DollyPups5" parent="Pawns" instance=ExtResource("11_jb1df")]
+[node name="DollyPups0_Spawn3" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3517, 7)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_heq00")
+
+[node name="DollyPups0_Spawn4" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3476, -8)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_davp4")
+
+[node name="DollyPups0_Spawn5" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3437, -38)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_74gjx")
+
+[node name="DollyPups0_Spawn6" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3401, -70)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_jgy8k")
+
+[node name="DollyPups0_Spawn7" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3303, -67)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_1uksi")
+
+[node name="DollyPups0_Spawn8" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-3235, -73)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_hqgex")
+
+[node name="DollyPups0_Spawn9" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-1711, 27)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_opxl5")
+
+[node name="DollyPups0_Spawn10" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2989, -72)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_p18yt")
+
+[node name="DollyPups0_Spawn11" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2948, -80)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_twswn")
+
+[node name="DollyPups0_Spawn12" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2875, -70)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_58j88")
+
+[node name="DollyPups0_Spawn13" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2890, 27)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_ph81c")
+
+[node name="DollyPups0_Spawn14" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2640, -61)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_he30l")
+
+[node name="DollyPups0_Spawn15" parent="Pawns" instance=ExtResource("9_5drtt")]
+position = Vector2(-2412, -75)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_vhpuw")
+
+[node name="DollyPups0_Spawn16" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-1698, -76)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_5m5wb")
 
-[node name="DollyPups6" parent="Pawns" instance=ExtResource("11_jb1df")]
+[node name="DollyPups0_Spawn17" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-1809, 29)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_7tp5u")
 
-[node name="DollyPups7" parent="Pawns" instance=ExtResource("11_jb1df")]
+[node name="DollyPups0_Spawn18" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-2093, 26)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_jb1df"): 1.0
+})
+spawn_on_ready = true
+label_text = "DollyPups
+Spawn"
+label_settings = SubResource("LabelSettings_nf5ws")
 
-[node name="FatSentry" parent="Pawns" instance=ExtResource("10_8ii4u")]
+[node name="FatSentry_Spawn0" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-2752, 32)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("10_8ii4u"): 1.0
+})
+spawn_on_ready = true
+label_text = "FatSentry
+Spawn"
+label_settings = SubResource("LabelSettings_443o0")
 
-[node name="FatSentry2" parent="Pawns" instance=ExtResource("10_8ii4u")]
+[node name="FatSentry_Spawn1" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-1560, 32)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("10_8ii4u"): 1.0
+})
+spawn_on_ready = true
+label_text = "FatSentry
+Spawn"
+label_settings = SubResource("LabelSettings_x81ai")
 
-[node name="TumbleBoar" parent="Pawns" instance=ExtResource("11_5drtt")]
+[node name="TumbleBoar_Spawn0" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-3080, 48)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_5drtt"): 1.0
+})
+spawn_on_ready = true
+label_text = "TumbleBoar
+Spawn"
+label_settings = SubResource("LabelSettings_g4t2x")
 
-[node name="TumbleBoar2" parent="Pawns" instance=ExtResource("11_5drtt")]
+[node name="TumbleBoar_Spawn1" parent="Pawns" instance=ExtResource("9_5drtt")]
 position = Vector2(-1600, 56)
+weighted_variants = Dictionary[PackedScene, float]({
+ExtResource("11_5drtt"): 1.0
+})
+spawn_on_ready = true
+label_text = "TumbleBoar
+Spawn"
+label_settings = SubResource("LabelSettings_grauy")
 
 [connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]
