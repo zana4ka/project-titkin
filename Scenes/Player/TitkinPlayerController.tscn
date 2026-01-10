@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bk3lrhy6lq1nu"]
+[gd_scene load_steps=16 format=3 uid="uid://bk3lrhy6lq1nu"]
 
 [ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Scripts/Player/TitkinPlayerController.gd" id="1_h4k2k"]
 [ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_0c0jd"]
 [ext_resource type="Script" uid="uid://bwgx26k38p3it" path="res://addons/GodotCommons-Core/Scripts/Shake/ShakeReceiver2D.gd" id="3_oqm20"]
 [ext_resource type="PackedScene" uid="uid://cvli8xxu2alfp" path="res://Scenes/UI/HUD/TitkinHUDUI.tscn" id="4_l0tvj"]
+[ext_resource type="PackedScene" uid="uid://caysdihjcphyy" path="res://addons/GodotCommons-Core/Scenes/Player/PlayerCameraBounds.tscn" id="5_0c0jd"]
 [ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="5_k1wij"]
 [ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Scripts/Items/ItemContainer_Weapons.gd" id="6_htwug"]
 [ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="7_s2qgo"]
@@ -86,7 +87,8 @@ limit_enabled = false
 position_smoothing_speed = 10.0
 script = ExtResource("2_0c0jd")
 owner_player_controller = NodePath("..")
-movement_zoom_velocity_threshold = 150.0
+movement_zoom_velocity_threshold = 200.0
+DefaultPendingZoomLerpSpeed = 5.0
 CameraAnimationPlayer = NodePath("CameraAP")
 metadata/_custom_type_script = "uid://cd64314q4ptam"
 
@@ -111,6 +113,8 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_gsv2s")
 }
+
+[node name="PlayerCameraBounds" parent="Camera" instance=ExtResource("5_0c0jd")]
 
 [node name="DebugUtils" type="Node" parent="." node_paths=PackedStringArray("owner_player_controller")]
 script = ExtResource("5_k1wij")

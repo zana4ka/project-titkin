@@ -208,6 +208,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_6="ItemPull"
 2d_physics/layer_7="NavigationBlock"
 2d_physics/layer_8="PlayerBlock"
+2d_physics/layer_9="PlayerCameraBounds"
 2d_physics/layer_12="Gib"
 2d_physics/layer_13="ExplosionReceiver"
 2d_physics/layer_14="Unbreakable"

@@ -1,17 +1,17 @@
 [gd_scene load_steps=19 format=4 uid="uid://og43x5sn03bf"]
 
 [ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Scripts/Levels/RGLevelBase2D.gd" id="1_203oi"]
-[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Framework/DefaultCampaign.tres" id="2_far3b"]
-[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/DefaultGameMode.tres" id="3_ejdt6"]
+[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Assets/Framework/TitkinCampaign.tres" id="2_far3b"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Assets/Framework/TitkinGameMode.tres" id="3_ejdt6"]
 [ext_resource type="Texture2D" uid="uid://48vkfwdmgip6" path="res://Assets/Levels/RG/RGLevelBackground001_Full.png" id="4_7042i"]
 [ext_resource type="Script" uid="uid://cnpq33rttt14r" path="res://addons/GodotCommons-Core/Scripts/Tiles/LevelTileMapLayer.gd" id="5_iqitp"]
 [ext_resource type="Script" uid="uid://csxcu53w5isdb" path="res://addons/GodotCommons-Core/Scripts/Tiles/TileSets/LevelTileSet_TerrainData.gd" id="6_kxw5n"]
 [ext_resource type="Resource" uid="uid://b1snpi7dm8m8e" path="res://Assets/Tiles/Walls/StoneBrick001a_Wall.tres" id="7_e8jib"]
 [ext_resource type="Resource" uid="uid://btdjjr7mb7v2q" path="res://Assets/Tiles/Walls/StoneBrick001b_Wall.tres" id="8_21j8k"]
-[ext_resource type="PackedScene" uid="uid://cd5nufc5i7s8x" path="res://Scenes/Pawns/RG/Enemies/TumbleBoar001.tscn" id="9_203oi"]
 [ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="10_yprf1"]
 [ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="11_aifnj"]
 [ext_resource type="Script" uid="uid://cunyk2dvnndvj" path="res://addons/GodotCommons-Core/Scripts/Levels/ChangeLevel.gd" id="12_x82na"]
+[ext_resource type="PackedScene" uid="uid://7esqpvkrtoar" path="res://Scenes/Pawns/RG/Enemies/FatSentry001.tscn" id="13_203oi"]
 [ext_resource type="Script" uid="uid://c6grk0368syxv" path="res://addons/GodotCommons-Core/Scripts/Levels/LevelNavigationRegion2D.gd" id="13_nsuqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heq00"]
@@ -146,11 +146,8 @@ terrain_data_array = Array[ExtResource("6_kxw5n")]([ExtResource("7_e8jib"), ExtR
 wall_layer = NodePath(".")
 metadata/_custom_type_script = "uid://cnpq33rttt14r"
 
-[node name="TumbleBoar" parent="LevelTileMapLayer" instance=ExtResource("9_203oi")]
-position = Vector2(-3896, -960)
-
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_yprf1")]
-position = Vector2(-4030, 38)
+position = Vector2(-4000, 40)
 label_text = "Player
 Spawn"
 
@@ -169,5 +166,8 @@ metadata/_custom_type_script = "uid://cunyk2dvnndvj"
 navigation_polygon = SubResource("NavigationPolygon_o4kxs")
 script = ExtResource("13_nsuqs")
 metadata/_custom_type_script = "uid://c6grk0368syxv"
+
+[node name="FatSentry" parent="." instance=ExtResource("13_203oi")]
+position = Vector2(-3776, 48)
 
 [connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]
