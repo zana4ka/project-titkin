@@ -118,6 +118,23 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
+[node name="Combos" type="Node" parent="."]
+script = ExtResource("11_q7r3q")
+metadata/_custom_type_script = "uid://bgh1rtperm4f0"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
+script = ExtResource("11_6l08y")
+jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
+jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+apply_gravity = false
+move_speed = 64.0
+floor_acceleration = 1280.0
+input_vector_mul = Vector2(1, 0.8)
+metadata/_custom_type_script = "uid://3oigplo533rl"
+
 [node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "owner_pawn", "tags_container", "animation_player")]
 script = ExtResource("9_0j2j2")
 weapons_container = NodePath("WeaponContainer")
@@ -166,19 +183,3 @@ ability_tags = Array[StringName]([&"block_ability"])
 owner_granted_tags = Array[StringName]([&"state_blocking", &"block_input_movement"])
 owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
 metadata/_custom_type_script = "uid://b54jph2vkff3l"
-
-[node name="Combos" type="Node" parent="."]
-script = ExtResource("11_q7r3q")
-metadata/_custom_type_script = "uid://bgh1rtperm4f0"
-
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
-script = ExtResource("11_6l08y")
-jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
-jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
-owner_pawn = NodePath("..")
-owner_body = NodePath("..")
-owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
-apply_gravity = false
-move_speed = 64.0
-input_vector_mul = Vector2(1, 0.8)
-metadata/_custom_type_script = "uid://3oigplo533rl"

@@ -92,8 +92,8 @@ owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 launch_velocity_reset_threshold = 40.0
 move_speed = 150.0
+floor_acceleration = 3000.0
 input_vector_mul = Vector2(1, 0)
-input_threshold = null
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
