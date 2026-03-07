@@ -1,0 +1,8 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://cx3i8i3v3e7gq"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bgkgp"]
+action = &"secondary_attack"
+pressed = true
+
+[resource]
+events = [SubResource("InputEventAction_bgkgp")]

@@ -1,0 +1,8 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://ce06g8h10ahkd"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bgkgp"]
+action = &"crouch"
+pressed = true
+
+[resource]
+events = [SubResource("InputEventAction_bgkgp")]

@@ -1,0 +1,10 @@
+[gd_resource type="Shortcut" load_steps=3 format=3 uid="uid://ch5fvvilaen6c"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bgkgp"]
+action = &"move_left"
+
+[sub_resource type="InputEventAction" id="InputEventAction_1pwli"]
+action = &"move_right"
+
+[resource]
+events = [SubResource("InputEventAction_bgkgp"), SubResource("InputEventAction_1pwli")]

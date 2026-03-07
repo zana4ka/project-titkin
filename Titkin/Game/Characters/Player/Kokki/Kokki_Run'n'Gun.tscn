@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://sn3lp0rqv4nw"]
+[gd_scene load_steps=38 format=3 uid="uid://sn3lp0rqv4nw"]
 
 [ext_resource type="Script" uid="uid://diyklco5710os" path="res://Titkin/Core/Characters/RGPawn2D.gd" id="1_44rto"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_mxs0p"]
@@ -14,13 +14,20 @@
 [ext_resource type="Script" uid="uid://bqiwfbxy414u6" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerBase.gd" id="12_6m3gj"]
 [ext_resource type="Script" uid="uid://dwomf1lml1nm7" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerMovement.gd" id="13_gkruh"]
 [ext_resource type="Script" uid="uid://b448wahx8w5gt" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerAbilityTag.gd" id="14_kbw6p"]
+[ext_resource type="Shortcut" uid="uid://d3bjw036m28fh" path="res://Titkin/Game/Features/Items/Abilities/WeaponUsePrimary.tres" id="15_6tf6r"]
 [ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Titkin/Core/Characters/Components/Pawn2D_SpecialCharge.gd" id="15_y48ex"]
+[ext_resource type="Shortcut" uid="uid://d33cscipnvear" path="res://Titkin/Game/Features/Items/Abilities/WeaponUseSpecial.tres" id="16_1ikek"]
 [ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Titkin/Core/AbilitySystem/TitkinASC.gd" id="16_1ybbr"]
+[ext_resource type="Shortcut" uid="uid://bgfdenulyg703" path="res://Titkin/Game/Characters/Common/Abilities/Jump/Jump.tres" id="17_5g1dk"]
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="17_b65eo"]
 [ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="18_5be2k"]
+[ext_resource type="Shortcut" uid="uid://ce06g8h10ahkd" path="res://Titkin/Game/Characters/Common/Abilities/Crouch/Crouch.tres" id="18_pjxj7"]
+[ext_resource type="Shortcut" uid="uid://cnd6hkd4l7fur" path="res://Titkin/Game/Characters/Common/Abilities/LockMovement/LockMovement.tres" id="19_6m3gj"]
 [ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Titkin/Game/Characters/Common/Abilities/Jump/RGJumpAbility.gd" id="19_wvjrc"]
 [ext_resource type="Script" uid="uid://lu83ha6bay5f" path="res://Titkin/Game/Characters/Common/Abilities/Crouch/RGCrouchAbility.gd" id="20_5cpi3"]
+[ext_resource type="Shortcut" uid="uid://ch5fvvilaen6c" path="res://Titkin/Game/Characters/Common/Abilities/Dash/Dash.tres" id="20_gkruh"]
 [ext_resource type="Script" uid="uid://d3u2nglhsf6i7" path="res://Titkin/Game/Characters/Common/Abilities/LockMovement/RGLockMovementAbility.gd" id="21_t1isa"]
+[ext_resource type="Script" uid="uid://b3gnq1k46aedm" path="res://Titkin/Game/Characters/Common/Abilities/Dash/DashAbility.gd" id="22_mxs0p"]
 
 [sub_resource type="Resource" id="Resource_e0c3u"]
 script = ExtResource("2_mxs0p")
@@ -37,34 +44,42 @@ metadata/_custom_type_script = "uid://dwomf1lml1nm7"
 
 [sub_resource type="Resource" id="Resource_v5u72"]
 script = ExtResource("14_kbw6p")
-action_name = &"primary_attack"
+trigger_events = ExtResource("15_6tf6r")
 ability_tag = &"weapon_use_ability"
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [sub_resource type="Resource" id="Resource_mxs0p"]
 script = ExtResource("14_kbw6p")
-action_name = &"special_attack"
+trigger_events = ExtResource("16_1ikek")
 ability_tag = &"weapon_use_ability"
 payload_mode = 2
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [sub_resource type="Resource" id="Resource_1qbwr"]
 script = ExtResource("14_kbw6p")
-action_name = &"jump"
+trigger_events = ExtResource("17_5g1dk")
 ability_tag = &"jump_ability"
 end_on_release = false
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [sub_resource type="Resource" id="Resource_36sxb"]
 script = ExtResource("14_kbw6p")
-action_name = &"crouch"
+trigger_events = ExtResource("18_pjxj7")
 ability_tag = &"crouch_ability"
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [sub_resource type="Resource" id="Resource_7baa2"]
 script = ExtResource("14_kbw6p")
-action_name = &"lock_movement"
+trigger_events = ExtResource("19_6m3gj")
 ability_tag = &"lock_movement_ability"
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_m4vnp"]
+script = ExtResource("14_kbw6p")
+trigger_events = ExtResource("20_gkruh")
+ability_tag = &"dash_ability"
+end_on_release = false
+press_repeats = 2
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
@@ -146,7 +161,7 @@ metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("11_pjxj7")
-input_handlers = Array[ExtResource("12_6m3gj")]([SubResource("Resource_1kp1q"), SubResource("Resource_v5u72"), SubResource("Resource_mxs0p"), SubResource("Resource_1qbwr"), SubResource("Resource_36sxb"), SubResource("Resource_7baa2")])
+input_handlers = Array[ExtResource("12_6m3gj")]([SubResource("Resource_1kp1q"), SubResource("Resource_v5u72"), SubResource("Resource_mxs0p"), SubResource("Resource_1qbwr"), SubResource("Resource_36sxb"), SubResource("Resource_7baa2"), SubResource("Resource_m4vnp")])
 metadata/_custom_type_script = "uid://chkuc2e7a3j0d"
 
 [node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
@@ -190,3 +205,11 @@ script = ExtResource("21_t1isa")
 ability_tags = Array[StringName]([&"lock_movement_ability"])
 owner_granted_tags = Array[StringName]([&"state_locked_movement", &"movement_input_ignore"])
 metadata/_custom_type_script = "uid://d3u2nglhsf6i7"
+
+[node name="DashAbility" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("22_mxs0p")
+ability_tags = Array[StringName]([&"dash_ability"])
+owner_granted_tags = Array[StringName]([&"state_dashing"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
+default_cooldown_time = 1.4
+metadata/_custom_type_script = "uid://b3gnq1k46aedm"

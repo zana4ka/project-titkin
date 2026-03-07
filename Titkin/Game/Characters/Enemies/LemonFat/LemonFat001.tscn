@@ -283,11 +283,12 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set", "owner_tags_container")]
 script = ExtResource("13_jns0w")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+owner_tags_container = NodePath("../AbilitySystemComponent/TagsContainer")
 apply_gravity = false
 should_bounce = true
 input_vector_mul = Vector2(1, 0)
