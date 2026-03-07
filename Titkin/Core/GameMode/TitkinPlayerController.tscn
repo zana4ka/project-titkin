@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bk3lrhy6lq1nu"]
+[gd_scene load_steps=17 format=3 uid="uid://bk3lrhy6lq1nu"]
 
 [ext_resource type="Script" uid="uid://fu7ctr14w0d2" path="res://Titkin/Core/GameMode/TitkinPlayerController.gd" id="1_h4k2k"]
 [ext_resource type="Script" uid="uid://cd64314q4ptam" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerCamera2D.gd" id="2_0c0jd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://caysdihjcphyy" path="res://addons/GodotCommons-Core/Scenes/Player/PlayerCameraBounds.tscn" id="5_0c0jd"]
 [ext_resource type="Script" uid="uid://8uh5hq3gb8j3" path="res://addons/GodotCommons-Core/Scripts/Player/PlayerController_DebugUtils.gd" id="5_k1wij"]
 [ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Titkin/Game/Features/Items/ItemContainer_Weapons.gd" id="6_htwug"]
+[ext_resource type="Script" uid="uid://chkuc2e7a3j0d" path="res://addons/GodotCommons-Core/Scripts/Input/InputComponent.gd" id="7_cr1v2"]
 [ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="7_s2qgo"]
 [ext_resource type="Resource" uid="uid://bytp7ibu5iswf" path="res://Titkin/Game/Features/Items/Firearms/Pistols/LaserGun001.tres" id="8_koknv"]
 [ext_resource type="Resource" uid="uid://cjkudcwbeips0" path="res://Titkin/Game/Features/Items/Firearms/Pistols/BalloonDeagle001.tres" id="9_sh6cp"]
@@ -76,9 +77,10 @@ _data = {
 &"RESET": SubResource("Animation_socjb")
 }
 
-[node name="TitkinPlayerController" type="Node" node_paths=PackedStringArray("_camera")]
+[node name="TitkinPlayerController" type="Node" node_paths=PackedStringArray("_camera", "input_component")]
 script = ExtResource("1_h4k2k")
 _camera = NodePath("Camera")
+input_component = NodePath("InputComponent")
 metadata/_custom_type_script = "uid://fu7ctr14w0d2"
 
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("owner_player_controller", "CameraAnimationPlayer")]
@@ -120,6 +122,10 @@ libraries = {
 script = ExtResource("5_k1wij")
 owner_player_controller = NodePath("..")
 metadata/_custom_type_script = "uid://8uh5hq3gb8j3"
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("7_cr1v2")
+metadata/_custom_type_script = "uid://chkuc2e7a3j0d"
 
 [node name="Weapons" type="Node" parent="."]
 script = ExtResource("6_htwug")

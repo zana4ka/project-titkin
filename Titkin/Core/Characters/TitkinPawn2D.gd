@@ -12,6 +12,9 @@ func _ready() -> void:
 	else:
 		assert(character_movement)
 
+func _process(in_delta: float) -> void:
+	_process_aim_direction(in_delta)
+
 ##
 ## Transforms
 ##
@@ -24,33 +27,24 @@ func adjust_body_direction(in_direction: Vector2) -> Vector2:
 	else:
 		return body_direction
 
-##
-## Input
-##
-func handle_controller_movement_input(in_input: Vector2) -> void:
-	
-	last_movement_input = in_input
+func _process_aim_direction(in_delta: float) -> void:
 	
 	if asc.tags_container.has_tag(CommonTags.block_input_movement):
 		
-		character_movement.apply_movement_input(Vector2.ZERO)
-		
-		if last_movement_input.is_zero_approx():
+		if character_movement.last_movement_input.is_zero_approx():
 			if sync_aim_with_body_direction:
 				aim_direction = body_direction
 		else:
-			aim_direction = last_movement_input.normalized()
+			aim_direction = character_movement.last_movement_input.normalized()
 	else:
-		character_movement.apply_movement_input(last_movement_input)
-		
-		if last_movement_input.is_zero_approx():
+		if character_movement.last_movement_input.is_zero_approx():
 			pass
 		else:
-			if is_zero_approx(last_movement_input.y):
+			if is_zero_approx(character_movement.last_movement_input.y):
 				if sync_aim_with_body_direction:
 					aim_direction = body_direction
 			else:
-				aim_direction = last_movement_input.normalized()
+				aim_direction = character_movement.last_movement_input.normalized()
 
 func handle_move_up_input(in_event: InputEvent) -> bool:
 	return false

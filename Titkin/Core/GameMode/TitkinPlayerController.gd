@@ -3,8 +3,8 @@ extends PlayerController
 class_name TitkinPlayerController
 
 @export_category("Pawn")
-@export var rg_pawn_scene_path: String = "res://Titkin/Game/Characters/Player/Kokki/Kokki_RG.tscn"
-@export var bu_pawn_scene_path: String = "res://Titkin/Game/Characters/Player/Kokki/Kokki_BU.tscn"
+@export var rg_pawn_scene_path: String = "res://Titkin/Game/Characters/Player/Kokki/Kokki_Run'n'Gun.tscn"
+@export var bu_pawn_scene_path: String = "res://Titkin/Game/Characters/Player/Kokki/Kokki_Beat'emUp.tscn"
 
 func _ready() -> void:
 	

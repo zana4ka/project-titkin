@@ -1,151 +1,153 @@
-[gd_scene load_steps=23 format=3 uid="uid://do17aimitageq"]
+[gd_scene load_steps=23 format=3 uid="uid://b5j73lpvlpecg"]
 
-[ext_resource type="Script" uid="uid://duwpnjp588xx3" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateMachine.gd" id="1_6mera"]
-[ext_resource type="Script" uid="uid://df5atr87vf8p1" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimState.gd" id="2_n1cqb"]
-[ext_resource type="Script" uid="uid://8qvrmw5qxbdw" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_IsMoving.gd" id="3_iwo1c"]
-[ext_resource type="Script" uid="uid://dew121pto7ps0" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateModifier.gd" id="3_xd7u6"]
-[ext_resource type="Script" uid="uid://c4tfcyw66c5f6" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_SetSkeletonData.gd" id="4_tpanc"]
-[ext_resource type="Script" uid="uid://bimjklccklrmc" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimation_Spine.gd" id="4_utdwc"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://c7xnoh3ikrdx6" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/idle_data.tres" id="5_ftth4"]
-[ext_resource type="Script" uid="uid://b070pedpdftp" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_HasTag.gd" id="8_utdwc"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://dask74lnpul1" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk_data.tres" id="9_8qiaa"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://mfhesdma3dbf" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/jump_data.tres" id="10_ftth4"]
-[ext_resource type="Script" uid="uid://c5fektk3gv7yh" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifier_VelocityFlip_Spine.gd" id="10_vm0ma"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://c4ay5hp73ynyb" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/crouch_data.tres" id="11_vm0ma"]
+[ext_resource type="Script" uid="uid://duwpnjp588xx3" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateMachine.gd" id="1_5jujr"]
+[ext_resource type="Script" uid="uid://df5atr87vf8p1" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimState.gd" id="2_sb61g"]
+[ext_resource type="Script" uid="uid://dew121pto7ps0" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateModifier.gd" id="3_qdtnt"]
+[ext_resource type="Script" uid="uid://c4tfcyw66c5f6" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_SetSkeletonData.gd" id="4_euxsx"]
+[ext_resource type="Script" uid="uid://8qvrmw5qxbdw" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_IsMoving.gd" id="5_5icrw"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c7xnoh3ikrdx6" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/idle_data.tres" id="5_c26jd"]
+[ext_resource type="Script" uid="uid://bimjklccklrmc" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimation_Spine.gd" id="6_7oqe0"]
+[ext_resource type="Script" uid="uid://b070pedpdftp" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_HasTag.gd" id="7_spo86"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dask74lnpul1" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk_data.tres" id="9_ji8ri"]
+[ext_resource type="Script" uid="uid://c5fektk3gv7yh" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifier_VelocityFlip_Spine.gd" id="10_lfg4j"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://mfhesdma3dbf" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/jump_data.tres" id="11_abu1d"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c4ay5hp73ynyb" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/crouch_data.tres" id="12_a314i"]
 
 [sub_resource type="Resource" id="Resource_vm0ma"]
-script = ExtResource("4_tpanc")
-skeleton_data = ExtResource("5_ftth4")
+script = ExtResource("4_euxsx")
+skeleton_data = ExtResource("5_c26jd")
 metadata/_custom_type_script = "uid://c4tfcyw66c5f6"
 
 [sub_resource type="Resource" id="Resource_8og5i"]
-script = ExtResource("4_utdwc")
+script = ExtResource("6_7oqe0")
 animation_name = &"animation"
 track_id = null
 disabled = null
 metadata/_custom_type_script = "uid://bimjklccklrmc"
 
 [sub_resource type="Resource" id="Resource_ber33"]
-script = ExtResource("4_utdwc")
+script = ExtResource("6_7oqe0")
 animation_name = &"idle"
 track_id = null
 disabled = true
 metadata/_custom_type_script = "uid://bimjklccklrmc"
 
 [sub_resource type="Resource" id="Resource_y6p8y"]
-script = ExtResource("4_tpanc")
-skeleton_data = ExtResource("9_8qiaa")
+script = ExtResource("4_euxsx")
+skeleton_data = ExtResource("9_ji8ri")
 metadata/_custom_type_script = "uid://c4tfcyw66c5f6"
 
 [sub_resource type="Resource" id="Resource_utdwc"]
-script = ExtResource("4_utdwc")
+script = ExtResource("6_7oqe0")
 animation_name = &"walk"
 track_id = null
 disabled = true
 metadata/_custom_type_script = "uid://bimjklccklrmc"
 
 [sub_resource type="Resource" id="Resource_yvnke"]
-script = ExtResource("10_vm0ma")
+script = ExtResource("10_lfg4j")
 metadata/_custom_type_script = "uid://c5fektk3gv7yh"
 
 [sub_resource type="Resource" id="Resource_ls3vk"]
-script = ExtResource("4_tpanc")
-skeleton_data = ExtResource("10_ftth4")
+script = ExtResource("4_euxsx")
+skeleton_data = ExtResource("11_abu1d")
 metadata/_custom_type_script = "uid://c4tfcyw66c5f6"
 
 [sub_resource type="Resource" id="Resource_tpanc"]
-script = ExtResource("4_utdwc")
+script = ExtResource("6_7oqe0")
 animation_name = &"jump"
 track_id = null
 disabled = true
 metadata/_custom_type_script = "uid://bimjklccklrmc"
 
 [sub_resource type="Resource" id="Resource_nhlju"]
-script = ExtResource("4_tpanc")
-skeleton_data = ExtResource("11_vm0ma")
+script = ExtResource("4_euxsx")
+skeleton_data = ExtResource("12_a314i")
 metadata/_custom_type_script = "uid://c4tfcyw66c5f6"
 
 [sub_resource type="Resource" id="Resource_xd7u6"]
-script = ExtResource("4_utdwc")
+script = ExtResource("6_7oqe0")
 animation_name = &"idle_crouch"
 track_id = null
 disabled = true
 metadata/_custom_type_script = "uid://bimjklccklrmc"
 
-[node name="PlayerRGPawn001_ASM" type="Node"]
-script = ExtResource("1_6mera")
+[node name="Kokki_Beat\'emUp_ASM" type="Node"]
+script = ExtResource("1_5jujr")
 metadata/_custom_type_script = "uid://duwpnjp588xx3"
 
 [node name="Idle" type="Node" parent="."]
-script = ExtResource("2_n1cqb")
-modifiers = Array[ExtResource("3_xd7u6")]([SubResource("Resource_vm0ma"), SubResource("Resource_8og5i"), SubResource("Resource_ber33")])
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_vm0ma"), SubResource("Resource_8og5i"), SubResource("Resource_ber33")])
 metadata/_custom_type_script = "uid://df5atr87vf8p1"
 
 [node name="ToWalk_If_IsMoving" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("3_iwo1c")
+script = ExtResource("5_5icrw")
+velocity_mask = Vector2(1, 1)
 go_to_state = NodePath("../../Walk")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="ToJump_If_IsJumping" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_jumping"
 go_to_state = NodePath("../../Jump")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="ToCrouch_If_IsCrouching" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_crouching"
 go_to_state = NodePath("../../Crouch")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="Walk" type="Node" parent="."]
-script = ExtResource("2_n1cqb")
-modifiers = Array[ExtResource("3_xd7u6")]([SubResource("Resource_y6p8y"), SubResource("Resource_8og5i"), SubResource("Resource_utdwc"), SubResource("Resource_yvnke")])
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_y6p8y"), SubResource("Resource_8og5i"), SubResource("Resource_utdwc"), SubResource("Resource_yvnke")])
 metadata/_custom_type_script = "uid://df5atr87vf8p1"
 
 [node name="ToIdle_If_IsNotMoving" type="Node" parent="Walk" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("3_iwo1c")
+script = ExtResource("5_5icrw")
+velocity_mask = Vector2(1, 1)
 go_to_state = NodePath("../../Idle")
 inverse_condition = true
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="ToJump_If_IsJumping" type="Node" parent="Walk" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_jumping"
 go_to_state = NodePath("../../Jump")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="ToCrouch_If_IsCrouching" type="Node" parent="Walk" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_crouching"
 go_to_state = NodePath("../../Crouch")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="Jump" type="Node" parent="."]
-script = ExtResource("2_n1cqb")
-modifiers = Array[ExtResource("3_xd7u6")]([SubResource("Resource_ls3vk"), SubResource("Resource_8og5i"), SubResource("Resource_tpanc")])
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_ls3vk"), SubResource("Resource_8og5i"), SubResource("Resource_tpanc")])
 metadata/_custom_type_script = "uid://df5atr87vf8p1"
 
 [node name="ToIdle_If_IsNotJumping" type="Node" parent="Jump" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_jumping"
 go_to_state = NodePath("../../Idle")
 inverse_condition = true
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="ToCrouch_If_IsCrouching" type="Node" parent="Jump" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_crouching"
 go_to_state = NodePath("../../Crouch")
 metadata/_custom_type_script = "uid://dsigiit28upsy"
 
 [node name="Crouch" type="Node" parent="."]
-script = ExtResource("2_n1cqb")
-modifiers = Array[ExtResource("3_xd7u6")]([SubResource("Resource_nhlju"), SubResource("Resource_8og5i"), SubResource("Resource_xd7u6")])
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_nhlju"), SubResource("Resource_8og5i"), SubResource("Resource_xd7u6")])
 metadata/_custom_type_script = "uid://df5atr87vf8p1"
 
 [node name="ToIdle_If_IsNotCrouching" type="Node" parent="Crouch" node_paths=PackedStringArray("go_to_state")]
-script = ExtResource("8_utdwc")
+script = ExtResource("7_spo86")
 tag = &"state_crouching"
 go_to_state = NodePath("../../Idle")
 inverse_condition = true

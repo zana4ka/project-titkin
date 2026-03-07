@@ -1,0 +1,239 @@
+[gd_scene load_steps=37 format=3 uid="uid://w5td2xd5v8x5"]
+
+[ext_resource type="Script" uid="uid://bxuy6b8kjeo68" path="res://Titkin/Core/Characters/BUPawn2D.gd" id="1_w6ltj"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_ue4ox"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_aim0k"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c7xnoh3ikrdx6" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/idle_data.tres" id="4_a6y77"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Titkin/Core/Characters/Components/Pawn2D_WeaponSprite.gd" id="5_u5sxh"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Titkin/Game/Characters/Common/HurtAnimationLibrary.tres" id="6_l6cgj"]
+[ext_resource type="PackedScene" uid="uid://b5j73lpvlpecg" path="res://Titkin/Game/Characters/Player/Kokki/Kokki_Beat'emUp_ASM.tscn" id="7_0nyin"]
+[ext_resource type="Script" uid="uid://1wjmc55aqllr" path="res://addons/GodotCommons-Core/Scripts/Animations/Montages/AnimMontagePlayer_Spine.gd" id="8_0tyld"]
+[ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="9_4rx10"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="10_c826n"]
+[ext_resource type="Script" uid="uid://bgh1rtperm4f0" path="res://Titkin/Core/Characters/Components/Pawn2D_Combos.gd" id="11_3sq2q"]
+[ext_resource type="Script" uid="uid://3oigplo533rl" path="res://Titkin/Core/Characters/Components/Pawn2D_BUMovement.gd" id="12_n0y3n"]
+[ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Titkin/Core/AbilitySystem/TitkinASC.gd" id="13_5bvnk"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="14_qfl2n"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_ssgse"]
+[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Titkin/Game/Features/Items/ItemContainer_Weapons.gd" id="16_esx5b"]
+[ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="17_rtyu5"]
+[ext_resource type="Resource" uid="uid://drtuq25hfnlab" path="res://Titkin/Game/Features/Items/Melee/PlayerFists001.tres" id="18_5piyh"]
+[ext_resource type="AnimationLibrary" uid="uid://da2c537t4es6y" path="res://Titkin/Game/Features/Items/Melee/PlayerFists001_Animations.tres" id="19_oco2l"]
+[ext_resource type="Script" uid="uid://b7hwkbnbaafd" path="res://Titkin/Game/Characters/Common/Abilities/Jump/BUJumpAbility.gd" id="20_23txc"]
+[ext_resource type="AnimationLibrary" uid="uid://c77f88fi7ove3" path="res://Titkin/Game/Characters/Common/Abilities/Jump/BUJumpAbilityAnimations.tres" id="21_0dxh6"]
+[ext_resource type="Script" uid="uid://b54jph2vkff3l" path="res://Titkin/Game/Characters/Common/Abilities/Block/BUBlockAbility.gd" id="22_f6nj0"]
+[ext_resource type="Script" uid="uid://chkuc2e7a3j0d" path="res://addons/GodotCommons-Core/Scripts/Input/InputComponent.gd" id="23_6y8da"]
+[ext_resource type="Script" uid="uid://bqiwfbxy414u6" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerBase.gd" id="24_urrrb"]
+[ext_resource type="Script" uid="uid://dwomf1lml1nm7" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerMovement.gd" id="25_acysf"]
+[ext_resource type="Script" uid="uid://b448wahx8w5gt" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerAbilityTag.gd" id="26_idhgo"]
+
+[sub_resource type="Resource" id="Resource_6eu87"]
+script = ExtResource("2_ue4ox")
+name = "Beat 'em Up Player"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ssvu"]
+resource_local_to_scene = true
+radius = 18.0
+
+[sub_resource type="Resource" id="Resource_qdjmn"]
+script = ExtResource("25_acysf")
+metadata/_custom_type_script = "uid://dwomf1lml1nm7"
+
+[sub_resource type="Resource" id="Resource_sa17e"]
+script = ExtResource("26_idhgo")
+action_name = &"primary_attack"
+ability_tag = &"weapon_use_ability"
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_w6ltj"]
+script = ExtResource("26_idhgo")
+action_name = &"secondary_attack"
+ability_tag = &"weapon_use_ability"
+payload_mode = 1
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_ue4ox"]
+script = ExtResource("26_idhgo")
+action_name = &"special_attack"
+ability_tag = &"weapon_use_ability"
+payload_mode = 2
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_g7of1"]
+script = ExtResource("26_idhgo")
+action_name = &"jump"
+ability_tag = &"jump_ability"
+end_on_release = false
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_hrrfi"]
+script = ExtResource("26_idhgo")
+action_name = &"crouch"
+ability_tag = &"crouch_ability"
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[sub_resource type="Resource" id="Resource_8f2aq"]
+script = ExtResource("26_idhgo")
+action_name = &"block"
+ability_tag = &"block_ability"
+metadata/_custom_type_script = "uid://b448wahx8w5gt"
+
+[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+collision_layer = 4097
+collision_mask = 139
+motion_mode = 1
+script = ExtResource("1_w6ltj")
+unique_name = &"KokkiBU"
+display_data = SubResource("Resource_6eu87")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+max_health = 8.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("SpineSprite/HurtAnimationPlayer")
+character_movement = NodePath("CharacterMovement")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j84it")
+debug_color = Color(0, 1, 0.69803923, 0.41960785)
+script = ExtResource("3_aim0k")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("4_a6y77")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+z_index = 2
+z_as_relative = false
+scale = Vector2(0.05, 0.05)
+metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
+
+[node name="Weapon" type="AnimatedSprite2D" parent="SpineSprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+show_behind_parent = true
+script = ExtResource("5_u5sxh")
+owner_pawn = NodePath("../..")
+owner_asc = NodePath("../../AbilitySystemComponent")
+metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="SpineSprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("6_l6cgj")
+}
+
+[node name="ASM" parent="SpineSprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_0nyin")]
+owner_body = NodePath("../..")
+owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
+owner_animated_target = NodePath("..")
+montage_player = NodePath("../SpineMontagePlayer")
+
+[node name="SpineMontagePlayer" type="Node" parent="SpineSprite" node_paths=PackedStringArray("spine")]
+script = ExtResource("8_0tyld")
+spine = NodePath("..")
+metadata/_custom_type_script = "uid://1wjmc55aqllr"
+
+[node name="PunchDamageArea" type="Area2D" parent="." node_paths=PackedStringArray("owner_body", "owner_movement")]
+position = Vector2(8, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_4rx10")
+owner_body = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+is_enabled = false
+damage = 1.0
+damage_cooldown_time = 0.5
+damage_initial_delay = 0.0
+use_individual_cooldowns = true
+metadata/_custom_type_script = "uid://4jl4uwkymrui"
+
+[node name="Collision" type="CollisionShape2D" parent="PunchDamageArea"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_2ssvu")
+debug_color = Color(1, 1, 0, 0.078431375)
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("10_c826n")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("23_6y8da")
+input_handlers = Array[ExtResource("24_urrrb")]([SubResource("Resource_qdjmn"), SubResource("Resource_sa17e"), SubResource("Resource_w6ltj"), SubResource("Resource_ue4ox"), SubResource("Resource_g7of1"), SubResource("Resource_hrrfi"), SubResource("Resource_8f2aq")])
+metadata/_custom_type_script = "uid://chkuc2e7a3j0d"
+
+[node name="Combos" type="Node" parent="."]
+script = ExtResource("11_3sq2q")
+metadata/_custom_type_script = "uid://bgh1rtperm4f0"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
+script = ExtResource("12_n0y3n")
+jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
+jump_offset_targets = [NodePath("../Collision"), NodePath("../SpineSprite")]
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+apply_gravity = false
+move_speed = 64.0
+floor_acceleration = 1280.0
+input_vector_mul = Vector2(1, 0.8)
+metadata/_custom_type_script = "uid://3oigplo533rl"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "owner_pawn", "tags_container", "animation_player")]
+script = ExtResource("13_5bvnk")
+weapons_container = NodePath("WeaponContainer")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("14_qfl2n")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_ssgse")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="WeaponContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("16_esx5b")
+initial_items_num = Dictionary[ExtResource("17_rtyu5"), int]({
+ExtResource("18_5piyh"): 1
+})
+_slots_num_max = 1
+metadata/_custom_type_script = "uid://ixow33718sdq"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent"]
+libraries = {
+&"": ExtResource("19_oco2l")
+}
+
+[node name="Jump" type="Node" parent="AbilitySystemComponent" node_paths=PackedStringArray("jump_animation_player")]
+script = ExtResource("20_23txc")
+jump_animation_player = NodePath("AnimationPlayer")
+ability_tags = Array[StringName]([&"jump_ability"])
+owner_granted_tags = Array[StringName]([&"state_jumping"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
+metadata/_custom_type_script = "uid://b7hwkbnbaafd"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent/Jump"]
+libraries = {
+&"": ExtResource("21_0dxh6")
+}
+
+[node name="Block" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("22_f6nj0")
+ability_tags = Array[StringName]([&"block_ability"])
+owner_granted_tags = Array[StringName]([&"state_blocking", &"block_input_movement"])
+owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
+metadata/_custom_type_script = "uid://b54jph2vkff3l"
