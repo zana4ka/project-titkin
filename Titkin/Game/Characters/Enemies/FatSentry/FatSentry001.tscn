@@ -65,11 +65,10 @@ script = ExtResource("5_f8dmp")
 owner_pawn = NodePath("..")
 metadata/_custom_type_script = "uid://b544r1fp46py5"
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc", "owner_sprite")]
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
 script = ExtResource("6_t0j7g")
 owner_pawn = NodePath("../..")
 owner_asc = NodePath("../../AbilitySystemComponent")
-owner_sprite = NodePath("..")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]

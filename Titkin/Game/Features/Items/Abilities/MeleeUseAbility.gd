@@ -26,9 +26,6 @@ func apply_cooldown() -> void:
 
 func activate_ability() -> void:
 	
-	if not commit_ability():
-		return
-	
 	var melee_data := get_weapon_data() as ItemData_Melee
 	assert(melee_data.animation_library)
 	owner_asc.animation_player.add_animation_library(animation_libary_key, melee_data.animation_library)

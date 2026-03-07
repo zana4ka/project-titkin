@@ -27,10 +27,6 @@ func apply_cooldown() -> void:
 	super()
 
 func activate_ability() -> void:
-	
-	if not commit_ability():
-		return
-	
 	super()
 
 func _handle_use() -> void:

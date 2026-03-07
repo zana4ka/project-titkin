@@ -54,7 +54,7 @@ is_enabled = true
 
 [node name="ChangeLevel" type="Node" parent="CommonTrigger"]
 script = ExtResource("10_gvkbt")
-level_scene_path = "res://Scenes/Levels/MainMenuLevel.tscn"
+level_scene_path = "res://Titkin/Maps/MainMenu/MainMenuLevel.tscn"
 metadata/_custom_type_script = "uid://cunyk2dvnndvj"
 
 [node name="LemotFat" parent="CommonTrigger" instance=ExtResource("11_gvkbt")]

@@ -94,7 +94,7 @@ asc = NodePath("AbilitySystemComponent")
 attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 8.0
 damage_receiver = NodePath("DamageReceiver")
-damage_animation_player = NodePath("SpineSprite/HurtAnimationPlayer")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 character_movement = NodePath("CharacterMovement")
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
@@ -106,7 +106,7 @@ OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
 
-[node name="SpineSprite" type="SpineSprite" parent="."]
+[node name="Sprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("4_a6y77")
 preview_skin = "Default"
 preview_animation = "-- Empty --"
@@ -117,26 +117,26 @@ z_as_relative = false
 scale = Vector2(0.05, 0.05)
 metadata/Pawn2D_BUMovement_jump_offset_target_height_fraction = 0.0
 
-[node name="Weapon" type="AnimatedSprite2D" parent="SpineSprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
 show_behind_parent = true
 script = ExtResource("5_u5sxh")
 owner_pawn = NodePath("../..")
 owner_asc = NodePath("../../AbilitySystemComponent")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
-[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="SpineSprite"]
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../..")
 libraries = {
 &"": ExtResource("6_l6cgj")
 }
 
-[node name="ASM" parent="SpineSprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_0nyin")]
+[node name="ASM" parent="Sprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_0nyin")]
 owner_body = NodePath("../..")
 owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
 owner_animated_target = NodePath("..")
 montage_player = NodePath("../SpineMontagePlayer")
 
-[node name="SpineMontagePlayer" type="Node" parent="SpineSprite" node_paths=PackedStringArray("spine")]
+[node name="SpineMontagePlayer" type="Node" parent="Sprite" node_paths=PackedStringArray("spine")]
 script = ExtResource("8_0tyld")
 spine = NodePath("..")
 metadata/_custom_type_script = "uid://1wjmc55aqllr"
@@ -179,7 +179,7 @@ metadata/_custom_type_script = "uid://bgh1rtperm4f0"
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
 script = ExtResource("12_n0y3n")
 jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
-jump_offset_targets = [NodePath("../Collision"), NodePath("../SpineSprite")]
+jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")

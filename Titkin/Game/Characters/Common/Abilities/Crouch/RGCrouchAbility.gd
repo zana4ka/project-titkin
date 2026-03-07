@@ -3,8 +3,7 @@ extends GameplayAbility
 class_name RGCrouchAbility
 
 @export_category("Collision")
-@export var crouch_height: float = 13.0
-@export var uncrouch_height: float = 26.0
+@export var crouch_height_mul: float = 0.4
 
 func _ready() -> void:
 	ability_tags = [ CommonTags.crouch_ability ]
@@ -29,17 +28,21 @@ func _handle_crouch() -> void:
 	var owner_pawn := get_owner_pawn() as RGPawn2D
 	var owner_collision := Pawn2D_Collision.try_get_from(owner_pawn)
 	
-	assert(owner_collision.shape.resource_local_to_scene)
-	(owner_collision.shape as CapsuleShape2D).height = crouch_height
+	var capsule_shape := (owner_collision.shape as CapsuleShape2D)
+	assert(capsule_shape)
+	assert(capsule_shape.resource_local_to_scene)
 	
-	owner_pawn.position.y += crouch_height * 0.5
+	capsule_shape.height *= crouch_height_mul
+	owner_pawn.position.y += capsule_shape.height * 0.5
 
 func _handle_un_crouch() -> void:
 	
 	var owner_pawn := get_owner_pawn() as RGPawn2D
 	var owner_collision := Pawn2D_Collision.try_get_from(owner_pawn)
 	
-	owner_pawn.position.y -= crouch_height * 0.5
+	var capsule_shape := (owner_collision.shape as CapsuleShape2D)
+	assert(capsule_shape)
+	assert(capsule_shape.resource_local_to_scene)
 	
-	assert(owner_collision.shape.resource_local_to_scene)
-	(owner_collision.shape as CapsuleShape2D).height = uncrouch_height
+	owner_pawn.position.y -= capsule_shape.height * 0.5
+	capsule_shape.height /= crouch_height_mul

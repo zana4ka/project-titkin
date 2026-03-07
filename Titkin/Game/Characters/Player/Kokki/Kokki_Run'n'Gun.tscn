@@ -84,7 +84,7 @@ asc = NodePath("AbilitySystemComponent")
 attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 12.0
 damage_receiver = NodePath("DamageReceiver")
-damage_animation_player = NodePath("SpineSprite/HurtAnimationPlayer")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 character_movement = NodePath("CharacterMovement")
 set_override_level_music_on_spawn = false
 
@@ -94,7 +94,7 @@ script = ExtResource("3_m4vnp")
 OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 
-[node name="SpineSprite" type="SpineSprite" parent="."]
+[node name="Sprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("4_lsqhu")
 update_mode = 1
 preview_skin = "Default"
@@ -106,28 +106,28 @@ z_as_relative = false
 position = Vector2(0, 19)
 scale = Vector2(0.073, 0.073)
 
-[node name="Weapon" type="AnimatedSprite2D" parent="SpineSprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
 show_behind_parent = true
 z_index = 2
-offset = Vector2(128, 0)
+position = Vector2(150, -250)
 script = ExtResource("5_mx15s")
 owner_pawn = NodePath("../..")
 owner_asc = NodePath("../../AbilitySystemComponent")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
-[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="SpineSprite"]
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../..")
 libraries = {
 &"": ExtResource("6_mj70k")
 }
 
-[node name="ASM" parent="SpineSprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_f0vtw")]
+[node name="ASM" parent="Sprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_f0vtw")]
 owner_body = NodePath("../..")
 owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
 owner_animated_target = NodePath("..")
 montage_player = NodePath("../SpineMontagePlayer")
 
-[node name="SpineMontagePlayer" type="Node" parent="SpineSprite" node_paths=PackedStringArray("spine")]
+[node name="SpineMontagePlayer" type="Node" parent="Sprite" node_paths=PackedStringArray("spine")]
 script = ExtResource("8_6tf6r")
 spine = NodePath("..")
 metadata/_custom_type_script = "uid://1wjmc55aqllr"
@@ -145,7 +145,7 @@ owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 launch_velocity_reset_threshold = 40.0
 move_speed = 150.0
-floor_acceleration = 3000.0
+floor_acceleration = 1500.0
 input_vector_mul = Vector2(1, 0)
 metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
@@ -185,6 +185,7 @@ metadata/_custom_type_script = "uid://baf2rkscj0a85"
 
 [node name="Crouch" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("20_5cpi3")
+crouch_height_mul = null
 ability_tags = Array[StringName]([&"crouch_ability"])
 owner_granted_tags = Array[StringName]([&"state_crouching", &"block_input_movement"])
 owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])

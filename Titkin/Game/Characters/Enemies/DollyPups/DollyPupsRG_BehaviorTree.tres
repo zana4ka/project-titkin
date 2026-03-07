@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=35 format=3 uid="uid://r2quingv87bf"]
+[gd_resource type="BehaviorTree" load_steps=37 format=3 uid="uid://r2quingv87bf"]
 
 [ext_resource type="BlackboardPlan" uid="uid://cq20sx23le6gp" path="res://Titkin/Game/Characters/Enemies/DollyPups/DollyPups001_Blackboard.tres" id="1_qjjdm"]
 [ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_AimAt.gd" id="2_l5x8d"]
@@ -102,11 +102,14 @@ children = [SubResource("BTAlwaysSucceed_okk7h")]
 script = ExtResource("4_lv2ng")
 check_distance_var = "chase_area_radius"
 
+[sub_resource type="BBVariant" id="BBVariant_qjjdm"]
+saved_value = null
+
 [sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
 custom_name = "If Chase Target is set"
 children = [SubResource("BTDecorator_l3fct")]
 script = ExtResource("6_ks4s7")
-value = null
+value = SubResource("BBVariant_qjjdm")
 check_cooldown_time = 0.2
 
 [sub_resource type="BTAction" id="BTAction_haojn"]
@@ -122,12 +125,15 @@ script = ExtResource("5_i8td8")
 custom_name = "Patrol Sequence"
 children = [SubResource("BTAction_haojn"), SubResource("BTAction_ppsly")]
 
+[sub_resource type="BBVariant" id="BBVariant_l5x8d"]
+saved_value = null
+
 [sub_resource type="BTDecorator" id="BTDecorator_0r70y"]
 custom_name = "If Chase Target is not set"
 children = [SubResource("BTSequence_2qbb5")]
 script = ExtResource("6_ks4s7")
 check_type = 0
-value = null
+value = SubResource("BBVariant_l5x8d")
 check_cooldown_time = 0.2
 
 [sub_resource type="BTSelector" id="BTSelector_6ap5h"]
