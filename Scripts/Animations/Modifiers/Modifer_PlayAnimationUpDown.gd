@@ -6,7 +6,7 @@ class_name AnimStateModifier_PlayAnimationUpDown
 @export var animation_up_name: StringName = &"idle_up"
 @export var animation_down_name: StringName = &"idle_down"
 
-func _modify(in_state: AnimState, in_delta: float) -> void:
+func _tick_statein_state: AnimState, in_delta: float) -> void:
 	
 	var pawn := in_state.get_pawn()
 	var sprite := in_state.get_sprite()

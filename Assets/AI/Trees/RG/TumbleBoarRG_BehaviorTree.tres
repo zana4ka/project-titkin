@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_UpdatePerceptionTarget.gd" id="4_m5rsl"]
 
 [sub_resource type="BBVariant" id="BBVariant_scdcu"]
-resource_name = "<null>"
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_pcfpp"]
 variable = &"chase_target"

@@ -1,0 +1,195 @@
+
+walk.png
+size: 230,839
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Бедра
+  rotate: false
+  xy: 2, 243
+  size: 113, 78
+  orig: 130, 79
+  offset: 16, 1
+  index: -1
+Глаз_Л
+  rotate: true
+  xy: 2, 11
+  size: 31, 36
+  orig: 33, 38
+  offset: 1, 1
+  index: -1
+Глаз_Пр
+  rotate: true
+  xy: 63, 18
+  size: 31, 37
+  orig: 33, 39
+  offset: 1, 1
+  index: -1
+Голень_Л
+  rotate: true
+  xy: 117, 189
+  size: 76, 111
+  orig: 80, 114
+  offset: 2, 1
+  index: -1
+Голень_Пр
+  rotate: true
+  xy: 2, 165
+  size: 76, 111
+  orig: 80, 114
+  offset: 2, 1
+  index: -1
+Голова
+  rotate: true
+  xy: 2, 585
+  size: 252, 223
+  orig: 253, 224
+  offset: 1, 1
+  index: -1
+Зубы
+  rotate: false
+  xy: 172, 12
+  size: 51, 34
+  orig: 53, 36
+  offset: 1, 1
+  index: -1
+Кулак_Л
+  rotate: false
+  xy: 118, 267
+  size: 106, 100
+  orig: 108, 102
+  offset: 1, 1
+  index: -1
+Кулак_Пр
+  rotate: true
+  xy: 129, 369
+  size: 83, 92
+  orig: 87, 94
+  offset: 2, 1
+  index: -1
+Локоть_Л
+  rotate: true
+  xy: 2, 93
+  size: 36, 66
+  orig: 39, 69
+  offset: 1, 2
+  index: -1
+Локоть_Пр
+  rotate: true
+  xy: 2, 131
+  size: 32, 67
+  orig: 35, 69
+  offset: 1, 1
+  index: -1
+Морда
+  rotate: false
+  xy: 2, 403
+  size: 125, 80
+  orig: 128, 111
+  offset: 1, 13
+  index: -1
+Нога_Л
+  rotate: true
+  xy: 114, 68
+  size: 28, 58
+  orig: 30, 61
+  offset: 1, 2
+  index: -1
+Нога_Пр
+  rotate: true
+  xy: 112, 38
+  size: 28, 58
+  orig: 30, 61
+  offset: 1, 2
+  index: -1
+Нос
+  rotate: true
+  xy: 63, 51
+  size: 26, 47
+  orig: 28, 49
+  offset: 1, 1
+  index: -1
+Подложка бёдра
+  rotate: false
+  xy: 2, 323
+  size: 114, 78
+  orig: 130, 79
+  offset: 16, 1
+  index: -1
+Подложка штанина_Л
+  rotate: false
+  xy: 185, 140
+  size: 42, 47
+  orig: 44, 49
+  offset: 1, 1
+  index: -1
+Подложка штанина_Пр
+  rotate: false
+  xy: 185, 91
+  size: 42, 47
+  orig: 44, 50
+  offset: 1, 1
+  index: -1
+Пятка_Пр
+  rotate: true
+  xy: 156, 454
+  size: 129, 71
+  orig: 129, 72
+  offset: 0, 1
+  index: -1
+Рука_Л
+  rotate: true
+  xy: 115, 131
+  size: 56, 68
+  orig: 58, 70
+  offset: 1, 1
+  index: -1
+Рука_Пр
+  rotate: true
+  xy: 174, 48
+  size: 41, 54
+  orig: 43, 57
+  offset: 1, 2
+  index: -1
+Торс
+  rotate: true
+  xy: 2, 485
+  size: 98, 152
+  orig: 100, 154
+  offset: 1, 1
+  index: -1
+Ухо_Л
+  rotate: true
+  xy: 2, 44
+  size: 47, 59
+  orig: 49, 62
+  offset: 1, 1
+  index: -1
+Ухо_Пр
+  rotate: true
+  xy: 115, 98
+  size: 31, 64
+  orig: 33, 66
+  offset: 1, 1
+  index: -1
+Хвост
+  rotate: false
+  xy: 102, 2
+  size: 35, 34
+  orig: 37, 36
+  offset: 1, 1
+  index: -1
+Штанина_Л
+  rotate: true
+  xy: 71, 122
+  size: 41, 42
+  orig: 44, 44
+  offset: 2, 1
+  index: -1
+Штанина_Пр
+  rotate: true
+  xy: 70, 79
+  size: 41, 42
+  orig: 44, 44
+  offset: 1, 1
+  index: -1

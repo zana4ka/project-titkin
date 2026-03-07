@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://c4ay5hp73ynyb"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cxcwpo8sjwle" path="res://Assets/Pawns/RG/Player/Locomotion/idle.atlas" id="1_evtex"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://ddjd4f0vdqpwu" path="res://Assets/Pawns/RG/Player/Locomotion/idle.skel" id="2_x1jp1"]
+
+[resource]
+atlas_res = ExtResource("1_evtex")
+skeleton_file_res = ExtResource("2_x1jp1")

@@ -7,7 +7,6 @@ static func try_get_from(in_node: Node) -> Pawn2D_WeaponSprite:
 @export_category("Owner")
 @export var owner_pawn: Pawn2D
 @export var owner_asc: TitkinASC
-@export var owner_sprite: Pawn2D_Sprite
 
 #@export_category("Animations")
 #@export var animation_player: AnimationPlayer
@@ -16,7 +15,6 @@ func _ready() -> void:
 	
 	assert(owner_pawn)
 	assert(owner_asc)
-	assert(owner_sprite)
 	
 	owner_asc.weapons_container_selected_slot_index_changed.connect(_on_selected_slot_index_changed)
 	_update_from_weapon_data()

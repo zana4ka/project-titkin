@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://diyklco5710os" path="res://Scripts/Pawns/RG/RGPawn2D.gd" id="1_ddkac"]
 [ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="2_ic7if"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_lu5px"]
-[ext_resource type="SpriteFrames" uid="uid://de3q76secucyk" path="res://Assets/Pawns/RG/Player/DefaultRGPawn001a_Frames.tres" id="3_lu5px"]
-[ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_3g6w4"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dask74lnpul1" path="res://Assets/Pawns/RG/Player/Locomotion/walk_data.tres" id="4_e0c3u"]
 [ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="6_mhkle"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="6_owvon"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Scripts/Pawns/Pawn2D_WeaponSprite.gd" id="7_6tsgq"]
 [ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="7_owvon"]
 [ext_resource type="PackedScene" uid="uid://do17aimitageq" path="res://Scenes/Pawns/RG/Player/PlayerRGPawn001_ASM.tscn" id="8_5o2sd"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Assets/Pawns/HurtAnimationLibrary.tres" id="9_6tsgq"]
+[ext_resource type="Script" uid="uid://1wjmc55aqllr" path="res://addons/GodotCommons-Core/Scripts/Animations/Montages/AnimMontagePlayer_Spine.gd" id="9_xcapk"]
 [ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Scripts/Player/Pawn2D_SpecialCharge.gd" id="13_vdw51"]
 [ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Scripts/Gameplay/TitkinASC.gd" id="14_xcapk"]
 [ext_resource type="Script" uid="uid://lu83ha6bay5f" path="res://Scripts/Gameplay/Abilities/RG/RGCrouchAbility.gd" id="15_5o2sd"]
@@ -37,7 +37,7 @@ asc = NodePath("AbilitySystemComponent")
 attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
 max_health = 12.0
 damage_receiver = NodePath("DamageReceiver")
-damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
+damage_animation_player = NodePath("SpineSprite/HurtAnimationPlayer")
 pawn_input_actions = Array[StringName]([&"move_up", &"move_down", &"primary_attack", &"special_attack", &"jump", &"lock_movement", &"crouch"])
 pawn_input_callables = Array[StringName]([&"handle_move_up_input", &"handle_move_down_input", &"handle_primary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_lock_movement_input", &"handle_crouch_input"])
 character_movement = NodePath("CharacterMovement")
@@ -49,35 +49,43 @@ script = ExtResource("2_ic7if")
 OwnerPawn = NodePath("..")
 metadata/_custom_type_script = "uid://cry48n5lfcsip"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("4_e0c3u")
+update_mode = 1
+preview_skin = "Default"
+preview_animation = "animation"
+preview_frame = true
+preview_time = 0.0
 z_index = 2
 z_as_relative = false
-scale = Vector2(0.07312925, 0.072580636)
-sprite_frames = ExtResource("3_lu5px")
-animation = &"idle_crouch"
-script = ExtResource("5_3g6w4")
-owner_pawn = NodePath("..")
-metadata/_custom_type_script = "uid://b544r1fp46py5"
+position = Vector2(0, 19)
+scale = Vector2(0.073, 0.073)
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc", "owner_sprite")]
+[node name="Weapon" type="AnimatedSprite2D" parent="SpineSprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+show_behind_parent = true
 z_index = 2
 offset = Vector2(128, 0)
 script = ExtResource("7_6tsgq")
 owner_pawn = NodePath("../..")
 owner_asc = NodePath("../../AbilitySystemComponent")
-owner_sprite = NodePath("..")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
-[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="SpineSprite"]
 root_node = NodePath("../..")
 libraries = {
 &"": ExtResource("9_6tsgq")
 }
 
-[node name="ASM" parent="Sprite" node_paths=PackedStringArray("owner_sprite", "owner_body", "owner_tags_container") instance=ExtResource("8_5o2sd")]
-owner_sprite = NodePath("..")
+[node name="ASM" parent="SpineSprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("8_5o2sd")]
 owner_body = NodePath("../..")
 owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
+owner_animated_target = NodePath("..")
+montage_player = NodePath("../SpineMontagePlayer")
+
+[node name="SpineMontagePlayer" type="Node" parent="SpineSprite" node_paths=PackedStringArray("spine")]
+script = ExtResource("9_xcapk")
+spine = NodePath("..")
+metadata/_custom_type_script = "uid://1wjmc55aqllr"
 
 [node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
 script = ExtResource("6_owvon")

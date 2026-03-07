@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://mfhesdma3dbf"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dggy8omxfeo35" path="res://Assets/Pawns/RG/Player/Locomotion/jump.atlas" id="1_c4h5t"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cgidqrhs6bmri" path="res://Assets/Pawns/RG/Player/Locomotion/jump.skel" id="2_2gwi4"]
+
+[resource]
+atlas_res = ExtResource("1_c4h5t")
+skeleton_file_res = ExtResource("2_2gwi4")

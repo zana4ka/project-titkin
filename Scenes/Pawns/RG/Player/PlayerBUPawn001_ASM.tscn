@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://nimhfric0pkf" path="res://Scripts/Animations/Modifiers/Modifer_PlayAnimationUpDown.gd" id="4_2lqvb"]
 [ext_resource type="Script" uid="uid://8qvrmw5qxbdw" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_IsMoving.gd" id="5_5icrw"]
 [ext_resource type="Script" uid="uid://b070pedpdftp" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_HasTag.gd" id="7_spo86"]
-[ext_resource type="Script" uid="uid://dlidbgf6h7c47" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimation.gd" id="8_7jev6"]
+[ext_resource type="Script" uid="uid://dlidbgf6h7c47" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimation_Sprite.gd" id="8_7jev6"]
 
 [sub_resource type="Resource" id="Resource_vm0ma"]
 script = ExtResource("4_2lqvb")
