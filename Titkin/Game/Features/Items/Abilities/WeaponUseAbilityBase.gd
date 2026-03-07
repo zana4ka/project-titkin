@@ -22,7 +22,11 @@ func apply_cooldown() -> void:
 	var weapon_data := get_weapon_data()
 	cooldown_time_left = weapon_data.base_cooldown
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
+	
 	_use_or_end_ability()
 
 func on_ability_ended(in_was_cancelled: bool) -> void:

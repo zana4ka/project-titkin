@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_UpdatePerceptionTarget.gd" id="3_smetg"]
 
 [sub_resource type="BBNode" id="BBNode_hl18b"]
-resource_name = "AttacksAnimationPlayer"
 saved_value = NodePath("AttacksAnimationPlayer")
+resource_name = "AttacksAnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_ngl66"]
 await_completion = 2.5
@@ -18,17 +18,17 @@ custom_name = "Attack Sequence"
 children = [SubResource("BTPlayAnimation_ngl66")]
 
 [sub_resource type="BTCooldown" id="BTCooldown_nmrp6"]
-children = [SubResource("BTSequence_smetg")]
 duration = 2.0
 start_cooled = true
+children = [SubResource("BTSequence_smetg")]
 
 [sub_resource type="BTAction" id="BTAction_smetg"]
 custom_name = "Loot at ChaseTarget"
 script = ExtResource("2_ngl66")
 
 [sub_resource type="BBNode" id="BBNode_ngl66"]
-resource_name = "AttacksAnimationPlayer"
 saved_value = NodePath("AttacksAnimationPlayer")
+resource_name = "AttacksAnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_smetg"]
 await_completion = 4.0

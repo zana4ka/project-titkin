@@ -24,7 +24,10 @@ func apply_cooldown() -> void:
 	var swing_data := melee_data.mode_swing_data[current_payload]
 	cooldown_time_left = melee_data.base_cooldown * swing_data.cooldown_mul
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
 	
 	var melee_data := get_weapon_data() as ItemData_Melee
 	assert(melee_data.animation_library)

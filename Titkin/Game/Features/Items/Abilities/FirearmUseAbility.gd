@@ -26,7 +26,11 @@ func apply_cost() -> void:
 func apply_cooldown() -> void:
 	super()
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
+	
 	super()
 
 func _handle_use() -> void:

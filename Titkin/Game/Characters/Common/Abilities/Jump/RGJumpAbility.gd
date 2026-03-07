@@ -13,7 +13,10 @@ func _ready() -> void:
 func can_activate(in_payload: Variant) -> bool:
 	return super(in_payload) and get_owner_body().is_on_floor()
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
 	
 	var owner_pawn := get_owner_pawn()
 	var owner_body := get_owner_body()

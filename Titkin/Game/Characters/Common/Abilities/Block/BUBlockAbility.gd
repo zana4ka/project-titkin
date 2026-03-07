@@ -9,7 +9,11 @@ func _ready() -> void:
 func can_activate(in_payload: Variant) -> bool:
 	return super(in_payload)
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
+	
 	_handle_enable_block()
 
 func on_ability_ended(in_was_cancelled: bool) -> void:

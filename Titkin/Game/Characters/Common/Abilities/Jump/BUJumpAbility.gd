@@ -19,7 +19,10 @@ func _ready() -> void:
 func can_activate(in_payload: Variant) -> bool:
 	return super(in_payload) and not jump_animation_player.is_playing()
 
-func commit_ability() -> void:
+func activate_ability() -> void:
+	
+	if not commit_ability():
+		return
 	
 	var owner_pawn := get_owner_pawn()
 	
