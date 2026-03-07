@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=6 format=3 uid="uid://bfww4xcvkvhuc"]
+
+[ext_resource type="Texture2D" uid="uid://kmypxsqhynyv" path="res://addons/better-terrain/icons/Decoration.svg" id="1_pvuj3"]
+[ext_resource type="Resource" uid="uid://b3l8mxsr3m3vf" path="res://Titkin/Game/Features/Projectiles/Frag/FragBullet001.tres" id="1_ryqgr"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_7mlhh"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Titkin/Game/Features/Items/ItemData_Firearm.gd" id="2_fqtih"]
+
+[sub_resource type="Resource" id="Resource_8wyxl"]
+script = ExtResource("2_7mlhh")
+name = "Bony Revolver"
+image = ExtResource("1_pvuj3")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("2_fqtih")
+projectile_data = ExtResource("1_ryqgr")
+use_input_mode = 2
+base_cooldown = 0.4
+display_data = SubResource("Resource_8wyxl")
+metadata/_custom_type_script = "uid://do5e13gjl2835"

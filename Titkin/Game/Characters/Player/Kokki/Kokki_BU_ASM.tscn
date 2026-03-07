@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5j73lpvlpecg"]
+
+[ext_resource type="Script" uid="uid://duwpnjp588xx3" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateMachine.gd" id="1_5jujr"]
+[ext_resource type="Script" uid="uid://df5atr87vf8p1" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimState.gd" id="2_sb61g"]
+[ext_resource type="Script" uid="uid://dew121pto7ps0" path="res://addons/GodotCommons-Core/Scripts/Animations/AnimStateModifier.gd" id="3_qdtnt"]
+[ext_resource type="Script" uid="uid://nimhfric0pkf" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimationUpDown.gd" id="4_2lqvb"]
+[ext_resource type="Script" uid="uid://8qvrmw5qxbdw" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_IsMoving.gd" id="5_5icrw"]
+[ext_resource type="Script" uid="uid://b070pedpdftp" path="res://addons/GodotCommons-Core/Scripts/Animations/Conditions/TransitionCondition_HasTag.gd" id="7_spo86"]
+[ext_resource type="Script" uid="uid://dlidbgf6h7c47" path="res://addons/GodotCommons-Core/Scripts/Animations/Modifiers/Modifer_PlayAnimation_Sprite.gd" id="8_7jev6"]
+
+[sub_resource type="Resource" id="Resource_vm0ma"]
+script = ExtResource("4_2lqvb")
+metadata/_custom_type_script = "uid://nimhfric0pkf"
+
+[sub_resource type="Resource" id="Resource_utdwc"]
+script = ExtResource("4_2lqvb")
+animation_forward_name = &"move"
+metadata/_custom_type_script = "uid://nimhfric0pkf"
+
+[sub_resource type="Resource" id="Resource_tpanc"]
+script = ExtResource("4_2lqvb")
+animation_forward_name = &"jump"
+animation_up_name = &"jump"
+animation_down_name = &"jump"
+metadata/_custom_type_script = "uid://nimhfric0pkf"
+
+[sub_resource type="Resource" id="Resource_m2w36"]
+script = ExtResource("8_7jev6")
+animation_name = &"idle_crouch"
+metadata/_custom_type_script = "uid://dlidbgf6h7c47"
+
+[node name="PlayerRGPawn001_ASM" type="Node"]
+script = ExtResource("1_5jujr")
+metadata/_custom_type_script = "uid://duwpnjp588xx3"
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_vm0ma")])
+metadata/_custom_type_script = "uid://df5atr87vf8p1"
+
+[node name="ToMove_If_IsMoving" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("5_5icrw")
+go_to_state = NodePath("../../Move")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="ToJump_If_IsJumping" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_jumping"
+go_to_state = NodePath("../../Jump")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="ToCrouch_If_IsCrouching" type="Node" parent="Idle" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_crouching"
+go_to_state = NodePath("../../Crouch")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="Move" type="Node" parent="."]
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_utdwc")])
+metadata/_custom_type_script = "uid://df5atr87vf8p1"
+
+[node name="ToIdle_If_IsNotMoving" type="Node" parent="Move" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("5_5icrw")
+go_to_state = NodePath("../../Idle")
+inverse_condition = true
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="ToJump_If_IsJumping" type="Node" parent="Move" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_jumping"
+go_to_state = NodePath("../../Jump")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="ToCrouch_If_IsCrouching" type="Node" parent="Move" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_crouching"
+go_to_state = NodePath("../../Crouch")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_tpanc")])
+metadata/_custom_type_script = "uid://df5atr87vf8p1"
+
+[node name="ToIdle_If_IsNotJumping" type="Node" parent="Jump" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_jumping"
+go_to_state = NodePath("../../Idle")
+inverse_condition = true
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="ToCrouch_If_IsCrouching" type="Node" parent="Jump" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_crouching"
+go_to_state = NodePath("../../Crouch")
+metadata/_custom_type_script = "uid://dsigiit28upsy"
+
+[node name="Crouch" type="Node" parent="."]
+script = ExtResource("2_sb61g")
+modifiers = Array[ExtResource("3_qdtnt")]([SubResource("Resource_m2w36")])
+metadata/_custom_type_script = "uid://df5atr87vf8p1"
+
+[node name="ToIdle_If_IsNotCrouching" type="Node" parent="Crouch" node_paths=PackedStringArray("go_to_state")]
+script = ExtResource("7_spo86")
+tag = &"state_crouching"
+go_to_state = NodePath("../../Idle")
+inverse_condition = true
+metadata/_custom_type_script = "uid://dsigiit28upsy"

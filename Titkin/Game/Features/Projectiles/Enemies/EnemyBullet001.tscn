@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3ycib1kn0230"]
+
+[ext_resource type="Script" uid="uid://u5edhj3p2kl2" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D.gd" id="1_45d5b"]
+[ext_resource type="Script" uid="uid://creu52bxinsn4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Collision.gd" id="2_afrlx"]
+[ext_resource type="SpriteFrames" uid="uid://bvhstkutbr22q" path="res://Titkin/Game/Features/Projectiles/Rockets/Rocket001a_Frames.tres" id="3_4c1lg"]
+[ext_resource type="Script" uid="uid://0elqphnlbgtx" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Sprite.gd" id="4_mwf36"]
+[ext_resource type="Script" uid="uid://bhpkhuqr8vfux" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_ApplyForce.gd" id="5_7etpf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7l7rt"]
+radius = 3.0
+
+[node name="EnemyBullet" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4100
+collision_mask = 9
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_45d5b")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://u5edhj3p2kl2"
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("_owner")]
+shape = SubResource("CircleShape2D_7l7rt")
+script = ExtResource("2_afrlx")
+_owner = NodePath("..")
+metadata/_custom_type_script = "uid://creu52bxinsn4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+modulate = Color(1, 0.19999999, 1, 1)
+z_index = 3
+z_as_relative = false
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("3_4c1lg")
+script = ExtResource("4_mwf36")
+owner_projectile = NodePath("..")
+metadata/_custom_type_script = "uid://0elqphnlbgtx"
+
+[node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("5_7etpf")
+owner_projectile = NodePath("..")
+ApplyConstantAsVelocity = true
+metadata/_custom_type_script = "uid://bhpkhuqr8vfux"

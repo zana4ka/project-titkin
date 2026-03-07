@@ -1,0 +1,55 @@
+[gd_resource type="BehaviorTree" load_steps=17 format=3 uid="uid://dgf11gfcoo8mj"]
+
+[ext_resource type="BlackboardPlan" uid="uid://6uck4e580865" path="res://Titkin/Game/Characters/Enemies/TumbleBoar/TumbleBoar001_Blackboard.tres" id="1_s72tx"]
+[ext_resource type="Script" uid="uid://bcr48v473b5w7" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_AimAt.gd" id="2_ubvd5"]
+[ext_resource type="Resource" uid="uid://cgumiddqukrb6" path="res://Titkin/Game/Characters/Enemies/TumbleBoar/TumbleBoar001a_DashA.tres" id="3_1jf0s"]
+[ext_resource type="Script" uid="uid://dtqe8wcsgjxdf" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_TryDash.gd" id="4_n02ij"]
+[ext_resource type="Script" uid="uid://dpdyspl48sus1" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckVar.gd" id="5_xcojk"]
+[ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_UpdatePerceptionTarget.gd" id="6_g1il6"]
+
+[sub_resource type="BBVariant" id="BBVariant_scdcu"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_pcfpp"]
+variable = &"chase_target"
+check_type = 5
+value = SubResource("BBVariant_scdcu")
+
+[sub_resource type="BTAction" id="BTAction_xmay4"]
+custom_name = "Loot at ChaseTarget"
+script = ExtResource("2_ubvd5")
+
+[sub_resource type="BTAction" id="BTAction_2jmbt"]
+custom_name = "Dash A"
+script = ExtResource("4_n02ij")
+dash_variant = ExtResource("3_1jf0s")
+
+[sub_resource type="BTParallel" id="BTParallel_13780"]
+children = [SubResource("BTAction_xmay4"), SubResource("BTAction_2jmbt")]
+
+[sub_resource type="BTSequence" id="BTSequence_r6ruj"]
+custom_name = "Dash Sequence"
+children = [SubResource("BTCheckVar_pcfpp"), SubResource("BTParallel_13780")]
+
+[sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
+custom_name = "If Chase Target is set"
+children = [SubResource("BTSequence_r6ruj")]
+script = ExtResource("5_xcojk")
+value = null
+check_cooldown_time = 0.2
+
+[sub_resource type="BTWait" id="BTWait_rl6mg"]
+
+[sub_resource type="BTSelector" id="BTSelector_6ap5h"]
+children = [SubResource("BTDecorator_ti47n"), SubResource("BTWait_rl6mg")]
+
+[sub_resource type="BTDecorator" id="BTDecorator_wpsi5"]
+custom_name = "Update ChaseTarget"
+children = [SubResource("BTSelector_6ap5h")]
+script = ExtResource("6_g1il6")
+update_cooldown_time = 0.25
+
+[resource]
+blackboard_plan = ExtResource("1_s72tx")
+root_task = SubResource("BTDecorator_wpsi5")

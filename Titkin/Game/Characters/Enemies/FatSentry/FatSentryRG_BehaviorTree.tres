@@ -1,0 +1,46 @@
+[gd_resource type="BehaviorTree" load_steps=13 format=3 uid="uid://of6s2oiv161g"]
+
+[ext_resource type="BlackboardPlan" uid="uid://cjhl8esuuphek" path="res://Titkin/Game/Characters/Enemies/FatSentry/FatSentry001_Blackboard.tres" id="1_j5j5h"]
+[ext_resource type="Script" uid="uid://bnr47j4kav35a" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Actions/BTA_TryActivateAbilitiesByTag.gd" id="2_8pnkl"]
+[ext_resource type="Script" uid="uid://dpdyspl48sus1" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_CheckVar.gd" id="3_2aelo"]
+[ext_resource type="Script" uid="uid://dbep7mx156qgk" path="res://addons/GodotCommons-Core/Scripts/AI/Tasks/Decorators/BTD_UpdatePerceptionTarget.gd" id="4_5s074"]
+
+[sub_resource type="BBVariant" id="BBVariant_scdcu"]
+saved_value = null
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_pcfpp"]
+variable = &"chase_target"
+check_type = 5
+value = SubResource("BBVariant_scdcu")
+
+[sub_resource type="BTAction" id="BTAction_pcfpp"]
+custom_name = "Try Use Weapon"
+script = ExtResource("2_8pnkl")
+wait_timeout = 0.5
+
+[sub_resource type="BTSequence" id="BTSequence_r6ruj"]
+custom_name = "Shoot Sequence"
+children = [SubResource("BTCheckVar_pcfpp"), SubResource("BTAction_pcfpp")]
+
+[sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
+custom_name = "If Chase Target is set"
+children = [SubResource("BTSequence_r6ruj")]
+script = ExtResource("3_2aelo")
+value = null
+check_cooldown_time = 0.2
+
+[sub_resource type="BTWait" id="BTWait_rl6mg"]
+
+[sub_resource type="BTSelector" id="BTSelector_6ap5h"]
+children = [SubResource("BTDecorator_ti47n"), SubResource("BTWait_rl6mg")]
+
+[sub_resource type="BTDecorator" id="BTDecorator_wpsi5"]
+custom_name = "Update ChaseTarget"
+children = [SubResource("BTSelector_6ap5h")]
+script = ExtResource("4_5s074")
+update_cooldown_time = 0.25
+
+[resource]
+blackboard_plan = ExtResource("1_j5j5h")
+root_task = SubResource("BTDecorator_wpsi5")

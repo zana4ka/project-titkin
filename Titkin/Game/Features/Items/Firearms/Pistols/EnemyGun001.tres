@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=6 format=3 uid="uid://nq4ow1jdx7nq"]
+
+[ext_resource type="Texture2D" uid="uid://1yr6yruwl63u" path="res://addons/better-terrain/icons/NonModifying.svg" id="1_6yu4i"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_y7kpa"]
+[ext_resource type="Resource" uid="uid://c24tv6mehhfni" path="res://Titkin/Game/Features/Projectiles/Enemies/EnemyBullet001.tres" id="3_mmp8w"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Titkin/Game/Features/Items/ItemData_Firearm.gd" id="4_mmp8w"]
+
+[sub_resource type="Resource" id="Resource_x6d0i"]
+script = ExtResource("2_y7kpa")
+name = "Enemy Gun"
+image = ExtResource("1_6yu4i")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("4_mmp8w")
+projectile_data = ExtResource("3_mmp8w")
+use_input_mode = 1
+base_cooldown = null
+base_cooldown_special = null
+display_data = SubResource("Resource_x6d0i")
+quality = null
+use_controller_container = null
+max_stack = null
+shop_cost = null
+metadata/_custom_type_script = "uid://do5e13gjl2835"

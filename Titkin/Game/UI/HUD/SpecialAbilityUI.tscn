@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://15fmefk3y0be"]
+
+[ext_resource type="Script" uid="uid://c3gv8j0j7deto" path="res://Titkin/Game/UI/HUD/SpecialChargeUI.gd" id="1_ktpbc"]
+[ext_resource type="Texture2D" uid="uid://thcidvt57p8e" path="res://Titkin/Game/UI/HUD/ProgressBar001a.png" id="2_j4yi2"]
+
+[sub_resource type="Animation" id="Animation_j4yi2"]
+resource_name = "activated"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ebd1h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_677ec"]
+resource_name = "activation_failed"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.39215687, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ffc7"]
+_data = {
+&"RESET": SubResource("Animation_ebd1h"),
+&"activated": SubResource("Animation_j4yi2"),
+&"activation_failed": SubResource("Animation_677ec")
+}
+
+[node name="SpecialAbilityUI" type="MarginContainer" node_paths=PackedStringArray("charge_bar", "animation_player")]
+offset_right = 128.0
+offset_bottom = 16.0
+script = ExtResource("1_ktpbc")
+charge_bar = NodePath("ChargeBar")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="ChargeBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 0.4
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("2_j4yi2")
+texture_over = ExtResource("2_j4yi2")
+texture_progress = ExtResource("2_j4yi2")
+tint_under = Color(0.5, 0.44583333, 0.25, 1)
+tint_over = Color(0, 1, 1, 0)
+tint_progress = Color(1, 0.78431374, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6ffc7")
+}

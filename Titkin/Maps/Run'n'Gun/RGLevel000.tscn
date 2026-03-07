@@ -1,0 +1,182 @@
+[gd_scene load_steps=19 format=4 uid="uid://og43x5sn03bf"]
+
+[ext_resource type="Script" uid="uid://bdrewg3423ir6" path="res://Titkin/Maps/Run'n'Gun/RGLevelBase2D.gd" id="1_c1sd0"]
+[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Titkin/Core/GameMode/TitkinCampaign.tres" id="2_y4k3u"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Titkin/Core/GameMode/TitkinGameMode.tres" id="3_hsyv1"]
+[ext_resource type="Texture2D" uid="uid://48vkfwdmgip6" path="res://Titkin/Maps/Run'n'Gun/RGLevelBackground001_Full.png" id="4_8opwu"]
+[ext_resource type="Script" uid="uid://cnpq33rttt14r" path="res://addons/GodotCommons-Core/Scripts/Tiles/LevelTileMapLayer.gd" id="5_6vpxd"]
+[ext_resource type="Script" uid="uid://csxcu53w5isdb" path="res://addons/GodotCommons-Core/Scripts/Tiles/TileSets/LevelTileSet_TerrainData.gd" id="6_3anc2"]
+[ext_resource type="Resource" uid="uid://b1snpi7dm8m8e" path="res://Titkin/Game/Features/World/Tiles/Walls/StoneBrick001a_Wall.tres" id="7_es7yj"]
+[ext_resource type="Resource" uid="uid://btdjjr7mb7v2q" path="res://Titkin/Game/Features/World/Tiles/Walls/StoneBrick001b_Wall.tres" id="8_4jddd"]
+[ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="9_hlsta"]
+[ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="10_fvap2"]
+[ext_resource type="Script" uid="uid://cunyk2dvnndvj" path="res://addons/GodotCommons-Core/Scripts/Levels/ChangeLevel.gd" id="11_0rcdw"]
+[ext_resource type="Script" uid="uid://c6grk0368syxv" path="res://addons/GodotCommons-Core/Scripts/Levels/LevelNavigationRegion2D.gd" id="12_ynlmt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_560e3"]
+size = Vector2(2590, 225)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heq00"]
+size = Vector2(91, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4kxs"]
+size = Vector2(92, 8)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o4kxs"]
+distance = -76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5drtt"]
+resource_local_to_scene = true
+size = Vector2(32, 64)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o4kxs"]
+vertices = PackedVector2Array(-1482, 70, -4086, 70, -4086, 58, -1482, 58)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4096, 48, -1472, 48, -1472, 80, -4096, 80)])
+source_geometry_mode = 1
+
+[node name="RGLevel" type="Node2D" node_paths=PackedStringArray("level_bounds_collision", "default_player_spawn", "level_navigation_region")]
+script = ExtResource("1_c1sd0")
+level_bounds_collision = NodePath("LevelBounds/Collision")
+DefaultCampaign = ExtResource("2_y4k3u")
+DefaultGameMode = ExtResource("3_hsyv1")
+default_player_spawn = NodePath("PlayerSpawn")
+level_navigation_region = NodePath("NavigationRegion")
+metadata/_custom_type_script = "uid://bdrewg3423ir6"
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+z_as_relative = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_8opwu")
+
+[node name="LevelBounds" type="StaticBody2D" parent="."]
+position = Vector2(-2800, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="LevelBounds"]
+shape = SubResource("RectangleShape2D_560e3")
+debug_color = Color(0.7, 0.68833333, 0, 0)
+
+[node name="Platforms" type="StaticBody2D" parent="." groups=["navigation_polygon_source_geometry_group"]]
+position = Vector2(-3767, -19)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collision2" type="CollisionShape2D" parent="Platforms"]
+shape = SubResource("RectangleShape2D_heq00")
+
+[node name="Collision3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(214, 15.25)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(484, 1)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision5" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(783, 9)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision6" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(882, 0)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision7" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1145, 4)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision8" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1362, 5)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision9" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1511, 10)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision10" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1962, 20)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision11" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2063, -3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision12" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2306, 16)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision13" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2436, -3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision14" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2542, 31)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision15" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2663, 8)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision16" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(2753, -2)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision17" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3050, 3)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision18" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3188, 18)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision19" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3348, -2)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision20" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3584, 6)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Collision21" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(3454, 30)
+shape = SubResource("RectangleShape2D_o4kxs")
+
+[node name="Floor" type="StaticBody2D" parent="." groups=["navigation_polygon_source_geometry_group"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_o4kxs")
+
+[node name="LevelTileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("wall_layer") groups=["navigation_polygon_source_geometry_group"]]
+position = Vector2(0, 1000)
+tile_map_data = PackedByteArray("AAD+/wIAAAACAAMAAAD//wIAAAACAAMAAAAAAAIAAAACAAAAAAABAAIAAAACAAMAAAACAAIAAAACAAMAAAADAAIAAAACAAMAAAAEAAIAAAACAAAAAAD9/wIAAAACAAMAAAD8/wIAAAACAAAAAAD8/wMAAQAAAAEAAAD8/wQAAQAAAAEAAAD8/wUAAQAAAAEAAAAEAAMAAQAAAAEAAAAEAAQAAQABAAEAAAAEAAUAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAUAAQAAAAEAAAD7/wIAAAABAAMAAAAFAAIAAAADAAMAAAAIAAQAAAACAAMAAAAJAAQAAAACAAAAAAAKAAQAAAACAAMAAAALAAQAAAACAAMAAAAMAAQAAAACAAAAAAANAAQAAAACAAMAAAAOAAQAAAACAAMAAAAPAAQAAAACAAAAAAAQAAQAAAADAAMAAAAJAAUAAQAAAAEAAAAJAAYAAQAAAAEAAAAMAAUAAQAAAAEAAAAMAAYAAQAAAAEAAAAPAAUAAQAAAAEAAAAPAAYAAQAAAAEAAAAMAPz/AAACAAAAAAAMAP3/AQAAAAEAAAAMAP7/AQAAAAEAAAAMAP//AQAAAAEAAAAMAAAAAQAAAAIAAAALAPz/AAACAAMAAAAKAPz/AAACAAMAAAAJAPz/AAACAAMAAAAIAPz/AAACAAMAAAAHAPz/AAACAAMAAAAGAPz/AAACAAMAAAAFAPz/AAACAAMAAAAEAPz/AAABAAMAAAANAPz/AAACAAMAAAAOAPz/AAACAAMAAAAPAPz/AAACAAMAAAAQAPz/AAACAAMAAAARAPz/AAACAAMAAAASAPz/AAACAAMAAAATAPz/AAADAAMAAAAHAAQAAAACAAMAAAAGAAQAAAACAAMAAAAFAAQAAAACAAMAAAAEAAYAAQAAAAEAAAAEAAcAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAcAAQAAAAEAAAD8/wYAAQAAAAEAAAD8/wcAAQAAAAEAAAAJAAcAAQAAAAEAAAAMAAcAAQAAAAEAAAAPAAcAAQAAAAEAAAD0/wgAAAABAAMAAAD1/wgAAAACAAMAAAD2/wgAAAACAAMAAAD3/wgAAAACAAMAAAD4/wgAAAACAAMAAAD5/wgAAAACAAMAAAD6/wgAAAACAAMAAAD7/wgAAAACAAMAAAD8/wgAAAACAAIAAAD9/wgAAAACAAMAAAD+/wgAAAACAAMAAAD//wgAAAACAAMAAAAAAAgAAAACAAIAAAABAAgAAAACAAMAAAACAAgAAAACAAMAAAADAAgAAAACAAMAAAAEAAgAAAACAAIAAAAFAAgAAAACAAMAAAAGAAgAAAACAAMAAAAHAAgAAAACAAMAAAAIAAgAAAACAAMAAAAJAAgAAAACAAIAAAAKAAgAAAACAAMAAAALAAgAAAACAAMAAAAMAAgAAAACAAIAAAANAAgAAAACAAMAAAAOAAgAAAACAAMAAAAPAAgAAAACAAIAAAAQAAgAAAACAAMAAAARAAgAAAACAAMAAAASAAgAAAACAAMAAAATAAgAAAACAAMAAAAUAAgAAAACAAMAAAAVAAgAAAACAAMAAAAWAAgAAAACAAMAAAAXAAgAAAADAAMAAAD0//j/AAABAAMAAAD1//j/AAACAAMAAAD2//j/AAACAAMAAAD3//j/AAACAAMAAAD4//j/AAACAAMAAAD5//j/AAACAAMAAAD6//j/AAACAAMAAAD7//j/AAACAAMAAAD8//j/AAACAAMAAAD9//j/AAACAAMAAAD+//j/AAACAAMAAAD///j/AAACAAMAAAAAAPj/AAACAAMAAAABAPj/AAACAAMAAAACAPj/AAACAAMAAAADAPj/AAACAAMAAAAEAPj/AAACAAMAAAAFAPj/AAACAAMAAAAGAPj/AAACAAMAAAAHAPj/AAACAAMAAAAIAPj/AAACAAMAAAAJAPj/AAACAAMAAAAKAPj/AAACAAMAAAALAPj/AAACAAMAAAAMAPj/AAACAAMAAAANAPj/AAACAAMAAAAOAPj/AAACAAMAAAAPAPj/AAACAAMAAAAQAPj/AAACAAMAAAARAPj/AAACAAMAAAASAPj/AAACAAMAAAATAPj/AAACAAMAAAAUAPj/AAACAAMAAAAVAPj/AAACAAMAAAAWAPj/AAACAAMAAAAXAPj/AAADAAMAAAA=")
+script = ExtResource("5_6vpxd")
+terrain_data_array = Array[ExtResource("6_3anc2")]([ExtResource("7_es7yj"), ExtResource("8_4jddd")])
+wall_layer = NodePath(".")
+metadata/_custom_type_script = "uid://cnpq33rttt14r"
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("9_hlsta")]
+position = Vector2(-4000, 40)
+label_text = "Player
+Spawn"
+
+[node name="CommonTrigger" parent="." instance=ExtResource("10_fvap2")]
+position = Vector2(-1517, -12)
+scale = Vector2(1.295, 3.415)
+collision_shape = SubResource("RectangleShape2D_5drtt")
+is_enabled = true
+
+[node name="ChangeLevel" type="Node" parent="CommonTrigger"]
+script = ExtResource("11_0rcdw")
+level_scene_path = "res://Scenes/Levels/BULevel001.tscn"
+metadata/_custom_type_script = "uid://cunyk2dvnndvj"
+
+[node name="NavigationRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_o4kxs")
+script = ExtResource("12_ynlmt")
+metadata/_custom_type_script = "uid://c6grk0368syxv"
+
+[connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]

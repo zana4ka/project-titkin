@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CampaignData" load_steps=3 format=3 uid="uid://cwv3udsjh7euq"]
+
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Titkin/Core/GameMode/TitkinGameMode.tres" id="1_1u85p"]
+[ext_resource type="Script" uid="uid://btqpgfw8u73qk" path="res://addons/GodotCommons-Core/Scripts/Framework/CampaignData.gd" id="1_kuyxx"]
+
+[resource]
+script = ExtResource("1_kuyxx")
+game_mode_data = ExtResource("1_1u85p")
+levels_path_array = Array[String](["res://Scenes/Levels/RGLevel001.tscn"])
+metadata/_custom_type_script = "uid://btqpgfw8u73qk"

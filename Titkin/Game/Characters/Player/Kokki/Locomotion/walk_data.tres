@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://dask74lnpul1"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://bm2s32kjabq5i" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk.atlas" id="1_wec84"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://be6q3e08n8k2y" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk.skel" id="2_ctlt4"]
+
+[resource]
+atlas_res = ExtResource("1_wec84")
+skeleton_file_res = ExtResource("2_ctlt4")

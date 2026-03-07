@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpxyom3c88wf1"]
+
+[ext_resource type="Script" uid="uid://m8d46ueow242" path="res://Titkin/Game/Features/Spawners/TitkinSceneSpawner2D.gd" id="1_dc8d4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8huq"]
+resource_local_to_scene = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dc8d4"]
+radius = 16.0
+
+[node name="SceneSpawner" type="Marker2D" node_paths=PackedStringArray("trigger_area", "label")]
+script = ExtResource("1_dc8d4")
+trigger_area = NodePath("TriggerArea")
+label = NodePath("Label")
+label_text = "Pawn
+Spawner"
+label_settings = SubResource("LabelSettings_o8huq")
+metadata/_custom_type_script = "uid://m8d46ueow242"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(34, 37.5)
+text = "Pawn
+Spawner"
+label_settings = SubResource("LabelSettings_o8huq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TriggerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+input_pickable = false
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="TriggerArea"]
+shape = SubResource("CircleShape2D_dc8d4")

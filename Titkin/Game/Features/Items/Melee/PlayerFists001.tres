@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ItemData_Melee" load_steps=9 format=3 uid="uid://drtuq25hfnlab"]
+
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="1_fg7yx"]
+[ext_resource type="Texture2D" uid="uid://c7drvci3h1vt6" path="res://Titkin/Game/Characters/Player/Kokki/DEPRECATED/DefaultRGPawn001a_Punch.png" id="1_ngpys"]
+[ext_resource type="Script" uid="uid://cqfbxgeqa5nef" path="res://Titkin/Game/Features/Items/ItemData_Melee.gd" id="1_s1rsp"]
+[ext_resource type="AnimationLibrary" uid="uid://da2c537t4es6y" path="res://Titkin/Game/Features/Items/Melee/PlayerFists001_Animations.tres" id="1_v284c"]
+[ext_resource type="Script" uid="uid://bbqn2e4c3ug8x" path="res://Titkin/Game/Features/Items/ItemData_MeleeSwingData.gd" id="3_ccff4"]
+
+[sub_resource type="Resource" id="Resource_ngpys"]
+script = ExtResource("1_fg7yx")
+name = "Player Fists"
+image = ExtResource("1_ngpys")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="Resource" id="Resource_v284c"]
+script = ExtResource("3_ccff4")
+animation_name = &"punch_light"
+metadata/_custom_type_script = "uid://bbqn2e4c3ug8x"
+
+[sub_resource type="Resource" id="Resource_rlwul"]
+script = ExtResource("3_ccff4")
+animation_name = &"punch_heavy"
+cooldown_mul = 2.0
+metadata/_custom_type_script = "uid://bbqn2e4c3ug8x"
+
+[resource]
+script = ExtResource("1_s1rsp")
+mode_swing_data = Dictionary[int, ExtResource("3_ccff4")]({
+0: SubResource("Resource_v284c"),
+1: SubResource("Resource_rlwul")
+})
+animation_library = ExtResource("1_v284c")
+use_input_mode = 1
+base_cooldown = 0.4
+display_data = SubResource("Resource_ngpys")
+metadata/_custom_type_script = "uid://cqfbxgeqa5nef"

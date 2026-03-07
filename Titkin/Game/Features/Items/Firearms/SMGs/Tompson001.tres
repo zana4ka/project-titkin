@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=6 format=3 uid="uid://8p8jxc57ubh1"]
+
+[ext_resource type="Texture2D" uid="uid://b0es228gfcykd" path="res://addons/better-terrain/icons/Warning.svg" id="1_g5sbi"]
+[ext_resource type="Resource" uid="uid://dqav5kysmahu" path="res://Titkin/Game/Features/Projectiles/Sine/SineBullet001.tres" id="1_ls23t"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_egeu3"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Titkin/Game/Features/Items/ItemData_Firearm.gd" id="2_f7oua"]
+
+[sub_resource type="Resource" id="Resource_fng56"]
+script = ExtResource("2_egeu3")
+name = "Plastelin Tompson"
+image = ExtResource("1_g5sbi")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("2_f7oua")
+projectile_data = ExtResource("1_ls23t")
+use_input_mode = 2
+base_cooldown = 0.2
+display_data = SubResource("Resource_fng56")
+quality = null
+use_controller_container = null
+max_stack = null
+shop_cost = null
+metadata/_custom_type_script = "uid://do5e13gjl2835"

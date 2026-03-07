@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://sn3lp0rqv4nw"]
+
+[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Titkin/Core/Characters/RGPawn2D.gd" id="1_e8myb"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_qwvd7"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_fmvtm"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dask74lnpul1" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk_data.tres" id="4_fy6q7"]
+[ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Titkin/Core/Characters/Components/Pawn2D_WeaponSprite.gd" id="5_1qbwr"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Titkin/Game/Characters/Common/HurtAnimationLibrary.tres" id="6_36sxb"]
+[ext_resource type="PackedScene" uid="uid://do17aimitageq" path="res://Titkin/Game/Characters/Player/Kokki/Kokki_RG_ASM.tscn" id="7_1kp1q"]
+[ext_resource type="Script" uid="uid://1wjmc55aqllr" path="res://addons/GodotCommons-Core/Scripts/Animations/Montages/AnimMontagePlayer_Spine.gd" id="8_v5u72"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="9_7baa2"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="10_mlqnt"]
+[ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Titkin/Core/Characters/Components/Pawn2D_SpecialCharge.gd" id="11_b22x4"]
+[ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Titkin/Core/AbilitySystem/TitkinASC.gd" id="12_1ntgj"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="13_8bxf1"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="14_hdofw"]
+[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Titkin/Game/Characters/Common/Abilities/Jump/RGJumpAbility.gd" id="15_s2prw"]
+[ext_resource type="Script" uid="uid://lu83ha6bay5f" path="res://Titkin/Game/Characters/Common/Abilities/Crouch/RGCrouchAbility.gd" id="16_4cy5g"]
+[ext_resource type="Script" uid="uid://d3u2nglhsf6i7" path="res://Titkin/Game/Characters/Common/Abilities/LockMovement/RGLockMovementAbility.gd" id="17_h7fh3"]
+
+[sub_resource type="Resource" id="Resource_e0c3u"]
+script = ExtResource("2_qwvd7")
+name = "Run'n'Gun Player"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+resource_local_to_scene = true
+height = 38.0
+
+[node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+collision_layer = 4097
+collision_mask = 136
+script = ExtResource("1_e8myb")
+unique_name = &"RGPlayer"
+display_data = SubResource("Resource_e0c3u")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+max_health = 12.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("SpineSprite/HurtAnimationPlayer")
+pawn_input_actions = Array[StringName]([&"move_up", &"move_down", &"primary_attack", &"special_attack", &"jump", &"lock_movement", &"crouch"])
+pawn_input_callables = Array[StringName]([&"handle_move_up_input", &"handle_move_down_input", &"handle_primary_attack_input", &"handle_special_attack_input", &"handle_jump_input", &"handle_lock_movement_input", &"handle_crouch_input"])
+character_movement = NodePath("CharacterMovement")
+set_override_level_music_on_spawn = false
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+shape = SubResource("CapsuleShape2D_j84it")
+script = ExtResource("3_fmvtm")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("4_fy6q7")
+update_mode = 1
+preview_skin = "Default"
+preview_animation = "animation"
+preview_frame = true
+preview_time = 0.0
+z_index = 2
+z_as_relative = false
+position = Vector2(0, 19)
+scale = Vector2(0.073, 0.073)
+
+[node name="Weapon" type="AnimatedSprite2D" parent="SpineSprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+show_behind_parent = true
+z_index = 2
+offset = Vector2(128, 0)
+script = ExtResource("5_1qbwr")
+owner_pawn = NodePath("../..")
+owner_asc = NodePath("../../AbilitySystemComponent")
+metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="SpineSprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("6_36sxb")
+}
+
+[node name="ASM" parent="SpineSprite" node_paths=PackedStringArray("owner_body", "owner_tags_container", "owner_animated_target", "montage_player") instance=ExtResource("7_1kp1q")]
+owner_body = NodePath("../..")
+owner_tags_container = NodePath("../../AbilitySystemComponent/TagsContainer")
+owner_animated_target = NodePath("..")
+montage_player = NodePath("../SpineMontagePlayer")
+
+[node name="SpineMontagePlayer" type="Node" parent="SpineSprite" node_paths=PackedStringArray("spine")]
+script = ExtResource("8_v5u72")
+spine = NodePath("..")
+metadata/_custom_type_script = "uid://1wjmc55aqllr"
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("9_7baa2")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
+script = ExtResource("10_mlqnt")
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+launch_velocity_reset_threshold = 40.0
+move_speed = 150.0
+floor_acceleration = 3000.0
+input_vector_mul = Vector2(1, 0)
+metadata/_custom_type_script = "uid://bhtvb465l63d1"
+
+[node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
+script = ExtResource("11_b22x4")
+owner_pawn = NodePath("..")
+metadata/_custom_type_script = "uid://7qnso3ivyyyw"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container", "animation_player")]
+script = ExtResource("12_1ntgj")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("13_8bxf1")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("14_hdofw")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AbilitySystemComponent"]
+
+[node name="Jump" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_s2prw")
+ability_tags = Array[StringName]([&"jump_ability"])
+owner_granted_tags = Array[StringName]([&"state_jumping"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
+metadata/_custom_type_script = "uid://baf2rkscj0a85"
+
+[node name="Crouch" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("16_4cy5g")
+ability_tags = Array[StringName]([&"crouch_ability"])
+owner_granted_tags = Array[StringName]([&"state_crouching", &"block_input_movement"])
+owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
+metadata/_custom_type_script = "uid://lu83ha6bay5f"
+
+[node name="LockMovement" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("17_h7fh3")
+ability_tags = Array[StringName]([&"lock_movement_ability"])
+owner_granted_tags = Array[StringName]([&"state_locked_movement", &"block_input_movement"])
+metadata/_custom_type_script = "uid://d3u2nglhsf6i7"

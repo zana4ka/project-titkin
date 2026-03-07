@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c5ojj38dg3wvp"]
+
+[ext_resource type="Texture2D" uid="uid://c61rtvsbjbcvb" path="res://Titkin/Game/Characters/Enemies/DollyPups/DollyPups001a.png" id="1_inq2k"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_inq2k")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

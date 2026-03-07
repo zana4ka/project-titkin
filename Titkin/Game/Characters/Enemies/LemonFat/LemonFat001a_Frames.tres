@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c7v51pros5urm"]
+
+[ext_resource type="Texture2D" uid="uid://c88gmxv4n8vkk" path="res://Titkin/Game/Characters/Enemies/LemonFat/LemonFat001a.png" id="1_cleq2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cleq2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cleq2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cleq2")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]

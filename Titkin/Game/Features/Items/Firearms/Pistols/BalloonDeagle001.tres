@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=6 format=3 uid="uid://cjkudcwbeips0"]
+
+[ext_resource type="Texture2D" uid="uid://8mcycyl3e66r" path="res://addons/better-terrain/icons/SymmetryRotate180.svg" id="1_ejo8k"]
+[ext_resource type="Resource" uid="uid://u0hk1rbgje5a" path="res://Titkin/Game/Features/Projectiles/Homing/HomingBullet001.tres" id="1_visq1"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Titkin/Game/Features/Items/ItemData_Firearm.gd" id="2_hp863"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_wgca8"]
+
+[sub_resource type="Resource" id="Resource_tfpk6"]
+script = ExtResource("2_wgca8")
+name = "Balloon Deage"
+image = ExtResource("1_ejo8k")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("2_hp863")
+projectile_data = ExtResource("1_visq1")
+use_input_mode = 2
+base_cooldown = 0.4
+display_data = SubResource("Resource_tfpk6")
+metadata/_custom_type_script = "uid://do5e13gjl2835"

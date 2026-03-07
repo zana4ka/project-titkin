@@ -1,0 +1,157 @@
+[gd_scene load_steps=23 format=3 uid="uid://cd5nufc5i7s8x"]
+
+[ext_resource type="Script" uid="uid://diyklco5710os" path="res://Titkin/Core/Characters/RGPawn2D.gd" id="1_ksap6"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_i1te5"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_xkfqq"]
+[ext_resource type="SpriteFrames" uid="uid://bon38mdffgrp7" path="res://Titkin/Game/Characters/Enemies/TumbleBoar/TumbleBoar001a_Frames.tres" id="4_0ijga"]
+[ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_ovlux"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Titkin/Game/Characters/Common/HurtAnimationLibrary.tres" id="9_ktxr5"]
+[ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_v0l68"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_gjbeo"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="12_2qe74"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="13_4u8vk"]
+[ext_resource type="Script" uid="uid://balxeodldstwh" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Abilities/AbilitySystemComponent.gd" id="14_jmnvi"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_5cty5"]
+[ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Titkin/Game/Characters/Common/Abilities/Jump/RGJumpAbility.gd" id="16_252yq"]
+[ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="17_xibfa"]
+[ext_resource type="BehaviorTree" uid="uid://dgf11gfcoo8mj" path="res://Titkin/Game/Characters/Enemies/TumbleBoar/TumbleBoarRG_BehaviorTree.tres" id="18_0ijga"]
+[ext_resource type="Script" uid="uid://tiydei6d7ym3" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Dash.gd" id="19_xkfqq"]
+[ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="20_5sg54"]
+
+[sub_resource type="Resource" id="Resource_mhkle"]
+script = ExtResource("2_i1te5")
+name = "Tumble Boar"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
+radius = 256.0
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ic5on"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovlux"]
+radius = 9.0
+height = 34.0
+
+[node name="TumbleBoar" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+collision_layer = 4098
+collision_mask = 136
+script = ExtResource("1_ksap6")
+unique_name = &"TumbleBoar"
+display_data = SubResource("Resource_mhkle")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+max_health = 5.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
+character_movement = NodePath("CharacterMovement")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j84it")
+script = ExtResource("3_xkfqq")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn")]
+z_index = 2
+z_as_relative = false
+scale = Vector2(0.25, 0.1)
+sprite_frames = ExtResource("4_0ijga")
+animation = &"dash"
+script = ExtResource("5_ovlux")
+owner_pawn = NodePath("..")
+metadata/_custom_type_script = "uid://b544r1fp46py5"
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("9_ktxr5")
+}
+
+[node name="Perception" type="Area2D" parent="." node_paths=PackedStringArray("sight_collision")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("10_v0l68")
+sight_collision = NodePath("Collision")
+on_sight_shape_size_mul = 5.0
+metadata/_custom_type_script = "uid://dwk4xt5j46aja"
+
+[node name="Collision" type="CollisionShape2D" parent="Perception"]
+shape = SubResource("CircleShape2D_34gwh")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("11_gjbeo")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
+script = ExtResource("12_2qe74")
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+input_vector_mul = Vector2(1, 0)
+metadata/_custom_type_script = "uid://bhtvb465l63d1"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "tags_container")]
+script = ExtResource("14_jmnvi")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+metadata/_custom_type_script = "uid://balxeodldstwh"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("13_4u8vk")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_5cty5")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="Jump" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("16_252yq")
+ability_tags = Array[StringName]([&"jump_ability"])
+owner_granted_tags = Array[StringName]([&"state_jumping"])
+owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
+metadata/_custom_type_script = "uid://baf2rkscj0a85"
+
+[node name="Navigation" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("owner_pawn", "owner_movement")]
+script = ExtResource("17_xibfa")
+owner_pawn = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+jump_on_vertical_path = true
+metadata/_custom_type_script = "uid://8b6d3s52mbag"
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("18_0ijga")
+blackboard_plan = SubResource("BlackboardPlan_ic5on")
+
+[node name="Dash" type="Node" parent="." node_paths=PackedStringArray("owner_movement", "owner_contact_damage", "owner_sprite", "owner_perception", "owner_navigation")]
+script = ExtResource("19_xkfqq")
+owner_movement = NodePath("../CharacterMovement")
+owner_contact_damage = NodePath("../ContactDamageArea")
+owner_sprite = NodePath("../Sprite")
+owner_perception = NodePath("../Perception")
+owner_navigation = NodePath("../Navigation")
+metadata/_custom_type_script = "uid://tiydei6d7ym3"
+
+[node name="ContactDamageArea" type="Area2D" parent="." node_paths=PackedStringArray("owner_body", "owner_movement", "owner_perception")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("20_5sg54")
+owner_body = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+owner_perception = NodePath("../Perception")
+damage = 1.0
+damage_initial_delay = 0.0
+metadata/_custom_type_script = "uid://4jl4uwkymrui"
+
+[node name="Collision" type="CollisionShape2D" parent="ContactDamageArea"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ovlux")
+debug_color = Color(1, 1, 0, 0.078431375)

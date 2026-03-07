@@ -1,0 +1,337 @@
+[gd_scene load_steps=29 format=3 uid="uid://djdduwbts041m"]
+
+[ext_resource type="Script" uid="uid://bxuy6b8kjeo68" path="res://Titkin/Core/Characters/BUPawn2D.gd" id="1_5a583"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_gvggq"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_io3i3"]
+[ext_resource type="SpriteFrames" uid="uid://c7v51pros5urm" path="res://Titkin/Game/Characters/Enemies/LemonFat/LemonFat001a_Frames.tres" id="4_uq6dl"]
+[ext_resource type="Script" uid="uid://b544r1fp46py5" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Sprite.gd" id="5_krohv"]
+[ext_resource type="Script" uid="uid://4jl4uwkymrui" path="res://addons/GodotCommons-Core/Scripts/Common/DamageArea2D.gd" id="8_47jnq"]
+[ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Titkin/Game/Characters/Common/HurtAnimationLibrary.tres" id="9_3m4r6"]
+[ext_resource type="Texture2D" uid="uid://b0es228gfcykd" path="res://addons/better-terrain/icons/Warning.svg" id="9_5a583"]
+[ext_resource type="Script" uid="uid://dwk4xt5j46aja" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Perception.gd" id="10_wgi8q"]
+[ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="11_ep486"]
+[ext_resource type="Script" uid="uid://dip6wdyj6fnn0" path="res://Titkin/Core/Characters/Components/Pawn2D_PingPong.gd" id="12_3tc0t"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="12_300bl"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="13_jns0w"]
+[ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_omutq"]
+[ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Titkin/Core/AbilitySystem/TitkinASC.gd" id="14_uq6dl"]
+[ext_resource type="BehaviorTree" uid="uid://b7r4sk0e8j4po" path="res://Titkin/Game/Characters/Enemies/LemonFat/LemonFat001_BehaviorTree.tres" id="15_47jnq"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="15_kxhff"]
+[ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Titkin/Game/Features/Items/ItemContainer_Weapons.gd" id="15_uq6dl"]
+
+[sub_resource type="Resource" id="Resource_mhkle"]
+script = ExtResource("2_gvggq")
+name = "Lemot Fat"
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j84it"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47jnq"]
+radius = 9.0
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34gwh"]
+radius = 256.0
+
+[sub_resource type="Animation" id="Animation_5a583"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PingPong:force_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContactDamageArea/Collision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ContactDamageArea/Collision:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_47jnq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ContactDamageArea/Collision/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47jnq"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_47jnq"]
+resource_name = "horizontal_attack"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PingPong:force_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContactDamageArea/Collision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(128, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ContactDamageArea/Collision:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CircleShape2D_47jnq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ContactDamageArea/Collision/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3tc0t"]
+resource_name = "vertical_movement"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PingPong:force_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContactDamageArea/Collision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ContactDamageArea/Collision:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_47jnq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ContactDamageArea/Collision/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5a583"]
+_data = {
+&"RESET": SubResource("Animation_5a583"),
+&"horizontal_attack": SubResource("Animation_47jnq"),
+&"vertical_movement": SubResource("Animation_3tc0t")
+}
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_47jnq"]
+
+[node name="LemotFat" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
+collision_layer = 4098
+collision_mask = 136
+motion_mode = 1
+script = ExtResource("1_5a583")
+unique_name = &"LemonFat"
+display_data = SubResource("Resource_mhkle")
+asc = NodePath("AbilitySystemComponent")
+attribute_set = NodePath("AbilitySystemComponent/AttributeSet")
+max_health = 25.0
+damage_receiver = NodePath("DamageReceiver")
+damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
+character_movement = NodePath("CharacterMovement")
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j84it")
+script = ExtResource("3_io3i3")
+OwnerPawn = NodePath("..")
+metadata/_custom_type_script = "uid://cry48n5lfcsip"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_pawn", "flip_transform_targets")]
+z_index = 2
+z_as_relative = false
+position = Vector2(0, -16)
+scale = Vector2(0.04, 0.04)
+sprite_frames = ExtResource("4_uq6dl")
+animation = &"idle"
+offset = Vector2(0, 96)
+script = ExtResource("5_krohv")
+owner_pawn = NodePath("..")
+flip_transform_targets = [NodePath("../ContactDamageArea")]
+metadata/_custom_type_script = "uid://b544r1fp46py5"
+
+[node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("9_3m4r6")
+}
+
+[node name="ContactDamageArea" type="Area2D" parent="." node_paths=PackedStringArray("owner_body", "owner_movement", "owner_perception")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("8_47jnq")
+owner_body = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+owner_perception = NodePath("../Perception")
+damage = 1.0
+damage_initial_delay = 0.0
+metadata/_custom_type_script = "uid://4jl4uwkymrui"
+
+[node name="Collision" type="CollisionShape2D" parent="ContactDamageArea"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_47jnq")
+debug_color = Color(1, 1, 0, 0.078431375)
+
+[node name="Sprite2D" type="Sprite2D" parent="ContactDamageArea/Collision"]
+visible = false
+z_index = -1
+z_as_relative = false
+scale = Vector2(2, 2)
+texture = ExtResource("9_5a583")
+
+[node name="Perception" type="Area2D" parent="." node_paths=PackedStringArray("sight_collision")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("10_wgi8q")
+sight_collision = NodePath("Collision")
+metadata/_custom_type_script = "uid://dwk4xt5j46aja"
+
+[node name="Collision" type="CollisionShape2D" parent="Perception"]
+shape = SubResource("CircleShape2D_34gwh")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="DamageReceiver" type="Node" parent="." node_paths=PackedStringArray("owner_body_2d", "owner_attribute_set")]
+script = ExtResource("11_ep486")
+owner_body_2d = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+metadata/_custom_type_script = "uid://dfo40qnjk0be"
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
+script = ExtResource("13_jns0w")
+owner_pawn = NodePath("..")
+owner_body = NodePath("..")
+owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+apply_gravity = false
+should_bounce = true
+input_vector_mul = Vector2(1, 0)
+metadata/_custom_type_script = "uid://bhtvb465l63d1"
+
+[node name="AbilitySystemComponent" type="Node" parent="." node_paths=PackedStringArray("weapons_container", "owner_pawn", "tags_container")]
+script = ExtResource("14_uq6dl")
+weapons_container = NodePath("WeaponContainer")
+owner_pawn = NodePath("..")
+tags_container = NodePath("TagsContainer")
+metadata/_custom_type_script = "uid://dan6o08asxujj"
+
+[node name="AttributeSet" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("12_300bl")
+metadata/_custom_type_script = "uid://3rqvl40lgjk2"
+
+[node name="TagsContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_kxhff")
+metadata/_custom_type_script = "uid://d4bq5plnifoud"
+
+[node name="WeaponContainer" type="Node" parent="AbilitySystemComponent"]
+script = ExtResource("15_uq6dl")
+_slots_num_max = 1
+metadata/_custom_type_script = "uid://ixow33718sdq"
+
+[node name="PingPong" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_character_movement")]
+script = ExtResource("12_3tc0t")
+owner_pawn = NodePath("..")
+owner_character_movement = NodePath("../CharacterMovement")
+metadata/_custom_type_script = "uid://dip6wdyj6fnn0"
+
+[node name="Navigation" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("owner_pawn", "owner_movement")]
+debug_enabled = true
+script = ExtResource("14_omutq")
+owner_pawn = NodePath("..")
+owner_movement = NodePath("../CharacterMovement")
+jump_on_vertical_path = true
+metadata/_custom_type_script = "uid://8b6d3s52mbag"
+
+[node name="AttacksAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5a583")
+}
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("15_47jnq")
+blackboard_plan = SubResource("BlackboardPlan_47jnq")

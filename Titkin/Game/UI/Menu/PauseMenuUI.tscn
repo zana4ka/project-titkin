@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://bf7co1i8gbgyg"]
+
+[ext_resource type="Script" uid="uid://63ghg4l2114j" path="res://addons/GodotCommons-Core/Scripts/UI/Menu/PauseMenuUI.gd" id="1_nvvap"]
+[ext_resource type="Shader" uid="uid://de1yy6j4qmloa" path="res://addons/GodotCommons-Core/Assets/UI/FX/VHSFX_Shader.gdshader" id="2_8feg1"]
+[ext_resource type="PackedScene" uid="uid://by0scmspmhlye" path="res://addons/GodotCommons-Core/Scenes/UI/FX/Background001.tscn" id="3_hl71g"]
+[ext_resource type="PackedScene" uid="uid://cq1ntov28domc" path="res://addons/GodotCommons-Core/Scenes/UI/FX/VHSButton.tscn" id="4_r6qlr"]
+[ext_resource type="Shortcut" uid="uid://b2cq7d8clou4x" path="res://addons/GodotCommons-Core/Assets/UI/Shortcuts/BackShortcut.tres" id="5_bffbf"]
+[ext_resource type="PackedScene" uid="uid://bcucylkusgktl" path="res://Titkin/Game/UI/Menu/SettingsUI.tscn" id="6_cbrvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bffbf"]
+shader = ExtResource("2_8feg1")
+shader_parameter/time_speed = 1.0
+shader_parameter/split_amount = 1.5
+shader_parameter/flicker_intensity = 0.2
+shader_parameter/noise_strength = 0.05
+
+[sub_resource type="Gradient" id="Gradient_cbrvq"]
+colors = PackedColorArray(0, 0, 0, 0.39215687, 0, 0, 0, 0.39215687)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bffbf"]
+gradient = SubResource("Gradient_cbrvq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd20h"]
+resource_local_to_scene = true
+shader = ExtResource("2_8feg1")
+shader_parameter/time_speed = 1.0
+shader_parameter/split_amount = 1.5
+shader_parameter/flicker_intensity = 0.2
+shader_parameter/noise_strength = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6qlr"]
+resource_local_to_scene = true
+shader = ExtResource("2_8feg1")
+shader_parameter/time_speed = 1.0
+shader_parameter/split_amount = 1.5
+shader_parameter/flicker_intensity = 0.2
+shader_parameter/noise_strength = 0.05
+
+[node name="PauseMenuUI" type="CanvasLayer" node_paths=PackedStringArray("visibility_control", "continue_option", "main_menu_option")]
+process_mode = 3
+layer = 5
+script = ExtResource("1_nvvap")
+visibility_control = NodePath("Control")
+lerp_visible = true
+continue_option = NodePath("Control/MC/HB/Options/Continue")
+main_menu_option = NodePath("Control/MC/HB/Options/MainMenu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="Control" instance=ExtResource("3_hl71g")]
+self_modulate = Color(1, 1, 1, 0.39215687)
+material = SubResource("ShaderMaterial_bffbf")
+layout_mode = 1
+texture = SubResource("GradientTexture1D_bffbf")
+
+[node name="MC" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="HB" type="HBoxContainer" parent="Control/MC"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Options" type="VBoxContainer" parent="Control/MC/HB"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Continue" parent="Control/MC/HB/Options" instance=ExtResource("4_r6qlr")]
+material = SubResource("ShaderMaterial_yd20h")
+custom_minimum_size = Vector2(83, 23)
+layout_mode = 2
+size_flags_vertical = 3
+shortcut = ExtResource("5_bffbf")
+label_text = "CONTINUE"
+label_horizontal_alignment = 0
+label_vertical_alignment = 0
+use_forced_anchors_preset = true
+forced_anchors_preset = 9
+scale_offset = 0.01
+rotation_offset = 0.01
+
+[node name="MainMenu" parent="Control/MC/HB/Options" instance=ExtResource("4_r6qlr")]
+material = SubResource("ShaderMaterial_r6qlr")
+custom_minimum_size = Vector2(98, 23)
+layout_mode = 2
+size_flags_vertical = 3
+label_text = "MAIN_MENU"
+label_horizontal_alignment = 0
+label_vertical_alignment = 0
+use_forced_anchors_preset = true
+forced_anchors_preset = 9
+scale_speed = 3.0
+scale_offset = 0.01
+rotation_speed = 1.0
+rotation_offset = 0.01
+
+[node name="SettingsSC" type="ScrollContainer" parent="Control/MC/HB"]
+custom_minimum_size = Vector2(400, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="MC" type="MarginContainer" parent="Control/MC/HB/SettingsSC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="SettingsUI" parent="Control/MC/HB/SettingsSC/MC" instance=ExtResource("6_cbrvq")]
+layout_mode = 2
+size_flags_vertical = 1
