@@ -4,7 +4,7 @@ class_name RGLockMovementAbility
 
 func _ready() -> void:
 	ability_tags = [ TitkinTags.lock_movement_ability ]
-	owner_granted_tags = [ TitkinTags.state_locked_movement, CommonTags.block_input_movement ]
+	owner_granted_tags = [ TitkinTags.state_locked_movement, CommonTags.movement_input_ignore ]
 
 func can_activate(in_payload: Variant) -> bool:
 	return super(in_payload)

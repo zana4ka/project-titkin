@@ -13,6 +13,9 @@ func _ready() -> void:
 		assert(character_movement)
 
 func _process(in_delta: float) -> void:
+	
+	#super(in_delta)
+	
 	_process_aim_direction(in_delta)
 
 ##
@@ -29,7 +32,7 @@ func adjust_body_direction(in_direction: Vector2) -> Vector2:
 
 func _process_aim_direction(in_delta: float) -> void:
 	
-	if asc.tags_container.has_tag(CommonTags.block_input_movement):
+	if asc.tags_container.has_tag(CommonTags.input_block_movement):
 		
 		if character_movement.last_movement_input.is_zero_approx():
 			if sync_aim_with_body_direction:

@@ -7,7 +7,7 @@ class_name RGCrouchAbility
 
 func _ready() -> void:
 	ability_tags = [ CommonTags.crouch_ability ]
-	owner_granted_tags = [ CommonTags.state_crouching, CommonTags.block_input_movement ]
+	owner_granted_tags = [ CommonTags.state_crouching, CommonTags.input_block_movement ]
 	owner_must_not_have_tags = [ TitkinTags.state_locked_movement ]
 
 func can_activate(in_payload: Variant) -> bool:

@@ -46,6 +46,7 @@ max_health = 5.0
 damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 character_movement = NodePath("CharacterMovement")
+draw_debug = true
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
 shape = SubResource("CapsuleShape2D_j84it")

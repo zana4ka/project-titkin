@@ -176,13 +176,14 @@ metadata/_custom_type_script = "uid://chkuc2e7a3j0d"
 script = ExtResource("11_3sq2q")
 metadata/_custom_type_script = "uid://bgh1rtperm4f0"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("jump_animation_player", "jump_offset_targets", "owner_pawn", "owner_body", "owner_attribute_set", "owner_tags_container")]
 script = ExtResource("12_n0y3n")
 jump_animation_player = NodePath("../AbilitySystemComponent/Jump/AnimationPlayer")
 jump_offset_targets = [NodePath("../Collision"), NodePath("../Sprite")]
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+owner_tags_container = NodePath("../AbilitySystemComponent/TagsContainer")
 apply_gravity = false
 move_speed = 64.0
 floor_acceleration = 1280.0
@@ -234,6 +235,6 @@ libraries = {
 [node name="Block" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("22_f6nj0")
 ability_tags = Array[StringName]([&"block_ability"])
-owner_granted_tags = Array[StringName]([&"state_blocking", &"block_input_movement"])
+owner_granted_tags = Array[StringName]([&"state_blocking", &"input_block_movement"])
 owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
 metadata/_custom_type_script = "uid://b54jph2vkff3l"

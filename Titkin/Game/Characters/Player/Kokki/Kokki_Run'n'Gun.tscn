@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://sn3lp0rqv4nw"]
+[gd_scene load_steps=30 format=3 uid="uid://sn3lp0rqv4nw"]
 
 [ext_resource type="Script" uid="uid://diyklco5710os" path="res://Titkin/Core/Characters/RGPawn2D.gd" id="1_44rto"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_mxs0p"]
@@ -41,13 +41,6 @@ action_name = &"primary_attack"
 ability_tag = &"weapon_use_ability"
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
-[sub_resource type="Resource" id="Resource_44rto"]
-script = ExtResource("14_kbw6p")
-action_name = &"secondary_attack"
-ability_tag = &"weapon_use_ability"
-payload_mode = 1
-metadata/_custom_type_script = "uid://b448wahx8w5gt"
-
 [sub_resource type="Resource" id="Resource_mxs0p"]
 script = ExtResource("14_kbw6p")
 action_name = &"special_attack"
@@ -87,6 +80,7 @@ damage_receiver = NodePath("DamageReceiver")
 damage_animation_player = NodePath("Sprite/HurtAnimationPlayer")
 character_movement = NodePath("CharacterMovement")
 set_override_level_music_on_spawn = false
+draw_debug = true
 
 [node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("OwnerPawn")]
 shape = SubResource("CapsuleShape2D_j84it")
@@ -109,7 +103,7 @@ scale = Vector2(0.073, 0.073)
 [node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
 show_behind_parent = true
 z_index = 2
-position = Vector2(150, -250)
+position = Vector2(100, -250)
 script = ExtResource("5_mx15s")
 owner_pawn = NodePath("../..")
 owner_asc = NodePath("../../AbilitySystemComponent")
@@ -138,11 +132,12 @@ owner_body_2d = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
 metadata/_custom_type_script = "uid://dfo40qnjk0be"
 
-[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set")]
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("owner_pawn", "owner_body", "owner_attribute_set", "owner_tags_container")]
 script = ExtResource("10_5g1dk")
 owner_pawn = NodePath("..")
 owner_body = NodePath("..")
 owner_attribute_set = NodePath("../AbilitySystemComponent/AttributeSet")
+owner_tags_container = NodePath("../AbilitySystemComponent/TagsContainer")
 launch_velocity_reset_threshold = 40.0
 move_speed = 150.0
 floor_acceleration = 1500.0
@@ -151,7 +146,7 @@ metadata/_custom_type_script = "uid://bhtvb465l63d1"
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("11_pjxj7")
-input_handlers = Array[ExtResource("12_6m3gj")]([SubResource("Resource_1kp1q"), SubResource("Resource_v5u72"), SubResource("Resource_44rto"), SubResource("Resource_mxs0p"), SubResource("Resource_1qbwr"), SubResource("Resource_36sxb"), SubResource("Resource_7baa2")])
+input_handlers = Array[ExtResource("12_6m3gj")]([SubResource("Resource_1kp1q"), SubResource("Resource_v5u72"), SubResource("Resource_mxs0p"), SubResource("Resource_1qbwr"), SubResource("Resource_36sxb"), SubResource("Resource_7baa2")])
 metadata/_custom_type_script = "uid://chkuc2e7a3j0d"
 
 [node name="SpecialCharge" type="Node" parent="." node_paths=PackedStringArray("owner_pawn")]
@@ -185,14 +180,13 @@ metadata/_custom_type_script = "uid://baf2rkscj0a85"
 
 [node name="Crouch" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("20_5cpi3")
-crouch_height_mul = null
 ability_tags = Array[StringName]([&"crouch_ability"])
-owner_granted_tags = Array[StringName]([&"state_crouching", &"block_input_movement"])
+owner_granted_tags = Array[StringName]([&"state_crouching", &"input_block_movement"])
 owner_must_not_have_tags = Array[StringName]([&"state_locked_movement"])
 metadata/_custom_type_script = "uid://lu83ha6bay5f"
 
 [node name="LockMovement" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("21_t1isa")
 ability_tags = Array[StringName]([&"lock_movement_ability"])
-owner_granted_tags = Array[StringName]([&"state_locked_movement", &"block_input_movement"])
+owner_granted_tags = Array[StringName]([&"state_locked_movement", &"movement_input_ignore"])
 metadata/_custom_type_script = "uid://d3u2nglhsf6i7"

@@ -25,6 +25,7 @@ children = [SubResource("BTCheckVar_pcfpp"), SubResource("BTAction_pcfpp")]
 
 [sub_resource type="BBVariant" id="BBVariant_j5j5h"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
 custom_name = "If Chase Target is set"

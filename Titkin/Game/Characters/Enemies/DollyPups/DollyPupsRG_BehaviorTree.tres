@@ -104,6 +104,7 @@ check_distance_var = "chase_area_radius"
 
 [sub_resource type="BBVariant" id="BBVariant_qjjdm"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
 custom_name = "If Chase Target is set"
@@ -127,6 +128,7 @@ children = [SubResource("BTAction_haojn"), SubResource("BTAction_ppsly")]
 
 [sub_resource type="BBVariant" id="BBVariant_l5x8d"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTDecorator" id="BTDecorator_0r70y"]
 custom_name = "If Chase Target is not set"

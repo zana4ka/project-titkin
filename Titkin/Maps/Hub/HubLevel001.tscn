@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=4 uid="uid://dq2lqnavlyqok"]
+
+[ext_resource type="Script" uid="uid://b8cugwrbace64" path="res://Titkin/Maps/Beat'emUp/BULevelBase2D.gd" id="1_koa66"]
+[ext_resource type="Resource" uid="uid://cwv3udsjh7euq" path="res://Titkin/Core/GameMode/TitkinCampaign.tres" id="2_vxcwi"]
+[ext_resource type="Resource" uid="uid://dti60dc3hnav5" path="res://Titkin/Core/GameMode/TitkinGameMode.tres" id="3_dpkwj"]
+[ext_resource type="Texture2D" uid="uid://ct6bifgi11uof" path="res://Titkin/Maps/Beat'emUp/BULevelBackground001a.png" id="4_8q4u0"]
+[ext_resource type="Script" uid="uid://cnpq33rttt14r" path="res://addons/GodotCommons-Core/Scripts/Tiles/LevelTileMapLayer.gd" id="5_oksil"]
+[ext_resource type="Script" uid="uid://csxcu53w5isdb" path="res://addons/GodotCommons-Core/Scripts/Tiles/TileSets/LevelTileSet_TerrainData.gd" id="6_tejdq"]
+[ext_resource type="Resource" uid="uid://cotcs06op3hv1" path="res://Titkin/Game/Features/World/Tiles/Floor/Stone001_Floor.tres" id="7_i02re"]
+[ext_resource type="Script" uid="uid://bdi0duki74tug" path="res://addons/GodotCommons-Core/Scripts/Tiles/TileSets/LevelTileSet_AutoFloors.gd" id="8_7t3c7"]
+[ext_resource type="PackedScene" uid="uid://8b0jckg41k61" path="res://addons/GodotCommons-Core/Scenes/Levels/LevelHint001.tscn" id="9_xfu8d"]
+[ext_resource type="PackedScene" uid="uid://br0k6rc238c2" path="res://addons/GodotCommons-Core/Scenes/Triggers/CommonTrigger001.tscn" id="10_hwwpn"]
+[ext_resource type="Script" uid="uid://cunyk2dvnndvj" path="res://addons/GodotCommons-Core/Scripts/Levels/ChangeLevel.gd" id="11_on1px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpd6s"]
+resource_local_to_scene = true
+size = Vector2(32, 64)
+
+[node name="BULevel" type="Node2D" node_paths=PackedStringArray("default_player_spawn")]
+script = ExtResource("1_koa66")
+DefaultCampaign = ExtResource("2_vxcwi")
+DefaultGameMode = ExtResource("3_dpkwj")
+default_player_spawn = NodePath("PlayerSpawn")
+metadata/_custom_type_script = "uid://b8cugwrbace64"
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+z_as_relative = false
+position = Vector2(96, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_8q4u0")
+
+[node name="LevelTileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("floor_layer")]
+z_index = -10
+z_as_relative = false
+position = Vector2(0, 1000)
+skew = 0.2617994
+tile_map_data = PackedByteArray("AADw//7/AQAAAAAAAADx//7/AQAAAAAAACDy//7/AQAAAAAAAADz//7/AQAAAAAAAED0//7/AQAAAAAAACD1//7/AQAAAAAAACD2//7/AQAAAAAAADD3//7/AQAAAAAAAED4//7/AQAAAAAAACD5//7/AQAAAAAAAED6//7/AQAAAAAAAAD7//7/AQAAAAAAAGD8//7/AQAAAAAAAFD9//7/AQAAAAAAAHD+//7/AQAAAAAAAHD///7/AQAAAAAAAAAAAP7/AQAAAAAAAEABAP7/AQAAAAAAACACAP7/AQAAAAAAAFADAP7/AQAAAAAAADAEAP7/AQAAAAAAAHAFAP7/AQAAAAAAAEAGAP7/AQAAAAAAACAHAP7/AQAAAAAAADAIAP7/AQAAAAAAADAJAP7/AQAAAAAAACAKAP7/AQAAAAAAADALAP7/AQAAAAAAAGAMAP7/AQAAAAAAABANAP7/AQAAAAAAACAOAP7/AQAAAAAAAHAPAP7/AQAAAAAAABAQAP7/AQAAAAAAAFARAP7/AQAAAAAAAEASAP7/AQAAAAAAAGATAP7/AQAAAAAAAHAUAP7/AQAAAAAAACAVAP7/AQAAAAAAAHDw////AQAAAAAAAHDx////AQAAAAAAAADy////AQAAAAAAAGDz////AQAAAAAAAAD0////AQAAAAAAAGD1////AQAAAAAAAED2////AQAAAAAAAHD3////AQAAAAAAAED4////AQAAAAAAAHD5////AQAAAAAAAGD6////AQAAAAAAAFD7////AQAAAAAAAED8////AQAAAAAAABD9////AQAAAAAAAED+////AQAAAAAAAGD/////AQAAAAAAAHAAAP//AQAAAAAAAAABAP//AQAAAAAAACACAP//AQAAAAAAACADAP//AQAAAAAAAGAEAP//AQAAAAAAABAFAP//AQAAAAAAABAGAP//AQAAAAAAAHAHAP//AQAAAAAAAHAIAP//AQAAAAAAAAAJAP//AQAAAAAAADAKAP//AQAAAAAAACALAP//AQAAAAAAAFAMAP//AQAAAAAAADANAP//AQAAAAAAAAAOAP//AQAAAAAAAGAPAP//AQAAAAAAAFAQAP//AQAAAAAAAGARAP//AQAAAAAAADASAP//AQAAAAAAAEATAP//AQAAAAAAAEAUAP//AQAAAAAAAGAVAP//AQAAAAAAAADw/wAAAQAAAAAAABDx/wAAAQAAAAAAAADy/wAAAQAAAAAAAADz/wAAAQAAAAAAADD0/wAAAQAAAAAAAAD1/wAAAQAAAAAAABD2/wAAAQAAAAAAADD3/wAAAQAAAAAAAED4/wAAAQAAAAAAAHD5/wAAAQAAAAAAADD6/wAAAQAAAAAAABD7/wAAAQAAAAAAAED8/wAAAQAAAAAAAGD9/wAAAQAAAAAAAGD+/wAAAQAAAAAAADD//wAAAQAAAAAAAFAAAAAAAQAAAAAAAFABAAAAAQAAAAAAAHACAAAAAQAAAAAAACADAAAAAQAAAAAAAGAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAADAGAAAAAQAAAAAAABAHAAAAAQAAAAAAAEAIAAAAAQAAAAAAACAJAAAAAQAAAAAAABAKAAAAAQAAAAAAAFALAAAAAQAAAAAAAEAMAAAAAQAAAAAAAGANAAAAAQAAAAAAAEAOAAAAAQAAAAAAAGAPAAAAAQAAAAAAAEAQAAAAAQAAAAAAADARAAAAAQAAAAAAAEASAAAAAQAAAAAAAHATAAAAAQAAAAAAAHAUAAAAAQAAAAAAAGAVAAAAAQAAAAAAAGDw/wEAAQAAAAAAAADx/wEAAQAAAAAAAEDy/wEAAQAAAAAAADDz/wEAAQAAAAAAAFD0/wEAAQAAAAAAABD1/wEAAQAAAAAAAFD2/wEAAQAAAAAAAED3/wEAAQAAAAAAABD4/wEAAQAAAAAAACD5/wEAAQAAAAAAAFD6/wEAAQAAAAAAAAD7/wEAAQAAAAAAADD8/wEAAQAAAAAAADD9/wEAAQAAAAAAAHD+/wEAAQAAAAAAAHD//wEAAQAAAAAAADAAAAEAAQAAAAAAADABAAEAAQAAAAAAAAACAAEAAQAAAAAAAHADAAEAAQAAAAAAAEAEAAEAAQAAAAAAABAFAAEAAQAAAAAAABAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAFAIAAEAAQAAAAAAACAJAAEAAQAAAAAAAFAKAAEAAQAAAAAAAEALAAEAAQAAAAAAAFAMAAEAAQAAAAAAABANAAEAAQAAAAAAAHAOAAEAAQAAAAAAAHAPAAEAAQAAAAAAACAQAAEAAQAAAAAAAGARAAEAAQAAAAAAAEASAAEAAQAAAAAAACATAAEAAQAAAAAAAGAUAAEAAQAAAAAAAFAVAAEAAQAAAAAAABA=")
+script = ExtResource("5_oksil")
+terrain_data_array = Array[ExtResource("6_tejdq")]([ExtResource("7_i02re")])
+generated_tile_set_script = ExtResource("8_7t3c7")
+floor_layer = NodePath(".")
+metadata/_custom_type_script = "uid://cnpq33rttt14r"
+
+[node name="ArenaBounds" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collision" type="CollisionPolygon2D" parent="ArenaBounds"]
+build_mode = 1
+polygon = PackedVector2Array(-64, -24, 240, -24, 240, 64, -64, 64)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("9_xfu8d")]
+position = Vector2(64, 0)
+label_text = "Player
+Spawn"
+
+[node name="CommonTrigger" parent="." instance=ExtResource("10_hwwpn")]
+position = Vector2(-64, 0)
+collision_shape = SubResource("RectangleShape2D_gpd6s")
+is_enabled = true
+
+[node name="ChangeLevel" type="Node" parent="CommonTrigger"]
+script = ExtResource("11_on1px")
+level_scene_path = "res://Titkin/Maps/Run'n'Gun/RGLevel001.tscn"
+metadata/_custom_type_script = "uid://cunyk2dvnndvj"
+
+[connection signal="triggered" from="CommonTrigger" to="CommonTrigger/ChangeLevel" method="change_level_immediately"]

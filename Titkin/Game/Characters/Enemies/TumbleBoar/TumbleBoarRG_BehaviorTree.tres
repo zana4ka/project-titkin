@@ -34,6 +34,7 @@ children = [SubResource("BTCheckVar_pcfpp"), SubResource("BTParallel_13780")]
 
 [sub_resource type="BBVariant" id="BBVariant_s72tx"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTDecorator" id="BTDecorator_ti47n"]
 custom_name = "If Chase Target is set"

@@ -4,7 +4,7 @@ class_name BUBlockAbility
 
 func _ready() -> void:
 	ability_tags = [ TitkinTags.block_ability ]
-	owner_granted_tags = [ TitkinTags.state_blocking, CommonTags.block_input_movement ]
+	owner_granted_tags = [ TitkinTags.state_blocking, CommonTags.input_block_movement ]
 
 func can_activate(in_payload: Variant) -> bool:
 	return super(in_payload)
