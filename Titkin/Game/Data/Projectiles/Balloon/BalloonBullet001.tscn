@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://drqnrmg27xnbw"]
+
+[ext_resource type="Script" uid="uid://u5edhj3p2kl2" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D.gd" id="1_g684d"]
+[ext_resource type="Script" uid="uid://creu52bxinsn4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Collision.gd" id="2_p601g"]
+[ext_resource type="SpriteFrames" uid="uid://ddjj740n5cr57" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001_Frames.tres" id="3_g684d"]
+[ext_resource type="Script" uid="uid://0elqphnlbgtx" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Sprite.gd" id="4_uvamu"]
+[ext_resource type="Script" uid="uid://bhpkhuqr8vfux" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_ApplyForce.gd" id="5_0vsw4"]
+[ext_resource type="Script" uid="uid://bkpr4v73k34t4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Homing.gd" id="6_x0xcy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_48oqy"]
+radius = 4.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qow6u"]
+radius = 64.0
+
+[node name="BalloonBullet" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4100
+collision_mask = 10
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_g684d")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://u5edhj3p2kl2"
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("_owner")]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_48oqy")
+script = ExtResource("2_p601g")
+_owner = NodePath("..")
+metadata/_custom_type_script = "uid://creu52bxinsn4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+z_index = 3
+z_as_relative = false
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("3_g684d")
+animation = &"green"
+script = ExtResource("4_uvamu")
+owner_projectile = NodePath("..")
+metadata/_custom_type_script = "uid://0elqphnlbgtx"
+
+[node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("5_0vsw4")
+owner_projectile = NodePath("..")
+ApplyConstantAsVelocity = true
+metadata/_custom_type_script = "uid://bhpkhuqr8vfux"
+
+[node name="Homing" type="Area2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("6_x0xcy")
+owner_projectile = NodePath("..")
+metadata/_custom_type_script = "uid://bkpr4v73k34t4"
+
+[node name="Collision" type="CollisionShape2D" parent="Homing"]
+shape = SubResource("CircleShape2D_qow6u")
+debug_color = Color(0.7, 0, 0.65333337, 0)

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm" load_steps=7 format=3 uid="uid://bytp7ibu5iswf"]
+
+[ext_resource type="Texture2D" uid="uid://c6lxq2y7mpb18" path="res://addons/better-terrain/icons/EditType.svg" id="1_3v3gj"]
+[ext_resource type="Script" uid="uid://do5e13gjl2835" path="res://Titkin/Game/Features/Items/ItemData_Firearm.gd" id="1_dsdyo"]
+[ext_resource type="Resource" uid="uid://d35cqyxpbafc5" path="res://Titkin/Game/Data/Projectiles/Laser/LaserBullet001.tres" id="1_q07sc"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_ldydd"]
+[ext_resource type="SpriteFrames" uid="uid://ciyxlds7djycs" path="res://Titkin/Game/Data/Items/Firearms/Pistols/LaserGun/LaserGun001a_Frames.tres" id="5_cgxcg"]
+
+[sub_resource type="Resource" id="Resource_wko7g"]
+script = ExtResource("2_ldydd")
+name = "Laser Gun"
+image = ExtResource("1_3v3gj")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("1_dsdyo")
+projectile_data = ExtResource("1_q07sc")
+weapon_sprite_frames = ExtResource("5_cgxcg")
+use_input_mode = 2
+base_cooldown = 0.4
+display_data = SubResource("Resource_wko7g")
+metadata/_custom_type_script = "uid://do5e13gjl2835"

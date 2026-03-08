@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileData2D" load_steps=3 format=3 uid="uid://u0hk1rbgje5a"]
+
+[ext_resource type="PackedScene" uid="uid://drqnrmg27xnbw" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001.tscn" id="1_l3a56"]
+[ext_resource type="Script" uid="uid://cm37cigw7hsaf" path="res://addons/GodotCommons-Core/Scripts/Projectiles/ProjectileData2D.gd" id="2_ix7hv"]
+
+[resource]
+script = ExtResource("2_ix7hv")
+scene = ExtResource("1_l3a56")
+spawn_local_offset = Vector2(16, 0)
+should_damage_on_hit = true
+should_remove_on_hit = true
+max_lifetime = 3.0
+metadata/_custom_type_script = "uid://cm37cigw7hsaf"

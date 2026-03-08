@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dsxy8wr6ou7lg"]
+
+[ext_resource type="Texture2D" uid="uid://bfa3lgq3g83o0" path="res://Titkin/Game/Data/Items/Firearms/Rifles/LollypopLoader/LollypopLoader001a.png" id="1_qp6m7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qp6m7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

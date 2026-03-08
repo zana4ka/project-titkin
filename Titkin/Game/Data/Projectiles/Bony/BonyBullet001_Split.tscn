@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://k8oicvnnqtr4"]
+
+[ext_resource type="Script" uid="uid://u5edhj3p2kl2" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D.gd" id="1_dxgwt"]
+[ext_resource type="Script" uid="uid://creu52bxinsn4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Collision.gd" id="2_nrojj"]
+[ext_resource type="SpriteFrames" uid="uid://cdvxewy8uuvs7" path="res://Titkin/Game/Data/Projectiles/Bony/BonyBullet001_Split_Frames.tres" id="3_dxgwt"]
+[ext_resource type="Script" uid="uid://0elqphnlbgtx" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Sprite.gd" id="4_g3qaq"]
+[ext_resource type="Script" uid="uid://bhpkhuqr8vfux" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_ApplyForce.gd" id="5_f7mxe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7l7rt"]
+radius = 4.0
+
+[node name="BonyBullet_Split" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4100
+collision_mask = 10
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_dxgwt")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://u5edhj3p2kl2"
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("_owner")]
+shape = SubResource("CircleShape2D_7l7rt")
+script = ExtResource("2_nrojj")
+_owner = NodePath("..")
+metadata/_custom_type_script = "uid://creu52bxinsn4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+z_index = 3
+z_as_relative = false
+scale = Vector2(0.15, 0.15)
+sprite_frames = ExtResource("3_dxgwt")
+script = ExtResource("4_g3qaq")
+owner_projectile = NodePath("..")
+random_angle = true
+metadata/_custom_type_script = "uid://0elqphnlbgtx"
+
+[node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("5_f7mxe")
+owner_projectile = NodePath("..")
+ApplyConstantAsVelocity = true
+metadata/_custom_type_script = "uid://bhpkhuqr8vfux"

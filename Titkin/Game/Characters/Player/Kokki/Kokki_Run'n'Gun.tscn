@@ -1,26 +1,28 @@
-[gd_scene load_steps=38 format=3 uid="uid://sn3lp0rqv4nw"]
+[gd_scene load_steps=40 format=3 uid="uid://sn3lp0rqv4nw"]
 
 [ext_resource type="Script" uid="uid://diyklco5710os" path="res://Titkin/Core/Characters/RGPawn2D.gd" id="1_44rto"]
 [ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_mxs0p"]
-[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_Collision.gd" id="3_m4vnp"]
+[ext_resource type="Script" uid="uid://cry48n5lfcsip" path="res://addons/GodotCommons-Core/Scripts/Characters/Pawn2D_Collision.gd" id="3_m4vnp"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dask74lnpul1" path="res://Titkin/Game/Characters/Player/Kokki/Locomotion/walk_data.tres" id="4_lsqhu"]
+[ext_resource type="Script" uid="uid://ys6yahoedar4" path="res://addons/GodotCommons-Core/Scripts/Characters/Pawn2D_Spine.gd" id="5_1ikek"]
 [ext_resource type="Script" uid="uid://cqhmmqaif4v5f" path="res://Titkin/Core/Characters/Components/Pawn2D_WeaponSprite.gd" id="5_mx15s"]
+[ext_resource type="SpriteFrames" uid="uid://ciyxlds7djycs" path="res://Titkin/Game/Data/Items/Firearms/Pistols/LaserGun/LaserGun001a_Frames.tres" id="6_5g1dk"]
 [ext_resource type="AnimationLibrary" uid="uid://cwl320d0505f7" path="res://Titkin/Game/Characters/Common/HurtAnimationLibrary.tres" id="6_mj70k"]
 [ext_resource type="PackedScene" uid="uid://do17aimitageq" path="res://Titkin/Game/Characters/Player/Kokki/Kokki_Run'n'Gun_ASM.tscn" id="7_f0vtw"]
 [ext_resource type="Script" uid="uid://1wjmc55aqllr" path="res://addons/GodotCommons-Core/Scripts/Animations/Montages/AnimMontagePlayer_Spine.gd" id="8_6tf6r"]
 [ext_resource type="Script" uid="uid://dfo40qnjk0be" path="res://addons/GodotCommons-Core/Scripts/Common/DamageReceiver.gd" id="9_1ikek"]
-[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Pawns/Pawn2D_CharacterMovement.gd" id="10_5g1dk"]
+[ext_resource type="Script" uid="uid://bhtvb465l63d1" path="res://addons/GodotCommons-Core/Scripts/Characters/Pawn2D_CharacterMovement.gd" id="10_5g1dk"]
 [ext_resource type="Script" uid="uid://chkuc2e7a3j0d" path="res://addons/GodotCommons-Core/Scripts/Input/InputComponent.gd" id="11_pjxj7"]
 [ext_resource type="Script" uid="uid://bqiwfbxy414u6" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerBase.gd" id="12_6m3gj"]
 [ext_resource type="Script" uid="uid://dwomf1lml1nm7" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerMovement.gd" id="13_gkruh"]
 [ext_resource type="Script" uid="uid://b448wahx8w5gt" path="res://addons/GodotCommons-Core/Scripts/Input/Handlers/InputHandlerAbilityTag.gd" id="14_kbw6p"]
-[ext_resource type="Shortcut" uid="uid://d3bjw036m28fh" path="res://Titkin/Game/Features/Items/Abilities/WeaponUsePrimary.tres" id="15_6tf6r"]
+[ext_resource type="Shortcut" uid="uid://d3bjw036m28fh" path="res://Titkin/Game/Data/Items/Abilities/WeaponUsePrimary.tres" id="15_6tf6r"]
 [ext_resource type="Script" uid="uid://7qnso3ivyyyw" path="res://Titkin/Core/Characters/Components/Pawn2D_SpecialCharge.gd" id="15_y48ex"]
-[ext_resource type="Shortcut" uid="uid://d33cscipnvear" path="res://Titkin/Game/Features/Items/Abilities/WeaponUseSpecial.tres" id="16_1ikek"]
+[ext_resource type="Shortcut" uid="uid://d33cscipnvear" path="res://Titkin/Game/Data/Items/Abilities/WeaponUseSpecial.tres" id="16_1ikek"]
 [ext_resource type="Script" uid="uid://dan6o08asxujj" path="res://Titkin/Core/AbilitySystem/TitkinASC.gd" id="16_1ybbr"]
 [ext_resource type="Shortcut" uid="uid://bgfdenulyg703" path="res://Titkin/Game/Characters/Common/Abilities/Jump/Jump.tres" id="17_5g1dk"]
-[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Attributes/AttributeSet.gd" id="17_b65eo"]
-[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/Gameplay/Tags/TagsContainer.gd" id="18_5be2k"]
+[ext_resource type="Script" uid="uid://3rqvl40lgjk2" path="res://addons/GodotCommons-Core/Scripts/AbilitySystem/Attributes/AttributeSet.gd" id="17_b65eo"]
+[ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/AbilitySystem/Tags/TagsContainer.gd" id="18_5be2k"]
 [ext_resource type="Shortcut" uid="uid://ce06g8h10ahkd" path="res://Titkin/Game/Characters/Common/Abilities/Crouch/Crouch.tres" id="18_pjxj7"]
 [ext_resource type="Shortcut" uid="uid://cnd6hkd4l7fur" path="res://Titkin/Game/Characters/Common/Abilities/LockMovement/LockMovement.tres" id="19_6m3gj"]
 [ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Titkin/Game/Characters/Common/Abilities/Jump/RGJumpAbility.gd" id="19_wvjrc"]
@@ -80,6 +82,7 @@ trigger_events = ExtResource("20_gkruh")
 ability_tag = &"dash_ability"
 end_on_release = false
 press_repeats = 2
+repeats_reset_time = 0.25
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [node name="PlayerPawn" type="CharacterBody2D" node_paths=PackedStringArray("asc", "attribute_set", "damage_receiver", "damage_animation_player", "character_movement")]
@@ -109,19 +112,29 @@ update_mode = 1
 preview_skin = "Default"
 preview_animation = "animation"
 preview_frame = true
-preview_time = 0.0
+preview_time = 0.31
 z_index = 2
 z_as_relative = false
 position = Vector2(0, 19)
 scale = Vector2(0.073, 0.073)
+script = ExtResource("5_1ikek")
+metadata/_custom_type_script = "uid://ys6yahoedar4"
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Sprite" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
+[node name="WeaponAttachment" type="SpineBoneNode" parent="Sprite"]
+bone_name = "bone16"
+show_behind_parent = true
+position = Vector2(54.733833, -145.50916)
+rotation = 0.12203263
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Sprite/WeaponAttachment" node_paths=PackedStringArray("owner_pawn", "owner_asc")]
 show_behind_parent = true
 z_index = 2
-position = Vector2(100, -250)
+position = Vector2(48, -32)
+scale = Vector2(0.8, 0.8)
+sprite_frames = ExtResource("6_5g1dk")
 script = ExtResource("5_mx15s")
-owner_pawn = NodePath("../..")
-owner_asc = NodePath("../../AbilitySystemComponent")
+owner_pawn = NodePath("../../..")
+owner_asc = NodePath("../../../AbilitySystemComponent")
 metadata/_custom_type_script = "uid://cqhmmqaif4v5f"
 
 [node name="HurtAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -209,7 +222,7 @@ metadata/_custom_type_script = "uid://d3u2nglhsf6i7"
 [node name="DashAbility" type="Node" parent="AbilitySystemComponent"]
 script = ExtResource("22_mxs0p")
 ability_tags = Array[StringName]([&"dash_ability"])
-owner_granted_tags = Array[StringName]([&"state_dashing"])
+owner_granted_tags = Array[StringName]([&"state_dashing", &"input_block_movement"])
 owner_must_not_have_tags = Array[StringName]([&"state_crouching"])
 default_cooldown_time = 1.4
 metadata/_custom_type_script = "uid://b3gnq1k46aedm"

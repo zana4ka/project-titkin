@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://c0potiouu6s2k"]
+
+[ext_resource type="Texture2D" uid="uid://bf6ie2npl4jjj" path="res://Titkin/Game/Data/Items/Firearms/Pistols/BonyRevolver/BonyRevolver001a.png" id="1_1k1kk"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1k1kk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

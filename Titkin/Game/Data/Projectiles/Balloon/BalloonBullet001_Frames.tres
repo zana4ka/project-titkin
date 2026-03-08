@@ -1,0 +1,41 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ddjj740n5cr57"]
+
+[ext_resource type="Texture2D" uid="uid://cq73nbk2cwrg3" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001a.png" id="1_jme83"]
+[ext_resource type="Texture2D" uid="uid://cc0684liw2u4" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001d.png" id="2_sgh5v"]
+[ext_resource type="Texture2D" uid="uid://dsahh482wwopl" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001b.png" id="3_ascap"]
+[ext_resource type="Texture2D" uid="uid://c0uxw6bdeha8" path="res://Titkin/Game/Data/Projectiles/Balloon/BalloonBullet001c.png" id="4_1snp2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jme83")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sgh5v")
+}],
+"loop": true,
+"name": &"purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ascap")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1snp2")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]

@@ -11,7 +11,7 @@ var dash_end_timer: Timer
 
 func _ready() -> void:
 	ability_tags = [ CommonTags.dash_ability ]
-	owner_granted_tags = [ CommonTags.state_dashing ]
+	owner_granted_tags = [ CommonTags.state_dashing, CommonTags.input_block_movement ]
 	owner_must_not_have_tags = [ CommonTags.state_crouching ]
 
 func can_activate(in_payload: Variant) -> bool:

@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bxwj04hmd0d05"]
+
+[ext_resource type="Texture2D" uid="uid://bakhov4nqxtyw" path="res://Titkin/Game/Data/Items/Firearms/SMGs/Tompson/Tompson001a.png" id="1_quutn"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_quutn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

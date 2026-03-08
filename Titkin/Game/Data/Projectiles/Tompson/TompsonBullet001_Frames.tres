@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cfxqnwc0ebvw1"]
+
+[ext_resource type="Texture2D" uid="uid://bil0gv3yvt6rh" path="res://Titkin/Game/Data/Projectiles/Tompson/TompsonBullet001a.png" id="1_dmn0l"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dmn0l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

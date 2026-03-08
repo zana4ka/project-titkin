@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cvli8xxu2alfp"]
 
 [ext_resource type="Script" uid="uid://b3u5h4c7o6id4" path="res://addons/GodotCommons-Core/Scripts/UI/HUD/HUDUI.gd" id="1_mdj67"]
-[ext_resource type="PackedScene" uid="uid://l8pu6nqmebmu" path="res://Titkin/Game/UI/HUD/PlayerImageUI.tscn" id="2_oyguc"]
-[ext_resource type="PackedScene" uid="uid://co7xo2ovlmkj7" path="res://Titkin/Game/UI/HUD/HealthUI.tscn" id="3_ffin7"]
+[ext_resource type="PackedScene" uid="uid://l8pu6nqmebmu" path="res://Titkin/Game/UI/HUD/Portrait/PortraitUI.tscn" id="2_oyguc"]
+[ext_resource type="PackedScene" uid="uid://co7xo2ovlmkj7" path="res://Titkin/Game/UI/HUD/Health/HealthUI.tscn" id="3_ffin7"]
 [ext_resource type="PackedScene" uid="uid://b4bgu2ilg52jp" path="res://Titkin/Game/UI/HUD/WeaponsUI.tscn" id="4_a8h8w"]
 [ext_resource type="PackedScene" uid="uid://15fmefk3y0be" path="res://Titkin/Game/UI/HUD/SpecialAbilityUI.tscn" id="5_oyguc"]
 
@@ -123,10 +123,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 columns = 2
 
-[node name="PlayerImageUI" parent="MC/GridContainer" instance=ExtResource("2_oyguc")]
+[node name="PortraitUI" parent="MC/GridContainer" node_paths=PackedStringArray("owner_hud_ui") instance=ExtResource("2_oyguc")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+owner_hud_ui = NodePath("../../..")
 
 [node name="HealthUI" parent="MC/GridContainer" node_paths=PackedStringArray("owner_hud_ui") instance=ExtResource("3_ffin7")]
 layout_mode = 2

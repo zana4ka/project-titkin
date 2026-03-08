@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://bvhstkutbr22q"]
+
+[ext_resource type="Texture2D" uid="uid://bbrh6tgl7d1e8" path="res://Titkin/Game/Data/Projectiles/Rocket/Rocket001a.png" id="1_c2q8o"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c2q8o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]

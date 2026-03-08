@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfro5rllqq16q"]
+
+[ext_resource type="Script" uid="uid://u5edhj3p2kl2" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D.gd" id="1_a75sd"]
+[ext_resource type="Script" uid="uid://creu52bxinsn4" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Collision.gd" id="2_0h1u7"]
+[ext_resource type="SpriteFrames" uid="uid://gp57l8cqt2xv" path="res://Titkin/Game/Data/Projectiles/Bony/BonyBullet001_Frames.tres" id="3_ewrn2"]
+[ext_resource type="Script" uid="uid://0elqphnlbgtx" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Sprite.gd" id="4_nisbv"]
+[ext_resource type="Script" uid="uid://bhpkhuqr8vfux" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_ApplyForce.gd" id="5_x2yeb"]
+[ext_resource type="Script" uid="uid://cejaog0tgwcjn" path="res://addons/GodotCommons-Core/Scripts/Projectiles/Projectile2D_Split.gd" id="6_lka18"]
+[ext_resource type="Resource" uid="uid://bxu2opyn0hi3s" path="res://Titkin/Game/Data/Projectiles/Bony/BonyBullet001_Split.tres" id="7_ewrn2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7l7rt"]
+radius = 5.0
+
+[node name="BonyBullet" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4100
+collision_mask = 10
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_a75sd")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://u5edhj3p2kl2"
+
+[node name="Collision" type="CollisionShape2D" parent="." node_paths=PackedStringArray("_owner")]
+shape = SubResource("CircleShape2D_7l7rt")
+script = ExtResource("2_0h1u7")
+_owner = NodePath("..")
+metadata/_custom_type_script = "uid://creu52bxinsn4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+z_index = 3
+z_as_relative = false
+scale = Vector2(0.125, 0.125)
+sprite_frames = ExtResource("3_ewrn2")
+script = ExtResource("4_nisbv")
+owner_projectile = NodePath("..")
+random_angle = true
+metadata/_custom_type_script = "uid://0elqphnlbgtx"
+
+[node name="ApplyForce" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("5_x2yeb")
+owner_projectile = NodePath("..")
+ApplyConstantAsVelocity = true
+metadata/_custom_type_script = "uid://bhpkhuqr8vfux"
+
+[node name="Split" type="Marker2D" parent="." node_paths=PackedStringArray("owner_projectile")]
+script = ExtResource("6_lka18")
+owner_projectile = NodePath("..")
+split_num_base = 6
+split_spread = 0.15
+override_split_projectile_data = ExtResource("7_ewrn2")
+metadata/_custom_type_script = "uid://cejaog0tgwcjn"

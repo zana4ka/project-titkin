@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://gp57l8cqt2xv"]
+
+[ext_resource type="Texture2D" uid="uid://dbf8m5pj5o5vr" path="res://Titkin/Game/Data/Projectiles/Bony/BonyBullet001a.png" id="1_w5diy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w5diy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

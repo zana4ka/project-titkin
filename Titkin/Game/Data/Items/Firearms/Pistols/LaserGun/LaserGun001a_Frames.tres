@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ciyxlds7djycs"]
+
+[ext_resource type="Texture2D" uid="uid://dc2l670vr6jo7" path="res://Titkin/Game/Data/Items/Firearms/Pistols/LaserGun/LaserGun001a.png" id="1_3gtjw"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3gtjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
