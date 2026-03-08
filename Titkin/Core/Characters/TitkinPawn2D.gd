@@ -63,24 +63,3 @@ func handle_move_down_input(in_event: InputEvent) -> bool:
 	#		asc.try_activate_abilities_by_tag(CommonTags.crouch_ability)
 	#else:
 	#	asc.try_end_abilities_by_tag(CommonTags.crouch_ability)
-
-func handle_primary_attack_input(in_event: InputEvent) -> bool:
-	
-	if in_event.is_pressed():
-		return asc.try_activate_abilities_by_tag(CommonTags.weapon_use_ability, ItemData_Weapon.primary_attack_mode)
-	else:
-		return asc.try_send_input_to_abilities_by_tag(CommonTags.weapon_use_ability, GameplayAbility.AbilityInput.Release)
-
-func handle_secondary_attack_input(in_event: InputEvent) -> bool:
-	
-	if in_event.is_pressed():
-		return asc.try_activate_abilities_by_tag(CommonTags.weapon_use_ability, ItemData_Weapon.secondary_attack_mode)
-	else:
-		return asc.try_send_input_to_abilities_by_tag(CommonTags.weapon_use_ability, GameplayAbility.AbilityInput.Release)
-
-func handle_special_attack_input(in_event: InputEvent) -> bool:
-	
-	if in_event.is_pressed():
-		return asc.try_activate_abilities_by_tag(CommonTags.weapon_use_ability, ItemData_Weapon.special_attack_mode)
-	else:
-		return asc.try_send_input_to_abilities_by_tag(CommonTags.weapon_use_ability, GameplayAbility.AbilityInput.Release)

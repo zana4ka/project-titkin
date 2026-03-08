@@ -61,7 +61,6 @@ metadata/_custom_type_script = "uid://b448wahx8w5gt"
 script = ExtResource("14_kbw6p")
 trigger_events = ExtResource("17_5g1dk")
 ability_tag = &"jump_ability"
-end_on_release = false
 metadata/_custom_type_script = "uid://b448wahx8w5gt"
 
 [sub_resource type="Resource" id="Resource_36sxb"]
@@ -80,7 +79,6 @@ metadata/_custom_type_script = "uid://b448wahx8w5gt"
 script = ExtResource("14_kbw6p")
 trigger_events = ExtResource("20_gkruh")
 ability_tag = &"dash_ability"
-end_on_release = false
 press_repeats = 2
 repeats_reset_time = 0.25
 metadata/_custom_type_script = "uid://b448wahx8w5gt"

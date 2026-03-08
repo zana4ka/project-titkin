@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileData2D" load_steps=3 format=3 uid="uid://ce13vnpj767fp"]
+
+[ext_resource type="PackedScene" uid="uid://btc07brpposoo" path="res://Titkin/Game/Data/Projectiles/Lolly/LollyBullet001.tscn" id="1_g700v"]
+[ext_resource type="Script" uid="uid://cm37cigw7hsaf" path="res://addons/GodotCommons-Core/Scripts/Projectiles/ProjectileData2D.gd" id="2_5axhf"]
+
+[resource]
+script = ExtResource("2_5axhf")
+scene = ExtResource("1_g700v")
+should_damage_on_hit = true
+should_remove_on_hit = true
+metadata/_custom_type_script = "uid://cm37cigw7hsaf"

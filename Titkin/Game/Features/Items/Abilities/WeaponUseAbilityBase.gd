@@ -3,6 +3,12 @@
 extends GameplayAbility
 class_name WeaponUseAbilityBase
 
+enum UseHandleType
+{
+	Immediate,
+	WaitForFinish
+}
+
 var hold_weapon_uses_counter: int = 0
 
 func _ready() -> void:
@@ -31,10 +37,14 @@ func activate_ability() -> void:
 
 func on_ability_ended(in_was_cancelled: bool) -> void:
 	
+	receive_use_finished.emit()
+	
 	if cooldown_finished.is_connected(_handle_use_cooldown_finished):
 		cooldown_finished.disconnect(_handle_use_cooldown_finished)
 	
 	hold_weapon_uses_counter = 0
+
+signal receive_use_finished()
 
 func _use_or_end_ability() -> void:
 	
@@ -45,19 +55,28 @@ func _use_or_end_ability() -> void:
 		apply_cost()
 		apply_cooldown()
 		
-		_handle_use()
+		if _handle_use() == UseHandleType.WaitForFinish:
+			await receive_use_finished
 		
-		var weapon_data := get_weapon_data()
-		if weapon_data.is_hold_use_input_mode():
-			hold_weapon_uses_counter += 1
-		
+		if is_active():
+			var weapon_data := get_weapon_data()
+			match weapon_data.use_input_mode:
+				ItemData_Weapon.UseInputMode.Auto:
+					pass
+				ItemData_Weapon.UseInputMode.Hold:
+					hold_weapon_uses_counter += 1
+				ItemData_Weapon.UseInputMode.Single:
+					end_ability()
 	else:
 		end_ability()
 
 @abstract
-func _handle_use() -> void
+func _handle_use() -> UseHandleType
 
 func _handle_use_cooldown_finished() -> void:
+	
+	if not is_active():
+		return
 	
 	var weapon_data := get_weapon_data()
 	
@@ -70,4 +89,5 @@ func _handle_use_cooldown_finished() -> void:
 			else:
 				_use_or_end_ability()
 		ItemData_Weapon.UseInputMode.Single:
-			end_ability()
+			#end_ability()
+			pass

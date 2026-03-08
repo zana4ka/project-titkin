@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://ixow33718sdq" path="res://Titkin/Game/Features/Items/ItemContainer_Weapons.gd" id="13_lsjrv"]
 [ext_resource type="Script" uid="uid://8b6d3s52mbag" path="res://addons/GodotCommons-Core/Scripts/AI/Pawn2D_Navigation.gd" id="14_8trs2"]
 [ext_resource type="Script" uid="uid://dmsg31grxhs22" path="res://addons/GodotCommons-Core/Scripts/Items/ItemData.gd" id="14_ic5on"]
-[ext_resource type="Resource" uid="uid://nq4ow1jdx7nq" path="res://Titkin/Game/Data/Items/Firearms/Pistols/EnemyGun001.tres" id="15_vs7gb"]
+[ext_resource type="Resource" uid="uid://nq4ow1jdx7nq" path="res://Titkin/Game/Data/Items/Firearms/Pistols/Generic/EnemyGun001.tres" id="15_vs7gb"]
 [ext_resource type="Script" uid="uid://d4bq5plnifoud" path="res://addons/GodotCommons-Core/Scripts/AbilitySystem/Tags/TagsContainer.gd" id="17_vs7gb"]
 [ext_resource type="Script" uid="uid://baf2rkscj0a85" path="res://Titkin/Game/Characters/Common/Abilities/Jump/RGJumpAbility.gd" id="18_3btok"]
 [ext_resource type="BehaviorTree" uid="uid://r2quingv87bf" path="res://Titkin/Game/Characters/Enemies/DollyPups/DollyPupsRG_BehaviorTree.tres" id="18_ic5on"]

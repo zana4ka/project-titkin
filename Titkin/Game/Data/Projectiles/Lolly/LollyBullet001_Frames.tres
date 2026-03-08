@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cbf7pi7phpquc"]
+
+[ext_resource type="Texture2D" uid="uid://dyee6gdvwioyt" path="res://Titkin/Game/Data/Projectiles/Lolly/LollyBullet001a.png" id="1_wrv1y"]
+[ext_resource type="Texture2D" uid="uid://cp7m7jn56hw3a" path="res://Titkin/Game/Data/Projectiles/Lolly/LollyBullet001b.png" id="2_b7v0h"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wrv1y")
+}],
+"loop": true,
+"name": &"candy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b7v0h")
+}],
+"loop": true,
+"name": &"sugar",
+"speed": 5.0
+}]

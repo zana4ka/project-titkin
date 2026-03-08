@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData_Firearm_Charged" load_steps=7 format=3 uid="uid://br3463pqcv5kx"]
+
+[ext_resource type="Texture2D" uid="uid://dyee6gdvwioyt" path="res://Titkin/Game/Data/Projectiles/Lolly/LollyBullet001a.png" id="1_e6xg1"]
+[ext_resource type="Script" uid="uid://c5g053ket645m" path="res://addons/GodotCommons-Core/Scripts/Common/ResourceDisplayData.gd" id="2_igjs6"]
+[ext_resource type="Resource" uid="uid://ce13vnpj767fp" path="res://Titkin/Game/Data/Projectiles/Lolly/LollyBullet001.tres" id="3_e6xg1"]
+[ext_resource type="Script" uid="uid://bs6ka8f7tgice" path="res://Titkin/Game/Features/Items/ItemData_Firearm_Charged.gd" id="4_wnm3j"]
+[ext_resource type="SpriteFrames" uid="uid://dsxy8wr6ou7lg" path="res://Titkin/Game/Data/Items/Firearms/Rifles/LollyCharger/LollyCharger001a_Frames.tres" id="5_e6xg1"]
+
+[sub_resource type="Resource" id="Resource_iif50"]
+script = ExtResource("2_igjs6")
+name = "Lollypop Charger"
+image = ExtResource("1_e6xg1")
+metadata/_custom_type_script = "uid://c5g053ket645m"
+
+[resource]
+script = ExtResource("4_wnm3j")
+projectile_data = ExtResource("3_e6xg1")
+weapon_sprite_frames = ExtResource("5_e6xg1")
+use_input_mode = 1
+base_cooldown = 0.5
+display_data = SubResource("Resource_iif50")
+metadata/_custom_type_script = "uid://bs6ka8f7tgice"

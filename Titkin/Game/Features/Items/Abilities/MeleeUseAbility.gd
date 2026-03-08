@@ -32,7 +32,7 @@ func activate_ability() -> void:
 	
 	super()
 
-func _handle_use() -> void:
+func _handle_use() -> UseHandleType:
 	
 	var melee_data := get_weapon_data() as ItemData_Melee
 	var swing_data := melee_data.mode_swing_data[current_payload]
@@ -44,6 +44,7 @@ func _handle_use() -> void:
 	
 	assert(owner_asc.animation_player.has_animation(swing_animation_name))
 	owner_asc.animation_player.play(swing_animation_name, -1.0, swing_data.animation_speed_mul)
+	return UseHandleType.Immediate
 
 func _on_swing_animation_finished(in_animation_name: StringName) -> void:
 	

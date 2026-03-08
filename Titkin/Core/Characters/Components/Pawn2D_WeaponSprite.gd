@@ -22,11 +22,11 @@ func _ready() -> void:
 	owner_pawn.tree_exited.connect(_on_owner_pawn_tree_exited)
 
 func _enter_tree():
-	ModularGlobals.init_modular_node(self, Pawn2D_WeaponSprite)
+	ModularGlobals.init_modular_node(self, Pawn2D_WeaponSprite, get_parent().get_parent())
 	ModularGlobals.init_modular_node(self, Pawn2D_WeaponSprite, owner_pawn)
 
 func _exit_tree():
-	ModularGlobals.deinit_modular_node(self, Pawn2D_WeaponSprite)
+	ModularGlobals.deinit_modular_node(self, Pawn2D_WeaponSprite, get_parent().get_parent())
 	ModularGlobals.deinit_modular_node(self, Pawn2D_WeaponSprite, owner_pawn)
 
 func _process(in_delta: float) -> void:

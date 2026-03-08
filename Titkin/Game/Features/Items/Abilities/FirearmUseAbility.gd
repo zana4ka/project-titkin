@@ -29,8 +29,9 @@ func apply_cooldown() -> void:
 func activate_ability() -> void:
 	super()
 
-func _handle_use() -> void:
+func _handle_use() -> UseHandleType:
 	var shoot_projectile := _spawn_projectile()
+	return UseHandleType.Immediate
 
 func _spawn_projectile() -> Projectile2D:
 	
@@ -44,7 +45,7 @@ func _spawn_projectile() -> Projectile2D:
 	var projectile_direction = owner_pawn.aim_direction
 	projectile_rotation = projectile_direction.angle()
 	
-	var out_projectile := Projectile2D.spawn(Transform2D(projectile_rotation, projectile_position), firearm_data.projectile_data, 0, owner_pawn)
+	var out_projectile := Projectile2D.spawn(Transform2D(projectile_rotation, projectile_position), firearm_data.projectile_data, 0, owner_pawn, self)
 	out_projectile.set_meta(ItemData_Firearm.hold_projectile_num_meta, hold_weapon_uses_counter)
 	out_projectile.ready.connect(_on_spawned_projectile_ready.bind(out_projectile))
 	
