@@ -4,7 +4,8 @@ class_name DashAbility
 
 @export_category("Dash")
 @export var dash_impulse_magnitude: float = 1000.0
-@export var dash_duration: float = 0.25
+@export var dash_velocity_damp_mul: float = 1.5
+@export var dash_duration: float = 0.2
 
 var dash_end_timer: Timer
 
@@ -31,7 +32,7 @@ func activate_ability() -> void:
 		dash_direction = owner_pawn.character_movement.last_movement_input.normalized()
 	
 	assert(not damp_applied)
-	owner_pawn.character_movement.launch_velocity_damp *= 2.0
+	owner_pawn.character_movement.launch_velocity_damp *= dash_velocity_damp_mul
 	damp_applied = true
 	
 	owner_pawn.character_movement.launch(dash_impulse_magnitude * dash_direction)
@@ -45,7 +46,7 @@ func on_ability_ended(in_was_cancelled: bool) -> void:
 	
 	var owner_pawn := get_owner_pawn()
 	if damp_applied:
-		owner_pawn.character_movement.launch_velocity_damp /= 2.0
+		owner_pawn.character_movement.launch_velocity_damp /= dash_velocity_damp_mul
 		damp_applied = false
 	
 	if is_instance_valid(dash_end_timer):
