@@ -2,3 +2,7 @@
 	path = addons/GodotCommons-Core
 	url = https://github.com/ScientificWays/GodotCommons-Core.git
 	branch = main
+[submodule "addons/GodotDebugTools"]
+	path = addons/GodotDebugTools
+	url = https://github.com/ScientificWays/GodotDebugTools.git
+	branch = main
